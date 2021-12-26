@@ -1,0 +1,33 @@
+.profile {
+  text-align: center;
+
+  &__wrap {
+    display: inline-flex;
+    flex-direction: column;
+    min-height: 655px;
+    justify-content: space-between;
+    padding: 90px 0 107px;
+  }
+
+  &__header {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    color: #E63C16;
+    min-width: 414px;
+    display: inline-block;
+
+    & > div {
+      display: inline-block;
+      width: 50%;
+      text-align: left;
+      &:last-of-type {
+        text-align: right;
+      }
+    }
+  }
+
+  &__form .form__input:last-of-type {
+    margin-bottom: 57px;
+  }
+}

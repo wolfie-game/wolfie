@@ -1,0 +1,21 @@
+.leaderboard {
+  &__row {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  &__col {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 29px;
+    color: #ffffff;
+
+    &_user {
+      width: 60%;
+    }
+
+    &_score {
+      width: 40%;
+    }
+  }
+}
