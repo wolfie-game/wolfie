@@ -1,6 +1,18 @@
 import React, {Component} from 'react'
+import Input from '../../Input/Input'
+import Button from '../../Button/Button'
 
 class Profile extends Component {
+  state = {
+    login: 'admin',
+    email: 'admin@wolfie.com',
+    maxScore: '100000'
+  }
+
+  changePassHandler = () => {
+    console.log('changePassHandler')
+  }
+
   render(){
     return (
       <div className="content__canvas">
@@ -8,12 +20,12 @@ class Profile extends Component {
           <div className="profile__wrap">
             <div className="profile__header">
               <div>Max Score:</div>
-              <div>100000</div>
+              <div>{this.state.maxScore}</div>
             </div>
             <form className="profile__form form">
-              <input className="form__input input" type="text" name="login" value="admin" />
-              <input className="form__input input" type="text" name="email" value="admin@wolfie.com" />
-              <button className="form__button button" type="button">Change Password</button>
+              <Input styleName="form__input input" type="text" name="login" value={this.state.login} readOnly={true} />
+              <Input styleName="form__input input" type="text" name="email" value={this.state.email} readOnly={true} />
+              <Button styleName="form__button button" type="button" handler={this.changePassHandler}>Change Password</Button>
             </form>
           </div>
         </div>

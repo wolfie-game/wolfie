@@ -1,5 +1,16 @@
-import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import LinkItem from '../../LinkItem/LinkItem'
+import { DataMap } from './types'
+
+const links = [
+  {
+    link: '/sign-in',
+    text: 'Sign In'
+  }, {
+    link: '/sign-up',
+    text: 'Sign Up'
+  }
+]
 
 class Authorization extends Component {
   render(){
@@ -9,12 +20,11 @@ class Authorization extends Component {
           <h1 className="authorization__title">You are not autorized!</h1>
           <nav className="navigationk">
             <ul>
-              <li className="authorization__nav">
-                <Link className="authorization__link navigation__link" to="/sign-in">Sign In</Link>
-              </li>
-              <li className="authorization__nav">
-                <Link className="authorization__link navigation__link" to="/sign-up">Sign Up</Link>
-              </li>
+              {links.map((item: DataMap, index: number) => (
+                <li key={index} className="authorization__nav">
+                  <LinkItem styleName="authorization__link navigation__link" goTo={item.link}>{item.text}</LinkItem>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>

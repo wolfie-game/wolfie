@@ -1,10 +1,20 @@
-import React, {Component} from 'react'
+import React from 'react'
+import { InputProps } from './types'
 
-class Input extends Component {
-  render(){
-    return (
-      <input className="form__input input" type="text" name="login" value="admin" />
-    )
-  }
+type Props = InputProps
+
+const Input = (props: Props) => {
+  return (
+    <input 
+      className={props.styleName} 
+      type={props.type} 
+      name={props.name} 
+      value={props.value} 
+      readOnly={props.readOnly} 
+      placeholder={props.placeholder} 
+      onChange={props.handler}
+    />
+  )
 }
+
 export default Input

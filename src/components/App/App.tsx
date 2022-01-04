@@ -11,9 +11,6 @@ import Navigation from '../Navigation'
 import './App.scss'
 
 class App extends Component {
-  componentDidMount(){
-    // console.log(this.props.location)
-  }
   render() {
     return (
       <BrowserRouter>
