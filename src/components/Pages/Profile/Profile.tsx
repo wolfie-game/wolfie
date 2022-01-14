@@ -22,7 +22,7 @@ class Profile extends Component {
               <div>Max Score:</div>
               <div>{this.state.maxScore}</div>
             </div>
-            <form className="profile__form form">
+            <form className="profile__form form" onSubmit={this.changePassHandler}>
               <Input styleName="form__input input" type="text" name="login" value={this.state.login} readOnly={true} />
               <Input styleName="form__input input" type="text" name="email" value={this.state.email} readOnly={true} />
               <Button styleName="form__button button" type="button" handler={this.changePassHandler}>Change Password</Button>

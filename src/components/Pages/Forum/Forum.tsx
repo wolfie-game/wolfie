@@ -6,8 +6,10 @@ import { DataMap } from './types'
 
 const data = [
   {
+    id: 1,
     text: 'How to play the game?',
   }, {
+    id: 2,
     text: 'How to play the game?',
   }
 ]
@@ -23,7 +25,7 @@ function Forum() {
           <h1 className="simpple-page__title">Forum</h1>
           <Button styleName="button-back" type="button" handler={() => navigate(-1)}></Button>
         </div>
-        { messages && messages.map((item: DataMap, index: number) => <ForumItem key={index} text={item.text} />)}
+        { messages && messages.map((item: DataMap) => <ForumItem key={item.id} text={item.text} />)}
       </div>
     </div>
   )

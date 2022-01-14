@@ -6,12 +6,15 @@ import { DataMap } from './types'
 
 const data = [
   {
+    id: 1,
     user: 'Player 1',
     score: '10000' 
   }, {
+    id: 2,
     user: 'Player 2',
     score: '130000' 
   }, {
+    id: 3,
     user: 'Player 3',
     score: '15000' 
   }
@@ -29,8 +32,8 @@ function LeaderBoard() {
           <Button styleName="button-back" type="button" handler={() => navigate(-1)}></Button>
         </div>
         <div className="leaderboard">
-          {leaders && leaders.map((item: DataMap, index: number) => 
-            <LeaderboardItem key={index} user={item.user} score={item.score} />
+          {leaders && leaders.map((item: DataMap) => 
+            <LeaderboardItem key={item.id} user={item.user} score={item.score} />
           )}
         </div>
       </div>

@@ -23,7 +23,7 @@ class SignUp extends Component {
   render(){
     return (
       <div className="content__canvas">
-        <form className="form form_auth">
+        <form className="form form_auth" onSubmit={this.signupHandler}>
           <Input styleName="form__input input" type="text" name="login" 
             value={this.state.login} placeholder="Login" handler={this.handleChange} 
           />
