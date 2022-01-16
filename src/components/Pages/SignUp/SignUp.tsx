@@ -23,7 +23,7 @@ function SignUp() {
   const [state, setState] = useState(initialState)
   const navigate = useNavigate()
 
-  const signupHandler = (event) => {
+  const signupHandler = () => {
     if (inputsValid()) {
       const tempState = {...state}
       delete tempState.password2
