@@ -194,3 +194,32 @@ img {
   transition: box-shadow .35s ease;
 }
 
+.start, .finish {
+  padding-top: 50px;
+  text-align: center;
+  &__img {
+    width: 150px;
+    height: auto;
+    border-radius: 75px;
+    border: 1px solid #ff4e25;
+    box-shadow: inset 0 0 10px 0px #ff4e25, 0 0 10px 0px #ff4e25;
+    margin: 0 auto 20px;
+  }
+  &__header {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    color: #E63C16;
+    min-width: 414px;
+    display: inline-block;
+    & > div {
+      display: inline-block;
+      width: 50%;
+      text-align: center;
+    }
+  }
+  &__nav {
+    margin-top: 20px;
+  }
+
+}
