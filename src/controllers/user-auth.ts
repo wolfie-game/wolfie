@@ -10,7 +10,8 @@ const authInstance = new AuthAPI()
 export default class UserAuthController {
   public async signin(data: LoginFormModel) {
     try {
-      await authInstance.signin(data)
+      let info = await authInstance.signin(data)
+      return info
     } catch (error) {
       alert('Wrong login or password!')
     }
@@ -24,9 +25,15 @@ export default class UserAuthController {
   }
   public async getUserInfo() {
     try {
-      console.log('WE`RE GETTING HERE')
       let resp = await authInstance.getUserInfo()
       return resp
+    } catch (error) {
+      alert(error)
+    }
+  }
+  public async logout() {
+    try {
+      await authInstance.logout()
     } catch (error) {
       alert(error)
     }

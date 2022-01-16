@@ -25,7 +25,6 @@ function SignUp() {
 
   const signupHandler = (event) => {
     if (inputsValid()) {
-      console.log('valid!')
       const tempState = {...state}
       delete tempState.password2
       signUpInstance.signup({
@@ -38,7 +37,6 @@ function SignUp() {
     const notValid = Object.keys(state).filter((item) => {
       return !validation(state[item], item)
     })
-    console.log(notValid, state)
     if (notValid.length === 0 && state.password == state.password2) return true
     else return false
   }

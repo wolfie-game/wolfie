@@ -2,7 +2,6 @@ const host = 'https://ya-praktikum.tech/api/v2/auth'
 
 export default class AuthAPI {
   signup(data) {
-    console.log('auth', JSON.stringify({data}))
     return fetch(host + '/signup', {
       method: 'POST',
       headers: {
@@ -21,8 +20,6 @@ export default class AuthAPI {
   }
 
   signin(data) {
-    console.log('auth in', JSON.stringify({data}))
-
     return fetch(host + '/signin', {
       method: 'POST',
       headers: {
@@ -32,11 +29,7 @@ export default class AuthAPI {
       body: JSON.stringify({...data}),
     })
       .then(() => {
-        const info = this.getUserInfo()
-        console.log(info)
-        return info
-
-        //router.go('/messenger')
+        return this.getUserInfo()
       })
       .catch((reject) => {
         throw new Error(reject)
@@ -59,5 +52,12 @@ export default class AuthAPI {
       })
   }
 
-  userExit() {}
+  logout() {
+    return fetch(host + '/logout', {
+      method: 'POST',
+      credentials: 'include',
+    }).catch(function (error) {
+      alert(error)
+    })
+  }
 }

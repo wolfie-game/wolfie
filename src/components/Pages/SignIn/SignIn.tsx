@@ -12,19 +12,27 @@ function SignIn() {
     password: '',
   }
   const [state, setState] = useState(initialState)
-  const [userData, setUserData] = useState({})
   const navigate = useNavigate()
 
   useEffect(() => {
-    signInInstance.getUserInfo().then((info) => {
-      setUserData(info)
-      navigate('/game')
-    })
+    signInInstance
+      .getUserInfo()
+      .then((info) => {
+        console.log(info)
+        if (info.id) {
+          navigate('/game')
+        }
+      })
+      .catch(() => alert('You are not sign in'))
   }, [])
 
   const signinHandler = async () => {
     await signInInstance.signin(state).then((response) => {
-      console.log(response)
+      if (response.id) {
+        navigate('/game')
+      } else {
+        alert('Wrong login or password')
+      }
     })
 
     const response = await fetch(`https://ya-praktikum.tech/signin`, {
