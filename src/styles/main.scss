@@ -1,0 +1,25 @@
+@import './partials/variables';
+@import './partials/mixins';
+@import './partials/reset';
+@import './partials/base';
+
+a,
+.link {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  &:visited,
+  &:active {
+    color: $link-color;
+  }
+}
+
+#wolfie {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

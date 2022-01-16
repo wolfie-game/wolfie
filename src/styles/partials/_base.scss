@@ -1,0 +1,9 @@
+html {
+  font-size: $fs;
+}
+body {
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  color: $dark-text-color;
+  background: $bg-body;
+}
