@@ -62,39 +62,30 @@ function CanvasComponent() {
 
       const keysHandler = (event: KeyboardEvent) => {
         if (event.key == 'q') {
-          // alert('top left');
           x = 133;
           y = 130;
-          draw(x, y);
         }
 
         if (event.key == 'w') {
-          // alert('top right');
           x = 433;
           y = 130;
-          draw(x, y);
         }
 
         if (event.key == 'e') {
-          // alert('left');
           x = 133;
           y = 330;
-          draw(x, y);
         }
 
         if (event.key == 'r') {
-          // alert('right');
           x = 433;
           y = 330;
-          draw(x, y);
         }
+
+        draw(x, y);
       }
 
       document.addEventListener("keydown", keysHandler);
     }
-
-
-
   }, []);
 
   return (
