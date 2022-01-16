@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
+import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 
 class Profile extends Component {
   state = {
@@ -15,21 +16,23 @@ class Profile extends Component {
 
   render(){
     return (
-      <div className="content__canvas">
-        <div className="profile">
-          <div className="profile__wrap">
-            <div className="profile__header">
-              <div>Max Score:</div>
-              <div>{this.state.maxScore}</div>
+      <ErrorBoundary>
+        <div className="content__canvas">
+          <div className="profile">
+            <div className="profile__wrap">
+              <div className="profile__header">
+                <div>Max Score:</div>
+                <div>{this.state.maxScore}</div>
+              </div>
+              <form className="profile__form form" onSubmit={this.changePassHandler}>
+                <Input styleName="form__input input" type="text" name="login" value={this.state.login} readOnly={true} />
+                <Input styleName="form__input input" type="text" name="email" value={this.state.email} readOnly={true} />
+                <Button styleName="form__button button" type="button" handler={this.changePassHandler}>Change Password</Button>
+              </form>
             </div>
-            <form className="profile__form form" onSubmit={this.changePassHandler}>
-              <Input styleName="form__input input" type="text" name="login" value={this.state.login} readOnly={true} />
-              <Input styleName="form__input input" type="text" name="email" value={this.state.email} readOnly={true} />
-              <Button styleName="form__button button" type="button" handler={this.changePassHandler}>Change Password</Button>
-            </form>
           </div>
         </div>
-      </div>
+      </ErrorBoundary>
     )
   }
 }

@@ -6,9 +6,9 @@ class Main extends Component {
   render() {
     return (
       <ErrorBoundary>
-      <div className="content__canvas">
-        <CanvasComponent />
-      </div>
+        <div className="content__canvas">
+          <CanvasComponent />
+        </div>
       </ErrorBoundary>
     )
   }
