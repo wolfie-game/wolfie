@@ -1,0 +1,18 @@
+.authorization {
+  text-align: center;
+  padding-top: 135px;
+  &__title {
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 34px;
+    color: #ffffff;
+    margin-bottom: 17px;
+  }
+  &__nav {
+    display: inline-block;
+    margin: 27.5px;
+  }
+  &__link {
+    max-width: 179px;
+  }
+}
