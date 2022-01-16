@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Main from '../Pages/Main'
 import Forum from '../Pages/Forum'
 import LeaderBoard from '../Pages/LeaderBoard'
@@ -17,18 +17,18 @@ class App extends Component {
         <div className="wrapper">
           <div className="col-content">
             <div className="logo">
-              <img src="./img/wolfie-logo.png"></img> 
+              <img src="./img/wolfie-logo.png"></img>
             </div>
             <div className="content">
               <div className="content__inner">
                 <Routes>
-                  <Route path="/" element={<Main />} />
+                  <Route path="/" element={<SignIn />} />
                   <Route path="/leaderboard" element={<LeaderBoard />} />
                   <Route path="/forum" element={<Forum />} />
-                  <Route path="/profile" element={<Profile />} /> 
-                  <Route path="/authorization" element={<Authorization />} /> 
-                  <Route path="/sign-in" element={<SignIn />} /> 
-                  <Route path="/sign-up" element={<SignUp />} />                                        
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/authorization" element={<Authorization />} />
+                  <Route path="/game" element={<Main />} />
+                  <Route path="/sign-up" element={<SignUp />} />
                 </Routes>
               </div>
             </div>
