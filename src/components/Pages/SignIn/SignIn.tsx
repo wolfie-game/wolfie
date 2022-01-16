@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
 import {useNavigate} from 'react-router-dom'
+import UserAuthController from '../../../controllers/user-auth'
+
+const signInInstance = new UserAuthController()
 
 function SignIn() {
   const initialState = {
@@ -9,15 +12,26 @@ function SignIn() {
     password: '',
   }
   const [state, setState] = useState(initialState)
+  const [userData, setUserData] = useState({})
   const navigate = useNavigate()
 
+  useEffect(() => {
+    signInInstance.getUserInfo().then((info) => {
+      setUserData(info)
+      navigate('/game')
+    })
+  }, [])
+
   const signinHandler = async () => {
+    await signInInstance.signin(state).then((response) => {
+      console.log(response)
+    })
+
     const response = await fetch(`https://ya-praktikum.tech/signin`, {
       method: 'POST',
       body: JSON.stringify({data: state}),
     })
     let result = await response.json()
-    alert('Wrong login or password!')
   }
 
   const signupHandler = (event) => {
@@ -41,7 +55,7 @@ function SignIn() {
         />
         <Input
           styleName="form__input input"
-          type="text"
+          type="password"
           name="password"
           value={state.password}
           handler={handleChange}

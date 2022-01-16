@@ -2,10 +2,19 @@ import React, {useState} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
 import {useNavigate} from 'react-router-dom'
+import UserAuthController from '../../../controllers/user-auth'
+import validation from '../../../utils/validation'
+const signUpInstance = new UserAuthController()
 
+interface IState {
+  login: string
+  email: string
+  password: string
+  password2?: string
+}
 
 function SignUp() {
-  const initialState = {
+  const initialState: IState = {
     login: '',
     email: '',
     password: '',
@@ -15,9 +24,25 @@ function SignUp() {
   const navigate = useNavigate()
 
   const signupHandler = (event) => {
-    console.log('signupHandler')
-    console.log(state)
+    if (inputsValid()) {
+      console.log('valid!')
+      const tempState = {...state}
+      delete tempState.password2
+      signUpInstance.signup({
+        ...tempState,
+      })
+    }
   }
+
+  const inputsValid = () => {
+    const notValid = Object.keys(state).filter((item) => {
+      return !validation(state[item], item)
+    })
+    console.log(notValid, state)
+    if (notValid.length === 0 && state.password == state.password2) return true
+    else return false
+  }
+
   const signinHandler = (event) => {
     event.preventDefault()
     navigate('/')
