@@ -8,6 +8,7 @@ import Authorization from '../Pages/Authorization'
 import SignIn from '../Pages/SignIn/SignIn'
 import SignUp from '../Pages/SignUp'
 import Navigation from '../Navigation'
+// import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import './App.scss'
 
 class App extends Component {
@@ -26,9 +27,9 @@ class App extends Component {
                   <Route path="/leaderboard" element={<LeaderBoard />} />
                   <Route path="/forum" element={<Forum />} />
                   <Route path="/profile" element={<Profile />} /> 
-                  <Route path="/authorization" element={<Authorization />} /> 
+                  <Route path="/authorization" element={<Authorization />} />
                   <Route path="/sign-in" element={<SignIn />} /> 
-                  <Route path="/sign-up" element={<SignUp />} />                                        
+                  <Route path="/sign-up" element={<SignUp />} /> 
                 </Routes>
               </div>
             </div>
