@@ -23,8 +23,10 @@ class App extends Component {
             <div className="content">
               <div className="content__inner">
                 <Routes>
-                  <Route path="/" element={<Main />} />
-                  <Route path="/leaderboard" element={<LeaderBoard />} />
+                  
+                    <Route path="/" element={<Main />} />
+ 
+                    <Route path="/leaderboard" element={<LeaderBoard />} />
                   <Route path="/forum" element={<Forum />} />
                   <Route path="/profile" element={<Profile />} /> 
                   <Route path="/authorization" element={<Authorization />} />
