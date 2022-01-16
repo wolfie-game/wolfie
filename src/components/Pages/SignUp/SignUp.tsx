@@ -27,9 +27,17 @@ function SignUp() {
     if (inputsValid()) {
       const tempState = {...state}
       delete tempState.password2
-      signUpInstance.signup({
-        ...tempState,
-      })
+      signUpInstance
+        .signup({
+          ...tempState,
+        })
+        .then((info) => {
+          if (info.id) {
+            alert('good to go')
+            navigate('/game')
+          }
+        })
+        .catch(() => alert('You are not sign in'))
     }
   }
 

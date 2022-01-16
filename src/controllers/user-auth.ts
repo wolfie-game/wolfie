@@ -10,15 +10,16 @@ const authInstance = new AuthAPI()
 export default class UserAuthController {
   public async signin(data: LoginFormModel) {
     try {
-      let info = await authInstance.signin(data)
-      return info
+      let response = await authInstance.signin(data)
+      return response
     } catch (error) {
       alert('Wrong login or password!')
     }
   }
   public async signup(data) {
     try {
-      await authInstance.signup(data)
+      let response = await authInstance.signup(data)
+      return response
     } catch (error) {
       alert('This email already in use!')
     }

@@ -14,9 +14,13 @@ export default class AuthAPI {
         phone: '+71111111111',
         ...data,
       }),
-    }).catch((reject) => {
-      throw new Error(reject)
     })
+      .then(() => {
+        return this.getUserInfo()
+      })
+      .catch((reject) => {
+        throw new Error(reject)
+      })
   }
 
   signin(data) {
