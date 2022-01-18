@@ -1,4 +1,7 @@
-export default function validationForm(inputContent: string, type: string): boolean {
+export default function validationForm(
+  inputContent: string,
+  type: string,
+): boolean {
   const expression = {
     login: /^[a-zA-Z]([a-zA-Z0-9_-]{1,29})$/,
     email: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,

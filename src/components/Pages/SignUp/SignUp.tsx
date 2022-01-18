@@ -14,7 +14,7 @@ interface IState {
 }
 
 function SignUp() {
-  const initialState: IState = {
+  const initialState = {
     login: '',
     email: '',
     password: '',
@@ -25,7 +25,7 @@ function SignUp() {
 
   const signupHandler = () => {
     if (inputsValid()) {
-      const tempState = {...state}
+      const tempState: IState = {...state}
       delete tempState.password2
       signUpInstance
         .signup({
@@ -33,7 +33,6 @@ function SignUp() {
         })
         .then((info) => {
           if (info.id) {
-            alert('good to go')
             navigate('/game')
           }
         })
@@ -46,7 +45,10 @@ function SignUp() {
       return !validation(state[item], item)
     })
     if (notValid.length === 0 && state.password == state.password2) return true
-    else return false
+    else {
+      alert('Fill up the fields!')
+      return false
+    }
   }
 
   const signinHandler = (event) => {
