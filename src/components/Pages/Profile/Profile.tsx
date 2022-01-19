@@ -11,7 +11,6 @@ function Profile() {
   const initialState = {
     login: 'admin',
     email: 'admin@wolfie.com',
-    maxScore: '100000',
   }
   const [state, setState] = useState(initialState)
   const [modal, setModal] = useState(false)
@@ -58,7 +57,6 @@ function Profile() {
           ...state,
           login: info.login,
           email: info.email,
-          maxScore: info.phone,
         })
       }
     })
@@ -73,10 +71,6 @@ function Profile() {
             show={modal}
             updatePassword={passwordRequest}
           />
-          <div className="profile__header">
-            <div>Max Score:</div>
-            <div>{state.maxScore}</div>
-          </div>
           <form className="profile__form form" onSubmit={changePassHandler}>
             <Input
               styleName="form__input input"
