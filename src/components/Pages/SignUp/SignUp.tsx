@@ -1,45 +1,114 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
+import {useNavigate} from 'react-router-dom'
+import UserAuthController from '../../../controllers/user-auth'
+import validation from '../../../utils/validation'
+const signUpInstance = new UserAuthController()
 
-class SignUp extends Component {
-  state = {
+interface IState {
+  login: string
+  email: string
+  password: string
+  password2?: string
+}
+
+function SignUp() {
+  const initialState = {
     login: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
+  }
+  const [state, setState] = useState(initialState)
+  const navigate = useNavigate()
+
+  const signupHandler = () => {
+    if (inputsValid()) {
+      const tempState: IState = {...state}
+      delete tempState.password2
+      signUpInstance
+        .signup({
+          ...tempState,
+        })
+        .then((info) => {
+          if (info.id) {
+            navigate('/game')
+          }
+        })
+        .catch(() => alert('You are not sign in'))
+    }
   }
 
-  signupHandler = () => {
-    console.log('signupHandler')
+  const inputsValid = () => {
+    const notValid = Object.keys(state).filter((item) => {
+      return !validation(state[item], item)
+    })
+    if (notValid.length === 0 && state.password == state.password2) return true
+    else {
+      alert('Fill up the fields!')
+      return false
+    }
   }
 
-  handleChange = (event: any) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+  const signinHandler = (event) => {
+    event.preventDefault()
+    navigate('/')
   }
 
-  render(){
-    return (
-      <div className="content__canvas">
-        <form className="form form_auth" onSubmit={this.signupHandler}>
-          <Input styleName="form__input input" type="text" name="login" 
-            value={this.state.login} placeholder="Login" handler={this.handleChange} 
-          />
-          <Input styleName="form__input input" type="text" name="email" 
-            value={this.state.email} placeholder="Email" handler={this.handleChange} 
-          />
-          <Input styleName="form__input input" type="password" name="password" 
-            value={this.state.password} placeholder="Password" handler={this.handleChange} 
-          />
-          <Input styleName="form__input input" type="password" name="password2" 
-            value={this.state.password2} placeholder="Repeat password" handler={this.handleChange} 
-          />
-          <Button styleName="form__button button" type="button" handler={this.signupHandler}>Sign Up</Button>
-        </form>
-      </div>
-    )
+  const handleChange = (event: any) => {
+    setState({...state, [event.target.name]: event.target.value})
   }
+
+  return (
+    <div className="content__canvas">
+      <form className="form form_auth" onSubmit={signupHandler}>
+        <Input
+          styleName="form__input input"
+          type="text"
+          name="login"
+          value={state.login}
+          placeholder="Login"
+          handler={handleChange}
+        />
+        <Input
+          styleName="form__input input"
+          type="text"
+          name="email"
+          value={state.email}
+          placeholder="Email"
+          handler={handleChange}
+        />
+        <Input
+          styleName="form__input input"
+          type="password"
+          name="password"
+          value={state.password}
+          placeholder="Password"
+          handler={handleChange}
+        />
+        <Input
+          styleName="form__input input"
+          type="password"
+          name="password2"
+          value={state.password2}
+          placeholder="Repeat password"
+          handler={handleChange}
+        />
+        <Button
+          styleName="form__button button"
+          type="button"
+          handler={signupHandler}>
+          Sign Up
+        </Button>
+        <Button
+          styleName="form__button button-transparent"
+          type="button"
+          handler={signinHandler}>
+          Sign In
+        </Button>
+      </form>
+    </div>
+  )
 }
 export default SignUp
