@@ -11,10 +11,11 @@ interface IState {
   game: boolean
 }
 
+const initialState: IState = {
+  game: false
+}
+
 function Main() {
-  const initialState: IState = {
-    game: false,
-  }
   const [state, setState] = useState(initialState)
 
   const navigate = useNavigate()
