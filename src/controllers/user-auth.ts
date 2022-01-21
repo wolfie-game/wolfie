@@ -1,4 +1,5 @@
 import AuthAPI from '../api/auth-api'
+import UserAPI from '../api/user-api'
 
 interface LoginFormModel {
   login: string
@@ -6,6 +7,7 @@ interface LoginFormModel {
 }
 
 const authInstance = new AuthAPI()
+const userInstance = new UserAPI()
 
 export default class UserAuthController {
   public async signin(data: LoginFormModel) {
@@ -37,6 +39,14 @@ export default class UserAuthController {
       await authInstance.logout()
     } catch (error) {
       alert(error)
+    }
+  }
+  public async changePassword(oldPwd, newPwd) {
+    try {
+      let resp = await userInstance.updatePassword(oldPwd, newPwd)
+      return resp
+    } catch (error) {
+      console.log(error)
     }
   }
 }

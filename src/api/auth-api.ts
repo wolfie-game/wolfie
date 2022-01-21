@@ -1,20 +1,20 @@
+import FetchRequest from '../utils/FetchRequest'
+
 const host = 'https://ya-praktikum.tech/api/v2/auth'
+
+const authAPIInstance = new FetchRequest(`${host}`)
 
 export default class AuthAPI {
   signup(data) {
-    return fetch(host + '/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        first_name: 'User', //zaglushky
-        second_name: 'User',
-        phone: '+71111111111',
-        ...data,
-      }),
-    })
+    return authAPIInstance
+      .post('/signup', {
+        data: {
+          first_name: 'User',
+          second_name: 'User',
+          phone: '+71111111111',
+          ...data,
+        },
+      })
       .then(() => {
         return this.getUserInfo()
       })
@@ -24,14 +24,8 @@ export default class AuthAPI {
   }
 
   signin(data) {
-    return fetch(host + '/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({...data}),
-    })
+    return authAPIInstance
+      .post('/signin', {data})
       .then(() => {
         return this.getUserInfo()
       })
@@ -41,13 +35,8 @@ export default class AuthAPI {
   }
 
   getUserInfo() {
-    return fetch(host + '/user', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-    })
+    return authAPIInstance
+      .get('/user')
       .then((response) => {
         return response.json()
       })
@@ -57,10 +46,7 @@ export default class AuthAPI {
   }
 
   logout() {
-    return fetch(host + '/logout', {
-      method: 'POST',
-      credentials: 'include',
-    }).catch(function (error) {
+    return authAPIInstance.post('/logout').catch(function (error) {
       alert(error)
     })
   }

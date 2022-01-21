@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import UserAuthController from '../../../controllers/user-auth'
 
 const signInInstance = new UserAuthController()
+const signinUrl = 'https://ya-praktikum.tech/signin'
 
 function SignIn() {
   const initialState = {
@@ -36,7 +37,7 @@ function SignIn() {
       }
     })
 
-    const response = await fetch(`https://ya-praktikum.tech/signin`, {
+    const response = await fetch(signinUrl, {
       method: 'POST',
       body: JSON.stringify({data: state}),
     })
