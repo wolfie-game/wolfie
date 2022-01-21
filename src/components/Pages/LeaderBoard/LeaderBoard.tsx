@@ -28,24 +28,26 @@ function LeaderBoard() {
   const navigate = useNavigate()
 
   return (
-    <div className="content__canvas">
-      <div className="simpple-page">
-        <div className="simpple-page__heading">
-          <h1 className="simpple-page__title">Leaderboard</h1>
-          <Button
-            styleName="button-back"
-            type="button"
-            handler={() => navigate(-1)}></Button>
-        </div>
-        <div className="leaderboard">
-          {leaders &&
-            leaders.map((item: DataMap) => (
-              <LeaderboardItem
-                key={item.id}
-                user={item.user}
-                score={item.score}
-              />
-            ))}
+    <ErrorBoundary>
+      <div className="content__canvas">
+        <div className="simpple-page">
+          <div className="simpple-page__heading">
+            <h1 className="simpple-page__title">Leaderboard</h1>
+            <Button
+              styleName="button-back"
+              type="button"
+              handler={() => navigate(-1)}></Button>
+          </div>
+          <div className="leaderboard">
+            {leaders &&
+              leaders.map((item: DataMap) => (
+                <LeaderboardItem
+                  key={item.id}
+                  user={item.user}
+                  score={item.score}
+                />
+              ))}
+          </div>
         </div>
       </div>
     </ErrorBoundary>

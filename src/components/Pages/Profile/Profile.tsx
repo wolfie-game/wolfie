@@ -94,10 +94,11 @@ function Profile() {
               handler={logOutHandler}>
               Log Out
             </Button>
-          </div>
+          </form>
         </div>
       </div>
-    </ErrorBoundary>
+    </div>
+  </ErrorBoundary>
   )
 }
 
