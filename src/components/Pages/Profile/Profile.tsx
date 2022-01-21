@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
+import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import UserAuthController from '../../../controllers/user-auth'
 import {useNavigate} from 'react-router-dom'
 import Modal from '../../Modal/Modal'
@@ -63,6 +64,7 @@ function Profile() {
   }, [])
 
   return (
+  <ErrorBoundary>
     <div className="content__canvas">
       <div className="profile">
         <div className="profile__wrap">
@@ -87,21 +89,17 @@ function Profile() {
               readOnly={true}
             />
             <Button
-              styleName="form__button button"
+              styleName="form__button button-transparent"
               type="button"
-              handler={changePassHandler}>
-              Change Password
+              handler={logOutHandler}>
+              Log Out
             </Button>
           </form>
-          <Button
-            styleName="form__button button-transparent"
-            type="button"
-            handler={logOutHandler}>
-            Log Out
-          </Button>
         </div>
       </div>
     </div>
+  </ErrorBoundary>
   )
 }
+
 export default Profile
