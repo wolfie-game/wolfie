@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import Button from '../../Button/Button'
 import LeaderboardItem from '../../LeaderboardItem/LeaderboardItem'
-import {DataMap} from './types'
+import { DataMap } from './types'
+import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 
 const data = [
   {
@@ -47,7 +48,7 @@ function LeaderBoard() {
             ))}
         </div>
       </div>
-    </div>
+    </ErrorBoundary>
   )
 }
 export default LeaderBoard
