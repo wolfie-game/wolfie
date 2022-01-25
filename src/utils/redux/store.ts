@@ -1,6 +1,8 @@
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import {UserState} from './reducers/types'
 import {userReducer} from './reducers/user'
+import createSagaMiddleware from 'redux-saga'
+import 'regenerator-runtime/runtime'
 
 const preloadedState = (window as any).__PRELOADED_STATE__ || {}
 
