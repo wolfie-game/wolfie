@@ -5,6 +5,8 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import UserAuthController from '../../../controllers/user-auth'
 import {useNavigate} from 'react-router-dom'
 import Modal from '../../Modal/Modal'
+import {RootStateOrAny, useSelector} from 'react-redux'
+
 
 const profileDataRequester = new UserAuthController()
 
@@ -16,6 +18,9 @@ function Profile() {
   const [state, setState] = useState(initialState)
   const [modal, setModal] = useState(false)
   const navigate = useNavigate()
+
+  const userData = useSelector((state: RootStateOrAny) => state.user)
+  console.log(userData, typeof userData)
 
   const showModal = () => {
     setModal(true)
@@ -38,10 +43,7 @@ function Profile() {
 
   const changePassHandler = () => {
     console.log('changePassHandler')
-    //show modal
     showModal()
-    //chech passwods if equal
-    //try to update
   }
   const logOutHandler = () => {
     profileDataRequester.logout()
@@ -64,41 +66,41 @@ function Profile() {
   }, [])
 
   return (
-  <ErrorBoundary>
-    <div className="content__canvas">
-      <div className="profile">
-        <div className="profile__wrap">
-          <Modal
-            handleClose={hideModal}
-            show={modal}
-            updatePassword={passwordRequest}
-          />
-          <form className="profile__form form" onSubmit={changePassHandler}>
-            <Input
-              styleName="form__input input"
-              type="text"
-              name="login"
-              value={state.login}
-              readOnly={true}
+    <ErrorBoundary>
+      <div className="content__canvas">
+        <div className="profile">
+          <div className="profile__wrap">
+            <Modal
+              handleClose={hideModal}
+              show={modal}
+              updatePassword={passwordRequest}
             />
-            <Input
-              styleName="form__input input"
-              type="text"
-              name="email"
-              value={state.email}
-              readOnly={true}
-            />
-            <Button
-              styleName="form__button button-transparent"
-              type="button"
-              handler={logOutHandler}>
-              Log Out
-            </Button>
-          </form>
+            <form className="profile__form form" onSubmit={changePassHandler}>
+              <Input
+                styleName="form__input input"
+                type="text"
+                name="login"
+                value={state.login}
+                readOnly={true}
+              />
+              <Input
+                styleName="form__input input"
+                type="text"
+                name="email"
+                value={state.email}
+                readOnly={true}
+              />
+              <Button
+                styleName="form__button button-transparent"
+                type="button"
+                handler={logOutHandler}>
+                Log Out
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </ErrorBoundary>
+    </ErrorBoundary>
   )
 }
 
