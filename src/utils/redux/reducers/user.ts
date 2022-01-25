@@ -1,44 +1,30 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-
-type User = {
-  id: number
-  first_name: string
-  second_name: string
-  display_name: string
-  login: string
-  email: string
-  phone: string
-  avatar: string
+const actions = {
+  CHECK_AUTH: 'CHECK_AUTH',
+  CREATE_USER: 'CREATE_USER',
+  LOGOUT: 'LOGOUT',
 }
 
-type UserStateValue = User | null
-
-interface UserState {
-  auth: boolean
-  value: UserStateValue
+export function userReducer(state, action) {
+  switch (action.type) {
+    case actions.CHECK_AUTH:
+      return {
+        auth: true,
+        value: action.payload,
+      }
+    case actions.CREATE_USER:
+      return {
+        auth: true,
+        value: action.payload,
+      }
+    case actions.LOGOUT:
+      return {
+        auth: false,
+        value: null,
+      }
+    default:
+      return state
+  }
 }
-
-const initialState: UserState = {
-  auth: false,
-  value: null,
+export function checkAuth(userData) {
+  return {type: actions.CHECK_AUTH, payload: {...userData}}
 }
-const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    checkAuth(state, action: PayloadAction<any>) {
-      state.auth = action.payload
-    },
-    createUser(state, action) {
-      state.auth = true
-      state.value = action.payload
-    },
-    logOut(state, action) {
-      state.auth = false
-      state.value = null
-    },
-  },
-})
-
-export const {checkAuth, createUser, logOut} = userSlice.actions
-export default userSlice.reducer

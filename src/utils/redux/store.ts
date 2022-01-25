@@ -1,14 +1,18 @@
 import {createStore} from 'redux'
-import userReducer from './reducers/user'
-import {configureStore} from '@reduxjs/toolkit'
+import {UserState} from './reducers/types'
+import {userReducer} from './reducers/user'
 
 const preloadedState = (window as any).__PRELOADED_STATE__ || {}
 
-const store = configureStore({
-  preloadedState,
-  reducer: {
-    user: userReducer,
-  },
-})
+export const initialState: UserState = {
+  auth: false,
+  value: null,
+}
+
+function configureStore(preloadedState) {
+  const store = createStore(userReducer, initialState)
+  return store
+}
+const store = configureStore({})
 
 export default store

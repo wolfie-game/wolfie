@@ -7,7 +7,6 @@ import {useNavigate} from 'react-router-dom'
 import Modal from '../../Modal/Modal'
 import {RootStateOrAny, useSelector} from 'react-redux'
 
-
 const profileDataRequester = new UserAuthController()
 
 function Profile() {
@@ -51,6 +50,10 @@ function Profile() {
   }
 
   useEffect(() => {
+    /*if (!userData.auth) {
+      navigate('/')
+    }*/
+
     profileDataRequester.getUserInfo().then((info) => {
       console.log(info)
       if (!info.id) {
