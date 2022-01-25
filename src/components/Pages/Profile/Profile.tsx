@@ -19,7 +19,6 @@ function Profile() {
   const navigate = useNavigate()
 
   const userData = useSelector((state: RootStateOrAny) => state.user)
-  console.log(userData, typeof userData)
 
   const showModal = () => {
     setModal(true)
@@ -33,7 +32,6 @@ function Profile() {
       .changePassword(oldPwd, newPwd)
       .then((response) => {
         hideModal()
-        console.log(response)
         profileDataRequester.getUserInfo().then((info) => {
           console.log(info)
         })
@@ -41,7 +39,6 @@ function Profile() {
   }
 
   const changePassHandler = () => {
-    console.log('changePassHandler')
     showModal()
   }
   const logOutHandler = () => {
@@ -55,7 +52,6 @@ function Profile() {
     }*/
 
     profileDataRequester.getUserInfo().then((info) => {
-      console.log(info)
       if (!info.id) {
         navigate('/')
       } else {
