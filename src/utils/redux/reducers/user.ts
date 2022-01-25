@@ -28,3 +28,9 @@ export function userReducer(state, action) {
 export function checkAuth(userData) {
   return {type: actions.CHECK_AUTH, payload: {...userData}}
 }
+export function createUser(userData) {
+  return {type: actions.CREATE_USER, payload: {...userData}}
+}
+export function logout(userData) {
+  return {type: actions.LOGOUT}
+}
