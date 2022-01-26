@@ -11,6 +11,7 @@ import Finish from '../Pages/Finish'
 import Navigation from '../Navigation'
 // import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import './App.scss'
+import '../../utils/service-worker/registerServiceWorker'
 
 class App extends Component {
   render() {
