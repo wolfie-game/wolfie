@@ -12,11 +12,12 @@ interface IState {
 }
 
 const initialState: IState = {
-  game: false
+  game: false,
 }
 
 function Main() {
   const [state, setState] = useState(initialState)
+  const [isFullscreen, setIsFullscrenn] = useState(false)
 
   const navigate = useNavigate()
 
@@ -35,23 +36,41 @@ function Main() {
     setState({game: true})
   }
 
+  const toggleFullscrenn = () => {
+    const canvas = document.getElementById('canvas')
+    if (!document.fullscreenElement && canvas) {
+      canvas.requestFullscreen()
+      setIsFullscrenn(true)
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen()
+        setIsFullscrenn(false)
+      }
+    }
+  }
+
   return (
     <ErrorBoundary>
-      <div className="content__canvas">
+      <div className="content__canvas" id="canvas">
         {!state.game ? (
           <div className="start">
             <img className="start__img" src="./img/wolf.png"></img>
             <Button
               styleName="form__button button-transparent"
               type="button"
-              handler={handleStart}
-              >
-                Начать игру
+              handler={handleStart}>
+              Начать игру
             </Button>
           </div>
         ) : (
           <CanvasComponent />
         )}
+        <Button
+          styleName="fullscrenn_button"
+          type="button"
+          handler={toggleFullscrenn}>
+          {isFullscreen ? 'Close Fullscreen' : 'Fullscreen'}
+        </Button>
       </div>
     </ErrorBoundary>
   )
