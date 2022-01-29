@@ -1,5 +1,5 @@
 export interface DataMap {
-  id: number;
-  user: string;
-  score: string;
+  id: number
+  user: string
+  score: string
 }

@@ -1,5 +1,5 @@
 export interface DataMap {
-  id: number;
-  link: string;
-  text: string;
+  id: number
+  link: string
+  text: string
 }

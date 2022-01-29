@@ -1,5 +1,5 @@
 export type LinkProps = {
-  styleName?: string;
-  goTo: string;
-  children: string;
+  styleName?: string
+  goTo: string
+  children: string
 }

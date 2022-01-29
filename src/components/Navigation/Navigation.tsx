@@ -1,21 +1,23 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import LinkItem from '../LinkItem/LinkItem'
-import { DataMap } from './types'
+import {DataMap} from './types'
 
 const links = [
   {
     id: 1,
     link: '/leaderboard',
-    text: 'Leaderboard'
-  }, {
+    text: 'Leaderboard',
+  },
+  {
     id: 2,
     link: '/forum',
-    text: 'Forum'
-  }, {
+    text: 'Forum',
+  },
+  {
     id: 3,
     link: '/profile',
-    text: 'Profile'
-  }
+    text: 'Profile',
+  },
 ]
 
 class Navigation extends Component {
@@ -25,7 +27,9 @@ class Navigation extends Component {
         <ul>
           {links.map((item: DataMap) => (
             <li key={item.id}>
-              <LinkItem styleName="navigation__link" goTo={item.link}>{item.text}</LinkItem>
+              <LinkItem styleName="navigation__link" goTo={item.link}>
+                {item.text}
+              </LinkItem>
             </li>
           ))}
         </ul>
