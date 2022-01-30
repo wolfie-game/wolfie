@@ -17,8 +17,8 @@ export class Wolfie {
   legWidth: number
   legHeight: number
   legSpaseBeetween: number
-  height: any
-  width: any
+  height: number
+  width: number
   isRight: boolean
   constructor(ctx, height, width) {
     this.context = ctx
@@ -94,6 +94,7 @@ export class Wolfie {
     this.context.fillStyle = grey
     this.context.fill()
   }
+
   turnRight(x, y) {
     this.isRight = true
     // background
@@ -138,6 +139,7 @@ export class Wolfie {
     this.context.fillStyle = grey
     this.context.fill()
   }
+
   goUp(x, y) {
     if (this.isRight) {
       this.turnRight(x, y)
@@ -145,6 +147,7 @@ export class Wolfie {
       this.turnLeft(x, y)
     }
   }
+
   goDown(x, y) {
     if (this.isRight) {
       this.turnRight(x, y)
