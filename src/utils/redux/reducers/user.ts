@@ -37,7 +37,7 @@ export function checkAuth(userData) {
 export function createUser(userData) {
   return {type: actions.CREATE_USER, payload: {...userData}}
 }
-export function logout(userData) {
+export function logout() {
   return {type: actions.LOGOUT}
 }
 

@@ -5,7 +5,7 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 
 const links = [
   {
-    link: '/sign-in',
+    link: '/',
     text: 'Sign In',
   },
   {

@@ -1,3 +1,7 @@
+import store from '../store'
+
+export type TRootState = ReturnType<typeof store.getState>
+
 export type User = {
   id: number
   first_name: string

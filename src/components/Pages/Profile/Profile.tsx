@@ -5,7 +5,8 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import UserAuthController from '../../../controllers/user-auth'
 import {useNavigate} from 'react-router-dom'
 import Modal from '../../Modal/Modal'
-import {RootStateOrAny, useSelector} from 'react-redux'
+import {useDispatch, RootStateOrAny, useSelector, connect} from 'react-redux'
+import {logout} from '../../../utils/redux/reducers/user' 
 
 const profileDataRequester = new UserAuthController()
 
@@ -17,6 +18,7 @@ function Profile() {
   const [state, setState] = useState(initialState)
   const [modal, setModal] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const userData = useSelector((state: RootStateOrAny) => state.user)
 
@@ -43,7 +45,8 @@ function Profile() {
   }
   const logOutHandler = () => {
     profileDataRequester.logout()
-    navigate('/')
+    dispatch(logout())
+    navigate('/authorization')
   }
 
   useEffect(() => {
@@ -110,4 +113,8 @@ function Profile() {
   )
 }
 
-export default Profile
+const ConnectedApp = connect((state) => {
+  return state
+})(Profile)
+
+export default ConnectedApp

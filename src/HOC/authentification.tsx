@@ -1,18 +1,21 @@
-/*import React from 'react'
-import {Redirect, Route, RouteProps} from 'react-router-dom'
+import React, { FC, useEffect } from 'react'
+import {Route, RouteProps, useNavigate, Navigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import {userAuthSelector} from '../utils/redux/reducers/selectors'
 
-export type ProtectedRouteProps = RouteProps
+type RootState = {
+  auth: boolean
+}
 
-const PrivateRoute = (props: ProtectedRouteProps): React.ReactElement => {
-  const isUserAuthorized: boolean = useSelector(isAuthorized)
-  if (isUserAuthorized) {
-    return <Route {...props} />
+const PrivateRoute = ({children}) => {
+  let isUserAuthorized: boolean = useSelector(userAuthSelector)
+  console.log('isUserAuthorized', isUserAuthorized)
+
+  if (!isUserAuthorized) {
+    return <Navigate to="/authorization" />;
   }
 
-  const {location} = props
-  return <Redirect to={{pathname: '/auth', state: {from: location}}} />
+  return children;
 }
 
 export default PrivateRoute
-*/

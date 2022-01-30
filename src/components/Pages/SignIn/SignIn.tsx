@@ -4,7 +4,7 @@ import Button from '../../Button/Button'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import {useNavigate} from 'react-router-dom'
 import UserAuthController from '../../../controllers/user-auth'
-import {useDispatch, useSelector, RootStateOrAny} from 'react-redux'
+import {useDispatch, useSelector, RootStateOrAny, connect} from 'react-redux'
 import {checkAuth} from '../../../utils/redux/reducers/user'
 
 const signInInstance = new UserAuthController()
@@ -25,8 +25,9 @@ function SignIn() {
     signInInstance
       .getUserInfo()
       .then((info) => {
-        console.log(info)
+        // console.log(info)
         if (info.id) {
+          dispatch(checkAuth(info))
           navigate('/game')
         }
       })
@@ -96,4 +97,8 @@ function SignIn() {
   )
 }
 
-export default SignIn
+const ConnectedApp = connect((state) => {
+  return state
+})(SignIn)
+
+export default ConnectedApp
