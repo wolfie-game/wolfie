@@ -10,6 +10,7 @@ import SignUp from '../Pages/SignUp'
 import Finish from '../Pages/Finish'
 import Navigation from '../Navigation'
 import './App.scss'
+import '../../utils/service-worker/registerServiceWorker'
 
 class App extends Component {
   render() {

@@ -1,20 +1,21 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import LinkItem from '../../LinkItem/LinkItem'
-import { DataMap } from './types'
+import {DataMap} from './types'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 
 const links = [
   {
     link: '/sign-in',
-    text: 'Sign In'
-  }, {
+    text: 'Sign In',
+  },
+  {
     link: '/sign-up',
-    text: 'Sign Up'
-  }
+    text: 'Sign Up',
+  },
 ]
 
 class Authorization extends Component {
-  render(){
+  render() {
     return (
       <ErrorBoundary>
         <div className="content__canvas">
@@ -24,7 +25,11 @@ class Authorization extends Component {
               <ul>
                 {links.map((item: DataMap, index: number) => (
                   <li key={index} className="authorization__nav">
-                    <LinkItem styleName="authorization__link navigation__link" goTo={item.link}>{item.text}</LinkItem>
+                    <LinkItem
+                      styleName="authorization__link navigation__link"
+                      goTo={item.link}>
+                      {item.text}
+                    </LinkItem>
                   </li>
                 ))}
               </ul>

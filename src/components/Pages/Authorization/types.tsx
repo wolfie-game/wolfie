@@ -1,3 +1,3 @@
-export interface DataMap { 
-  [key: string]: string; 
+export interface DataMap {
+  [key: string]: string
 }
