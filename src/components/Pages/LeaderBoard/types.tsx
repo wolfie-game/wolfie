@@ -1,5 +1,8 @@
+interface lederboardData {
+  name: string;
+  joker: string;
+}
 export interface DataMap {
-  id: number;
-  user: string;
-  score: string;
+  id?: number;
+  data: lederboardData
 }

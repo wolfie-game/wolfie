@@ -14,4 +14,7 @@ export type UserStateValue = User | null
 export interface UserState {
   auth: boolean
   value: UserStateValue
+  leaderboard?: any
+  loading?: boolean
+  error?: boolean
 }

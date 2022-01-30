@@ -2,9 +2,15 @@ const actions = {
   CHECK_AUTH: 'CHECK_AUTH',
   CREATE_USER: 'CREATE_USER',
   LOGOUT: 'LOGOUT',
+  GET_LEADERS: 'GET_LEADERS'
 }
 
-export function userReducer(state, action) {
+const initialState = {
+    auth: false,
+    value: null
+};
+
+function userReducer(state = initialState, action) {
   switch (action.type) {
     case actions.CHECK_AUTH:
       return {
@@ -34,3 +40,5 @@ export function createUser(userData) {
 export function logout(userData) {
   return {type: actions.LOGOUT}
 }
+
+export default userReducer
