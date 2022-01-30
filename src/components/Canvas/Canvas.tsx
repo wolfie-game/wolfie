@@ -26,8 +26,6 @@ function CanvasComponent() {
     let y: number =
       state.canvasHeiht - wolfie.bodyHeight - wolfie.legHeight - bottomPadding
 
-    console.log(x, y)
-
     const draw = () => {
       wolfie.init(x, y)
     }
@@ -56,8 +54,6 @@ function CanvasComponent() {
           wolfie.goDown(x, y)
         }
       }
-
-      //draw()
     }
 
     function reculc() {
