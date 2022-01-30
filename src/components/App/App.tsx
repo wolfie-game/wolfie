@@ -9,7 +9,6 @@ import SignIn from '../Pages/SignIn/SignIn'
 import SignUp from '../Pages/SignUp'
 import Finish from '../Pages/Finish'
 import Navigation from '../Navigation'
-// import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import './App.scss'
 import '../../utils/service-worker/registerServiceWorker'
 
@@ -45,4 +44,5 @@ class App extends Component {
     )
   }
 }
+
 export default App
