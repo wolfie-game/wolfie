@@ -25,7 +25,7 @@ function SignIn() {
     signInInstance
       .getUserInfo()
       .then((info) => {
-        // console.log(info)
+        //console.log(info)
         if (info.id) {
           dispatch(checkAuth(info))
           navigate('/game')
