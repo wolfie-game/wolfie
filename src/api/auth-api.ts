@@ -9,8 +9,8 @@ export default class AuthAPI {
     return authAPIInstance
       .post('/signup', {
         data: {
-          first_name: 'User',
-          second_name: 'User',
+          first_name: 'User-name',
+          second_name: 'User-second-name',
           phone: '+71111111111',
           ...data,
         },

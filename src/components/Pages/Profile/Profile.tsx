@@ -47,10 +47,6 @@ function Profile() {
   }
 
   useEffect(() => {
-    /*if (!userData.auth) {
-      navigate('/')
-    }*/
-
     profileDataRequester.getUserInfo().then((info) => {
       if (!info.id) {
         navigate('/')
@@ -95,14 +91,13 @@ function Profile() {
                 handler={changePassHandler}>
                 Change Password
               </Button>
-              
             </form>
             <Button
-                styleName="form__button button-transparent"
-                type="button"
-                handler={logOutHandler}>
-                Log Out
-              </Button>
+              styleName="form__button button-transparent"
+              type="button"
+              handler={logOutHandler}>
+              Log Out
+            </Button>
           </div>
         </div>
       </div>
