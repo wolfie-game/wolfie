@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, FC} from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Main from '../Pages/Main'
 import Forum from '../Pages/Forum'
@@ -11,10 +11,10 @@ import Finish from '../Pages/Finish'
 import Navigation from '../Navigation'
 import './App.scss'
 import '../../utils/service-worker/registerServiceWorker'
+import PrivateRoute from '../../HOC/authentification'
 
-class App extends Component {
-  render() {
-    return (
+const App: FC = () => {
+  return (
       <BrowserRouter>
         <div className="wrapper">
           <div className="col-content">
@@ -25,13 +25,48 @@ class App extends Component {
               <div className="content__inner">
                 <Routes>
                   <Route path="/" element={<SignIn />} />
-                  <Route path="/leaderboard" element={<LeaderBoard />} />
-                  <Route path="/forum" element={<Forum />} />
-                  <Route path="/profile" element={<Profile />} />
                   <Route path="/authorization" element={<Authorization />} />
-                  <Route path="/game" element={<Main />} />
                   <Route path="/sign-up" element={<SignUp />} />
-                  <Route path="/finish" element={<Finish />} />
+                  <Route
+                    path="/leaderboard"
+                    element={
+                      <PrivateRoute>
+                        <LeaderBoard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/forum"
+                    element={
+                      <PrivateRoute>
+                        <Forum />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <PrivateRoute>
+                        <Profile />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/game"
+                    element={
+                      <PrivateRoute>
+                        <Main />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/finish"
+                    element={
+                      <PrivateRoute>
+                        <Finish />
+                      </PrivateRoute>
+                    }
+                  />
                 </Routes>
               </div>
             </div>
@@ -41,8 +76,7 @@ class App extends Component {
           </div>
         </div>
       </BrowserRouter>
-    )
-  }
+  )
 }
 
 export default App
