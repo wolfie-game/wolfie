@@ -1,6 +1,8 @@
 import {Wolfie} from '../Wolfie/Wolfie'
 import React, {useRef, useEffect, useState} from 'react'
 import './Canvas.scss'
+import Egg from '../Egg/Egg'
+import Decorations from '../Decorations/Decorations'
 
 function CanvasComponent() {
   const [state, setState] = useState({
@@ -20,8 +22,13 @@ function CanvasComponent() {
       canvasCtxRef.current = canvasRef.current.getContext('2d')
       ctx = canvasCtxRef.current
     }
-
+    const decorations = new Decorations(
+      ctx,
+      state.canvasHeiht,
+      state.canvasWidth,
+    )
     const wolfie = new Wolfie(ctx, state.canvasHeiht, state.canvasWidth)
+    const egg = new Egg(ctx)
     let x: number = (state.canvasWidth - wolfie.bodyWidth) / 2
     let y: number =
       state.canvasHeiht - wolfie.bodyHeight - wolfie.legHeight - bottomPadding
@@ -32,10 +39,12 @@ function CanvasComponent() {
 
     const keysHandler = (event: KeyboardEvent) => {
       if (event.key == 'ArrowRight') {
+        decorations.redraw()
         wolfie.turnRight(x, y)
       }
 
       if (event.key == 'ArrowLeft') {
+        decorations.redraw()
         wolfie.turnLeft(x, y)
       }
 
@@ -43,6 +52,7 @@ function CanvasComponent() {
         if (bottomPadding + 50 === 100) {
           bottomPadding += 50
           reculc()
+          decorations.redraw()
           wolfie.goUp(x, y)
         }
       }
@@ -51,6 +61,7 @@ function CanvasComponent() {
         if (bottomPadding - 50 === 50) {
           bottomPadding -= 50
           reculc()
+          decorations.redraw()
           wolfie.goDown(x, y)
         }
       }

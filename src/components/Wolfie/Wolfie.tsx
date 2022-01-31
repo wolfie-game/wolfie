@@ -52,9 +52,6 @@ export class Wolfie {
 
   turnLeft(x, y) {
     this.isRight = false
-    // background
-    this.context.fillStyle = dark
-    this.context.fillRect(0, 0, 999, 661)
 
     // body
     this.context.fillStyle = lightGrey
@@ -97,9 +94,6 @@ export class Wolfie {
 
   turnRight(x, y) {
     this.isRight = true
-    // background
-    this.context.fillStyle = dark
-    this.context.fillRect(0, 0, 999, 661)
 
     // body
     this.context.fillStyle = lightGrey
