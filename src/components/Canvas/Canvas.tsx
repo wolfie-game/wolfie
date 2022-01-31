@@ -35,6 +35,7 @@ function CanvasComponent() {
 
     const draw = () => {
       wolfie.init(x, y)
+      egg.run()
     }
 
     const keysHandler = (event: KeyboardEvent) => {

@@ -7,7 +7,8 @@ export default class Egg {
     this.height = 15
     this.context = ctx
   }
-  ellipse() {
+  run() {
+    this.context.fillStyle = '#ffcc99'
     this.context.beginPath()
     this.context.arc(75, 75, 20, 0, Math.PI * 2, true)
     this.context.fill()
