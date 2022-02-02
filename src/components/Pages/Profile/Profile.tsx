@@ -28,7 +28,6 @@ function Profile() {
       .changePassword(oldPwd, newPwd)
       .then((response) => {
         hideModal()
-        console.log(response)
         profileDataRequester.getUserInfo().then((info) => {
           console.log(info)
         })
@@ -36,7 +35,6 @@ function Profile() {
   }
 
   const changePassHandler = () => {
-    console.log('changePassHandler')
     //show modal
     showModal()
     //chech passwods if equal
@@ -49,7 +47,6 @@ function Profile() {
 
   useEffect(() => {
     profileDataRequester.getUserInfo().then((info) => {
-      console.log(info)
       if (!info.id) {
         navigate('/')
       } else {

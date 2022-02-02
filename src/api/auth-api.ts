@@ -1,8 +1,7 @@
 import FetchRequest from '../utils/FetchRequest'
+import {HOST} from '../constants'
 
-const host = 'https://ya-praktikum.tech/api/v2/auth'
-
-const authAPIInstance = new FetchRequest(`${host}`)
+const authAPIInstance = new FetchRequest(`${HOST}/auth`)
 
 export default class AuthAPI {
   signup(data) {
@@ -41,13 +40,13 @@ export default class AuthAPI {
         return response.json()
       })
       .catch(function (error) {
-        alert(error)
+        throw new Error(error)
       })
   }
 
   logout() {
     return authAPIInstance.post('/logout').catch(function (error) {
-      alert(error)
+      throw new Error(error)
     })
   }
 }

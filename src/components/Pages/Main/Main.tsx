@@ -11,6 +11,7 @@ function Main() {
     signInInstance
       .getUserInfo()
       .then((info) => {
+        console.log(info)
         if (!info.id) {
           navigate('/')
         }

@@ -1,29 +1,11 @@
-import React, {useState} from 'react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import Button from '../../Button/Button'
 import LeaderboardItem from '../../LeaderboardItem/LeaderboardItem'
 import {DataMap} from './types'
 
-const data = [
-  {
-    id: 1,
-    user: 'Player 1',
-    score: '10000',
-  },
-  {
-    id: 2,
-    user: 'Player 2',
-    score: '130000',
-  },
-  {
-    id: 3,
-    user: 'Player 3',
-    score: '15000',
-  },
-]
-
-function LeaderBoard() {
-  const [leaders] = useState(data)
+const LeaderBoard = ({leaders}) => {
   const navigate = useNavigate()
 
   return (
@@ -50,4 +32,11 @@ function LeaderBoard() {
     </div>
   )
 }
-export default LeaderBoard
+
+const mapStateToProps = (state) => {
+  return {
+    leaders: state.leaders,
+  }
+}
+
+export default connect(mapStateToProps)(LeaderBoard)
