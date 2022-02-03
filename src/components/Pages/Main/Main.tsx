@@ -63,7 +63,10 @@ function Main() {
             </Button>
           </div>
         ) : (
-          <CanvasComponent />
+          <CanvasComponent
+            width={isFullscreen ? 1200 : 1000}
+            height={isFullscreen ? 720 : 657}
+          />
         )}
         <Button
           styleName="fullscrenn_button"
