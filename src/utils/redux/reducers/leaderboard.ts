@@ -1,7 +1,6 @@
 import LeaderboardController from '../../../controllers/leaderboard'
 import {call, put, takeEvery} from 'redux-saga/effects'
 import store from '../store'
-// import action from '../store'
 
 const LeaderboardDataRequester = new LeaderboardController()
 
