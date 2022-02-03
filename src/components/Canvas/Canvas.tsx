@@ -4,10 +4,15 @@ import './Canvas.scss'
 import Egg from '../Egg/Egg'
 import Decorations from '../Decorations/Decorations'
 
-function CanvasComponent() {
+interface Props {
+  width: number
+  height: number
+}
+
+function CanvasComponent({width, height}: Props) {
   const [state, setState] = useState({
-    canvasWidth: 1000,
-    canvasHeiht: 657,
+    canvasWidth: width,
+    canvasHeiht: height,
   })
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
