@@ -2,13 +2,13 @@ const actions = {
   CHECK_AUTH: 'CHECK_AUTH',
   CREATE_USER: 'CREATE_USER',
   LOGOUT: 'LOGOUT',
-  GET_LEADERS: 'GET_LEADERS'
+  GET_LEADERS: 'GET_LEADERS',
 }
 
 const initialState = {
-    auth: false,
-    value: null
-};
+  auth: false,
+  value: null,
+}
 
 function userReducer(state = initialState, action) {
   switch (action.type) {

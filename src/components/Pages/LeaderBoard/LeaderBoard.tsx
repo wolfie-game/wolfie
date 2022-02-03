@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import Button from '../../Button/Button'
 import LeaderboardItem from '../../LeaderboardItem/LeaderboardItem'
 import {DataMap} from './types'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
-import store from '../../../utils/redux/store'
+// import store from '../../../utils/redux/store'
 import {connect} from 'react-redux'
 import {fetchLeaders} from '../../../utils/redux/reducers/leaderboard'
 
@@ -13,10 +13,8 @@ function LeaderBoard(props) {
 
   useEffect(() => {
     props.dispatch(fetchLeaders())
-    console.log('checkin store', props)
+    // console.log('checkin store', props)
   }, [])
-
-
 
   return (
     <ErrorBoundary>
@@ -32,11 +30,11 @@ function LeaderBoard(props) {
           <div className="leaderboard">
             {props.leaderboardReducer.leaderboard && props.leaderboardReducer.leaderboard.length > 0 ? (
               props.leaderboardReducer?.leaderboard?.map((item: DataMap, index: number) => (
-                <LeaderboardItem
-                  key={index}
-                  user={item.data.name}
-                  score={item.data.joker}
-                />
+                  <LeaderboardItem
+                    key={index}
+                    user={item.data.name}
+                    score={item.data.joker}
+                  />
               ))
             ) : (
               <h2 className="error-title">Авторизуйтесть</h2>

@@ -1,3 +1,3 @@
-import { TRootState } from './types';
+import {TRootState} from './types'
 
-export const userAuthSelector = (state: TRootState) => state.userReducer.auth;
+export const userAuthSelector = (state: TRootState) => state.userReducer.auth

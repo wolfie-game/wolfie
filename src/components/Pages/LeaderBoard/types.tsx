@@ -1,8 +1,8 @@
 interface lederboardData {
-  name: string;
-  joker: string;
+  name: string
+  joker: string
 }
 export interface DataMap {
-  id?: number;
+  id?: number
   data: lederboardData
 }

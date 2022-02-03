@@ -6,7 +6,7 @@ import 'regenerator-runtime/runtime'
 import watchFetchLeaders from './reducers/leaderboard'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
-const preloadedState = (window as any).__PRELOADED_STATE__ || {}
+// const preloadedState = (window as any).__PRELOADED_STATE__ || {}
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -15,18 +15,22 @@ export const initialState: UserState = {
   value: null,
   loading: false,
   error: false,
-  leaderboard: []
+  leaderboard: [],
 }
 
-function configureStore(preloadedState) {
-  // @ts-ignore
-  const store = createStore(reducers, composeWithDevTools(applyMiddleware(sagaMiddleware)))
+function configureStore() {
+  const store = createStore(
+    reducers,
+    composeWithDevTools(applyMiddleware(sagaMiddleware)),
+  )
   return store
 }
-const store = configureStore({})
+const store = configureStore()
 
 sagaMiddleware.run(watchFetchLeaders)
 
-export const action = type => {store.dispatch({type})}
+export const action = (type) => {
+  store.dispatch({type})
+}
 
 export default store
