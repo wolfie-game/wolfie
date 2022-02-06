@@ -27,13 +27,12 @@ function Authorization() {
     signInInstance
       .getUserInfo()
       .then((info) => {
-        console.log(info)
         if (info.id) {
           dispatch(checkAuth(info))
           navigate('/game')
         }
       })
-      .catch(() => alert('You are not signed in'))
+      .catch(() => console.log('You are not signed in'))
   }, [])
 
   return (

@@ -28,6 +28,10 @@ const App: FC = () => {
                   <Route path="/authorization" element={<Authorization />} />
                   <Route path="/sign-up" element={<SignUp />} />
                   <Route
+                    path="/game"
+                    element={<Main />}
+                  />
+                  <Route
                     path="/leaderboard"
                     element={
                       <PrivateRoute>
@@ -51,14 +55,14 @@ const App: FC = () => {
                       </PrivateRoute>
                     }
                   />
-                  <Route
+                  {/*<Route
                     path="/game"
                     element={
                       <PrivateRoute>
                         <Main />
                       </PrivateRoute>
                     }
-                  />
+                  />*/}
                   <Route
                     path="/finish"
                     element={

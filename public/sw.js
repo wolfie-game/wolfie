@@ -1,7 +1,7 @@
 const CACHE = 'wolifie-cache-v1'
 const timeout = 400
 
-const URLS = ['/', '/leaderboard', '/forum', '/sign-up', '/game', '/profile']
+const URLS = ['/', '/leaderboard', '/forum', '/sign-up', '/game', '/profile', '/authorization']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
