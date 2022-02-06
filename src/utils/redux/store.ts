@@ -10,14 +10,6 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 
 const sagaMiddleware = createSagaMiddleware()
 
-export const initialState: UserState = {
-  auth: false,
-  value: null,
-  loading: false,
-  error: false,
-  leaderboard: [],
-}
-
 function configureStore() {
   const store = createStore(
     reducers,

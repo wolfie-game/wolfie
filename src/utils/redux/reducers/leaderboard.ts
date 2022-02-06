@@ -13,7 +13,7 @@ const initialState = {
   leaderboard: [],
 }
 
-export const leaderboardReducer = (state = initialState, action) => {
+export const leaderboard = (state = initialState, action) => {
   switch (action.type) {
     case actions.GET_LEADERS:
       return {

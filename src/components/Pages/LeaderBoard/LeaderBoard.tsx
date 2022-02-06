@@ -28,8 +28,8 @@ function LeaderBoard(props) {
               handler={() => navigate(-1)}></Button>
           </div>
           <div className="leaderboard">
-            {props.leaderboardReducer.leaderboard && props.leaderboardReducer.leaderboard.length > 0 ? (
-              props.leaderboardReducer?.leaderboard?.map((item: DataMap, index: number) => (
+            {props.leaderboard.leaderboard && props.leaderboard.leaderboard.length > 0 ? (
+              props.leaderboard?.leaderboard?.map((item: DataMap, index: number) => (
                   <LeaderboardItem
                     key={index}
                     user={item.data.name}

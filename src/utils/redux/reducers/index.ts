@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux'
-import userReducer from './user'
-import {leaderboardReducer} from './leaderboard'
+import user from './user'
+import {leaderboard} from './leaderboard'
 
 const reducers = combineReducers({
-  userReducer,
-  leaderboardReducer,
+  user,
+  leaderboard,
 })
 
 export default reducers
