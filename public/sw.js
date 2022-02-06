@@ -30,8 +30,8 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    fromNetwork(event.request, timeout).catch((err) => {
-      console.log(`Error: ${err.message()}`)
+    fromNetwork(event.request, timeout).catch(() => {
+      console.log(`Fetching error`)
       return fromCache(event.request)
     }),
   )
