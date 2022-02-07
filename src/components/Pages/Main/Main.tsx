@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import UserAuthController from '../../../controllers/user-auth'
 import {useNavigate} from 'react-router-dom'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
-import CanvasComponent from '../../Canvas/Canvas'
+import CanvasComponent from '../../Game/Canvas/Canvas'
 import Button from '../../Button/Button'
 
 const signInInstance = new UserAuthController()

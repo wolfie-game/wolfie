@@ -3,8 +3,15 @@ const grey = '#9e9e9e'
 const dark = '#343230'
 const lightGrey = '#b8b8b8'
 
+interface Cart {
+  x: string
+  y: string
+}
+
 export class Wolfie {
   context: any
+  x: number
+  y: number
   bodyWidth: number
   bodyHeight: number
   earHeight: number
@@ -19,9 +26,13 @@ export class Wolfie {
   legSpaseBeetween: number
   height: number
   width: number
+  cartLocation: Cart
   isRight: boolean
   constructor(ctx, height, width) {
     this.context = ctx
+
+    this.x = 0
+    this.y = 0
 
     this.height = height
     this.width = width
@@ -43,11 +54,31 @@ export class Wolfie {
     this.legHeight = 60
     this.legSpaseBeetween = 50
 
+    this.cartLocation = {x: 'right', y: 'down'}
+
     this.isRight = true
   }
 
   init(x, y) {
-    this.turnRight(x, y)
+    this.x = x
+    this.y = y
+    this.redraw()
+  }
+
+  turn(wolfiePosition = 'right') {
+    if (wolfiePosition == 'right') {
+      this.isRight = true
+    } else {
+      this.isRight = false
+    }
+  }
+
+  redraw() {
+    if (this.isRight) {
+      this.turnRight(this.x, this.y)
+    } else {
+      this.turnLeft(this.x, this.y)
+    }
   }
 
   turnLeft(x, y) {
@@ -89,6 +120,19 @@ export class Wolfie {
     this.context.lineTo(x + 40, y)
     this.context.lineTo(x + 70, y)
     this.context.fillStyle = grey
+    this.context.fill()
+
+    // cart
+    const positionX = this.x - 155
+    const positionY = this.cartLocation.y == 'up' ? this.y - 70 : this.y + 150
+
+    this.context.beginPath()
+
+    this.context.lineWidth = 7
+    this.context.strokeStyle = '#ff4e25'
+    this.context.fillStyle = 'orange'
+    this.context.arc(positionX, positionY, 40, 0, Math.PI, false)
+    this.context.stroke()
     this.context.fill()
   }
 
@@ -132,21 +176,25 @@ export class Wolfie {
     this.context.lineTo(x + 70, y)
     this.context.fillStyle = grey
     this.context.fill()
+
+    // cart
+    const positionX = this.x + 220
+    const positionY = this.cartLocation.y == 'up' ? this.y - 70 : this.y + 150
+
+    this.context.beginPath()
+
+    this.context.lineWidth = 7
+    this.context.strokeStyle = '#ff4e25'
+    this.context.fillStyle = 'orange'
+    this.context.arc(positionX, positionY, 40, 0, Math.PI, false)
+    this.context.stroke()
+    this.context.fill()
   }
 
-  goUp(x, y) {
-    if (this.isRight) {
-      this.turnRight(x, y)
-    } else {
-      this.turnLeft(x, y)
-    }
+  getCart() {
+    return this.cartLocation
   }
-
-  goDown(x, y) {
-    if (this.isRight) {
-      this.turnRight(x, y)
-    } else {
-      this.turnLeft(x, y)
-    }
+  setCart(cart: Cart) {
+    this.cartLocation = cart
   }
 }
