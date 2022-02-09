@@ -4,11 +4,14 @@ import Button from '../../Button/Button'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import {useNavigate} from 'react-router-dom'
 import UserAuthController from '../../../controllers/user-auth'
+import OauthController from '../../../controllers/oauth'
 import {useDispatch, useSelector, RootStateOrAny, connect} from 'react-redux'
 import {checkAuth} from '../../../utils/redux/reducers/user'
 
 const signInInstance = new UserAuthController()
 const signinUrl = 'https://ya-praktikum.tech/signin'
+
+const oauthInstance = new OauthController()
 
 function SignIn() {
   const initialState = {
@@ -59,6 +62,17 @@ function SignIn() {
   const handleChange = (event: any) => {
     setState({...state, [event.target.name]: event.target.value})
   }
+
+  const oauthHandler = async () => {
+    await oauthInstance.getAppId().then((response) => {
+      if (response) {
+        console.log('oauthHandler response', response)
+      } else {
+        alert('oauth error')
+      }
+    })
+  }
+
   return (
     <ErrorBoundary>
       <div className="content__canvas">
@@ -91,6 +105,10 @@ function SignIn() {
             handler={signupHandler}>
             Sign Up
           </Button>
+          <div className="oauth">
+            <div className="oauth__label">Войти с помощью</div>
+            <Button styleName="form__button oauth__button button-icon_ya" type="button" handler={oauthHandler}></Button>
+          </div>
         </form>
       </div>
     </ErrorBoundary>
