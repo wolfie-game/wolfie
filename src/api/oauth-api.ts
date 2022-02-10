@@ -1,17 +1,14 @@
 import FetchRequest from '../utils/FetchRequest'
 
 const host = 'https://ya-praktikum.tech/api/v2/user'
-
 const oauthAPIInstance = new FetchRequest(`${host}`)
+const redirectURI = 'localhost:3000'
+
 
 export default class OauthAPI {
   getAppId() {
     return oauthAPIInstance
-      .get('/oauth/yandex/service-id', {
-        params: {
-            redirect_uri: 'http://localhost:3000',
-        },
-      })
+      .get(`/oauth/yandex/service-id&redirect_uri=${redirectURI}`)
       .then((response) => {
         let resp = response.json()
         return resp
@@ -21,11 +18,11 @@ export default class OauthAPI {
       })
   }
 
-  getOauthToken(code: string) {
+  getOauthToken(serviceId: string) {
     return oauthAPIInstance
       .post('/oauth/yandex', {
-        redirect_uri: 'http://localhost:3000',
-        code,
+        redirect_uri: redirectURI,
+        serviceId,
       })
       .then((response) => {
         console.log('getOauthToken response', response)
