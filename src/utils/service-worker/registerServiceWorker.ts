@@ -8,11 +8,11 @@ if ('serviceWorker' in navigator) {
           registration.scope,
         )
         console.log(process.env.NODE_ENV)
-        /*if (process.env.NODE_ENV == 'development') {
+        if (process.env.NODE_ENV == 'development') {
           registration.unregister().then((boolean) => {
             console.log('Unregister succeeded!')
           })
-        }*/
+        }
       })
       .catch((error: string) => {
         console.log('ServiceWorker registration failed: ', error)
