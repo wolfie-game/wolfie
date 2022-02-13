@@ -25,18 +25,7 @@ self.addEventListener('install', (event) => {
   )
 })
 
-/*self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim())
-  event.waitUntil(
-    caches
-      .keys()
-      .then((keys) =>
-        Promise.all(keys.filter(() => true).map((key) => caches.delete(key))),
-      ),
-  )
-})*/
-
-this.addEventListener('activate', (event) => {
+self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches
       .keys()
@@ -49,12 +38,6 @@ this.addEventListener('activate', (event) => {
 })
 
 self.addEventListener('fetch', (event) => {
-  /*event.respondWith(
-    fromNetwork(event.request, timeout).catch(() => {
-      console.log(`Fetching error`)
-      return fromCache(event.request)
-    }),
-  )*/
   event.respondWith(
     caches.match(event.request).then((response) => {
       if (response) {
@@ -64,7 +47,6 @@ self.addEventListener('fetch', (event) => {
       const fetchRequest = event.request.clone()
       return fetch(fetchRequest)
         .then((response) => {
-          console.log(response, response.status, response.type)
           if (
             !response ||
             response.status !== 200 ||
@@ -85,23 +67,3 @@ self.addEventListener('fetch', (event) => {
     }),
   )
 })
-
-function fromNetwork(request, timeout) {
-  return new Promise((fulfill, reject) => {
-    var timeoutId = setTimeout(reject, timeout)
-    fetch(request).then((response) => {
-      clearTimeout(timeoutId)
-      fulfill(response)
-    }, reject)
-  })
-}
-
-function fromCache(request) {
-  return caches
-    .open(CACHE)
-    .then((cache) =>
-      cache
-        .match(request)
-        .then((matching) => matching || Promise.reject('no-match')),
-    )
-}
