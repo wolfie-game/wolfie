@@ -11,4 +11,13 @@ export default class LeaderboardController {
       console.log('error:', error)
     }
   }
+
+  public async addData(data) {
+    try {
+      const response = await leaderboardInstance.addLeader(data)
+      return response
+    } catch (error) {
+      console.log('error:', error)
+    }
+  }
 }

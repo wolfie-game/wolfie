@@ -32,8 +32,8 @@ function LeaderBoard(props) {
               props.leaderboard?.leaderboard?.map((item: DataMap, index: number) => (
                   <LeaderboardItem
                     key={index}
-                    user={item.data.name}
-                    score={item.data.joker}
+                    user={item.data.user}
+                    score={item.data.score}
                   />
               ))
             ) : (

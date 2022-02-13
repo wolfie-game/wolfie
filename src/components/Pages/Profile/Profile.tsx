@@ -101,7 +101,7 @@ function Profile() {
               handler={logOutHandler}>
               Log Out
             </Button>
-          </form>
+          </div>
         </div>
       </div>
     </ErrorBoundary>
