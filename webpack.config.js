@@ -5,6 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, '/build'),
@@ -12,6 +13,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      root: path.resolve('./'),
+    },
   },
   devServer: {
     historyApiFallback: true,

@@ -1,3 +1,3 @@
 export type ForumItemProps = {
-  text: string;
+  text: string
 }

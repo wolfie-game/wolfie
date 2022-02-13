@@ -1,31 +1,20 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import Button from '../../Button/Button'
 import LeaderboardItem from '../../LeaderboardItem/LeaderboardItem'
-import { DataMap } from './types'
+import {DataMap} from './types'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
+// import store from '../../../utils/redux/store'
+import {connect} from 'react-redux'
+import {fetchLeaders} from '../../../utils/redux/reducers/leaderboard'
 
-const data = [
-  {
-    id: 1,
-    user: 'Player 1',
-    score: '10000',
-  },
-  {
-    id: 2,
-    user: 'Player 2',
-    score: '130000',
-  },
-  {
-    id: 3,
-    user: 'Player 3',
-    score: '15000',
-  },
-]
-
-function LeaderBoard() {
-  const [leaders] = useState(data)
+function LeaderBoard(props) {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    props.dispatch(fetchLeaders())
+    // console.log('checkin store', props)
+  }, [])
 
   return (
     <ErrorBoundary>
@@ -39,18 +28,26 @@ function LeaderBoard() {
               handler={() => navigate(-1)}></Button>
           </div>
           <div className="leaderboard">
-            {leaders &&
-              leaders.map((item: DataMap) => (
-                <LeaderboardItem
-                  key={item.id}
-                  user={item.user}
-                  score={item.score}
-                />
-              ))}
+            {props.leaderboard.leaderboard && props.leaderboard.leaderboard.length > 0 ? (
+              props.leaderboard?.leaderboard?.map((item: DataMap, index: number) => (
+                  <LeaderboardItem
+                    key={index}
+                    user={item.data.name}
+                    score={item.data.joker}
+                  />
+              ))
+            ) : (
+              <h2 className="error-title">Авторизуйтесть</h2>
+            )}
           </div>
         </div>
       </div>
     </ErrorBoundary>
   )
 }
-export default LeaderBoard
+
+const ConnectedApp = connect((state) => {
+  return state
+})(LeaderBoard)
+
+export default ConnectedApp

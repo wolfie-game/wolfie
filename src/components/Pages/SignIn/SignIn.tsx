@@ -4,6 +4,8 @@ import Button from '../../Button/Button'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import {useNavigate} from 'react-router-dom'
 import UserAuthController from '../../../controllers/user-auth'
+import {useDispatch, useSelector, RootStateOrAny, connect} from 'react-redux'
+import {checkAuth} from '../../../utils/redux/reducers/user'
 
 const signInInstance = new UserAuthController()
 const signinUrl = 'https://ya-praktikum.tech/signin'
@@ -15,22 +17,27 @@ function SignIn() {
   }
   const [state, setState] = useState(initialState)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const userData = useSelector((state: RootStateOrAny) => state.auth)
 
   useEffect(() => {
     signInInstance
       .getUserInfo()
       .then((info) => {
-        console.log(info)
+        //console.log(info)
         if (info.id) {
+          dispatch(checkAuth(info))
           navigate('/game')
         }
       })
-      .catch(() => alert('You are not sign in'))
+      .catch(() => alert('You are not signed in'))
   }, [])
 
   const signinHandler = async () => {
     await signInInstance.signin(state).then((response) => {
       if (response.id) {
+        dispatch(checkAuth(response))
         navigate('/game')
       } else {
         alert('Wrong login or password')
@@ -90,4 +97,8 @@ function SignIn() {
   )
 }
 
-export default SignIn
+const ConnectedApp = connect((state) => {
+  return state
+})(SignIn)
+
+export default ConnectedApp
