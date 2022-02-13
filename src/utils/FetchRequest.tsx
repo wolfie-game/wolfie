@@ -30,7 +30,7 @@ export default class FetchRequest {
 
   request = (url, options: {[key: string]: any} = {}, timeout = 5000) => {
     const {headers = {}, method, data} = options
-    
+
     const payload = data ? JSON.stringify({...data}) : null
     return fetch(url, {
       method: method,
@@ -38,6 +38,7 @@ export default class FetchRequest {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Credentials': 'true'
       },
+      mode: 'cors',
       credentials: 'include',
       body: payload,
     })

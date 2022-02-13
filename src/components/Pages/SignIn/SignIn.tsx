@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
 import UserAuthController from '../../../controllers/user-auth'
 import OauthController from '../../../controllers/oauth'
-import {useDispatch, useSelector, RootStateOrAny, connect} from 'react-redux'
+import {useDispatch, RootStateOrAny, connect} from 'react-redux'
 import {checkAuth} from '../../../utils/redux/reducers/user'
 
 const signInInstance = new UserAuthController()
@@ -13,28 +13,47 @@ const signinUrl = 'https://ya-praktikum.tech/signin'
 
 const oauthInstance = new OauthController()
 
+const oauthRoot = 'https://oauth.yandex.ru/authorize?response_type=code'
+const redirectURI = 'http://localhost:3000'
+
 function SignIn() {
   const initialState = {
     login: '',
     password: '',
   }
+
   const [state, setState] = useState(initialState)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  // const userData = useSelector((state: RootStateOrAny) => state.auth)
 
-  const userData = useSelector((state: RootStateOrAny) => state.auth)
+  const param = useLocation().search
+  const oauthCode = new URLSearchParams(param).get('code')
 
   useEffect(() => {
-    signInInstance
-      .getUserInfo()
-      .then((info) => {
-        //console.log(info)
-        if (info.id) {
-          dispatch(checkAuth(info))
-          navigate('/game')
-        }
+    if (oauthCode) {
+      oauthInstance.getOauthToken(oauthCode).then(() => {
+        signInInstance
+          .getUserInfo()
+          .then((info) => {
+            if (info.id) {
+              dispatch(checkAuth(info))
+              navigate('/game')
+            }
+          })
+          .catch(() => alert('You are not signed in'))
       })
-      .catch(() => alert('You are not signed in'))
+    } else {
+      signInInstance
+        .getUserInfo()
+        .then((info) => {
+          if (info.id) {
+            dispatch(checkAuth(info))
+            navigate('/game')
+          }
+        })
+        .catch(() => alert('You are not signed in'))
+    }
   }, [])
 
   const signinHandler = async () => {
@@ -66,7 +85,9 @@ function SignIn() {
   const oauthHandler = async () => {
     await oauthInstance.getAppId().then((response) => {
       if (response) {
-        console.log('oauthHandler response', response)
+        let oauthURL = `${oauthRoot}&client_id=${response.service_id}&redirect_uri=${redirectURI}`
+        //@ts-ignore
+        window.open(oauthURL, '_blank').focus()
       } else {
         alert('oauth error')
       }
