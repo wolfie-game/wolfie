@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly Input component 1`] = `
+<div
+  className="input__field"
+>
+  <label
+    className="input__error"
+  >
+    
+  </label>
+  <input
+    name=""
+    onBlur={[Function]}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`render correctly text component 1`] = `
+<div
+  className="input__field"
+>
+  <label
+    className="input__error"
+  >
+    
+  </label>
+  <input
+    name=""
+    onBlur={[Function]}
+    type="text"
+    value=""
+  />
+</div>
+`;

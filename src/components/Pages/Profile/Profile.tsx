@@ -5,6 +5,8 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import UserAuthController from '../../../controllers/user-auth'
 import {useNavigate} from 'react-router-dom'
 import Modal from '../../Modal/Modal'
+import {useDispatch, RootStateOrAny, useSelector, connect} from 'react-redux'
+import {logout} from '../../../utils/redux/reducers/user' 
 
 const profileDataRequester = new UserAuthController()
 
@@ -16,6 +18,9 @@ function Profile() {
   const [state, setState] = useState(initialState)
   const [modal, setModal] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const userData = useSelector((state: RootStateOrAny) => state.user)
 
   const showModal = () => {
     setModal(true)
@@ -29,7 +34,6 @@ function Profile() {
       .changePassword(oldPwd, newPwd)
       .then((response) => {
         hideModal()
-        console.log(response)
         profileDataRequester.getUserInfo().then((info) => {
           console.log(info)
         })
@@ -37,20 +41,16 @@ function Profile() {
   }
 
   const changePassHandler = () => {
-    console.log('changePassHandler')
-    //show modal
     showModal()
-    //chech passwods if equal
-    //try to update
   }
   const logOutHandler = () => {
     profileDataRequester.logout()
-    navigate('/')
+    dispatch(logout())
+    navigate('/authorization')
   }
 
   useEffect(() => {
     profileDataRequester.getUserInfo().then((info) => {
-      console.log(info)
       if (!info.id) {
         navigate('/')
       } else {
@@ -64,30 +64,37 @@ function Profile() {
   }, [])
 
   return (
-  <ErrorBoundary>
-    <div className="content__canvas">
-      <div className="profile">
-        <div className="profile__wrap">
-          <Modal
-            handleClose={hideModal}
-            show={modal}
-            updatePassword={passwordRequest}
-          />
-          <form className="profile__form form" onSubmit={changePassHandler}>
-            <Input
-              styleName="form__input input"
-              type="text"
-              name="login"
-              value={state.login}
-              readOnly={true}
+    <ErrorBoundary>
+      <div className="content__canvas">
+        <div className="profile">
+          <div className="profile__wrap">
+            <Modal
+              handleClose={hideModal}
+              show={modal}
+              updatePassword={passwordRequest}
             />
-            <Input
-              styleName="form__input input"
-              type="text"
-              name="email"
-              value={state.email}
-              readOnly={true}
-            />
+            <form className="profile__form form" onSubmit={changePassHandler}>
+              <Input
+                styleName="form__input input"
+                type="text"
+                name="login"
+                value={state.login}
+                readOnly={true}
+              />
+              <Input
+                styleName="form__input input"
+                type="text"
+                name="email"
+                value={state.email}
+                readOnly={true}
+              />
+              <Button
+                styleName="form__button button"
+                type="button"
+                handler={changePassHandler}>
+                Change Password
+              </Button>
+            </form>
             <Button
               styleName="form__button button-transparent"
               type="button"
@@ -97,9 +104,12 @@ function Profile() {
           </form>
         </div>
       </div>
-    </div>
-  </ErrorBoundary>
+    </ErrorBoundary>
   )
 }
 
-export default Profile
+const ConnectedApp = connect((state) => {
+  return state
+})(Profile)
+
+export default ConnectedApp
