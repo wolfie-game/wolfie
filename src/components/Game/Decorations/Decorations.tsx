@@ -21,6 +21,15 @@ export default class Decorations {
     // background
     this.context.fillStyle = dark
     this.context.fillRect(0, 0, 999, 661)
+
+    //QWAS Button
+    this.context.font = '20px Arial'
+    this.context.fillStyle = '#ff4e25'
+    this.context.fillText(`🠕: Q`, 20, this.canvasHeight - 80)
+    this.context.fillText(`🠗: A`, 20, this.canvasHeight - 50)
+    this.context.fillText(`🠕: W`, this.canvasWidth - 60, this.canvasHeight - 80)
+    this.context.fillText(`🠗: S`, this.canvasWidth - 60, this.canvasHeight - 50)
+
     //shelfs
     for (let i = 0; i < 2; i++) {
       this.context.strokeStyle = 'orange'
