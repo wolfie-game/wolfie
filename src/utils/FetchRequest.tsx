@@ -25,10 +25,7 @@ export default class FetchRequest {
   }
 
   delete = (url, options: {[key: string]: any} = {}) => {
-    return this.request(this.baseUrl + url, {
-      ...options,
-      method: METHODS.DELETE,
-    })
+    return this.request(this.baseUrl + url, {...options, method: METHODS.DELETE})
   }
 
   request = (url, options: {[key: string]: any} = {}, timeout = 5000) => {
@@ -39,7 +36,9 @@ export default class FetchRequest {
       method: method,
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': 'true'
       },
+      mode: 'cors',
       credentials: 'include',
       body: payload,
     })

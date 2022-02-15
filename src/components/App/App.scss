@@ -217,6 +217,25 @@ img {
   transition: box-shadow .35s ease;
   margin-bottom: 10px;
 }
+.button-icon_ya {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #FFFFFF url(../../../static/img/yandex-logo.png) no-repeat center;
+  background-size: 40%;
+}
+
+.oauth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__label {
+    color: #FFFFFF;
+  }
+  &__button {
+    margin: 0 20px;
+  }
+}
 
 .start, .finish {
   padding-top: 50px;

@@ -2,36 +2,58 @@ import React, {useEffect, useState} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
 import UserAuthController from '../../../controllers/user-auth'
-import {useDispatch, useSelector, RootStateOrAny, connect} from 'react-redux'
+import OauthController from '../../../controllers/oauth'
+import {useDispatch, RootStateOrAny, connect} from 'react-redux'
 import {checkAuth} from '../../../utils/redux/reducers/user'
 
 const signInInstance = new UserAuthController()
 const signinUrl = 'https://ya-praktikum.tech/signin'
+
+const oauthInstance = new OauthController()
+
+const oauthRoot = 'https://oauth.yandex.ru/authorize?response_type=code'
+const redirectURI = 'http://localhost:3000'
 
 function SignIn() {
   const initialState = {
     login: '',
     password: '',
   }
+
   const [state, setState] = useState(initialState)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  // const userData = useSelector((state: RootStateOrAny) => state.auth)
 
-  const userData = useSelector((state: RootStateOrAny) => state.auth)
+  const param = useLocation().search
+  const oauthCode = new URLSearchParams(param).get('code')
 
   useEffect(() => {
-    signInInstance
-      .getUserInfo()
-      .then((info) => {
-        //console.log(info)
-        if (info.id) {
-          dispatch(checkAuth(info))
-          navigate('/game')
-        }
+    if (oauthCode) {
+      oauthInstance.getOauthToken(oauthCode).then(() => {
+        signInInstance
+          .getUserInfo()
+          .then((info) => {
+            if (info.id) {
+              dispatch(checkAuth(info))
+              navigate('/game')
+            }
+          })
+          .catch(() => alert('You are not signed in'))
       })
-      .catch(() => alert('You are not signed in'))
+    } else {
+      signInInstance
+        .getUserInfo()
+        .then((info) => {
+          if (info.id) {
+            dispatch(checkAuth(info))
+            navigate('/game')
+          }
+        })
+        .catch(() => alert('You are not signed in'))
+    }
   }, [])
 
   const signinHandler = async () => {
@@ -59,6 +81,19 @@ function SignIn() {
   const handleChange = (event: any) => {
     setState({...state, [event.target.name]: event.target.value})
   }
+
+  const oauthHandler = async () => {
+    await oauthInstance.getAppId().then((response) => {
+      if (response) {
+        let oauthURL = `${oauthRoot}&client_id=${response.service_id}&redirect_uri=${redirectURI}`
+        //@ts-ignore
+        window.open(oauthURL, '_blank').focus()
+      } else {
+        alert('oauth error')
+      }
+    })
+  }
+
   return (
     <ErrorBoundary>
       <div className="content__canvas">
@@ -91,6 +126,10 @@ function SignIn() {
             handler={signupHandler}>
             Sign Up
           </Button>
+          <div className="oauth">
+            <div className="oauth__label">Войти с помощью</div>
+            <Button styleName="form__button oauth__button button-icon_ya" type="button" handler={oauthHandler}></Button>
+          </div>
         </form>
       </div>
     </ErrorBoundary>
