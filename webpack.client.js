@@ -29,6 +29,8 @@ module.exports = (env, argv) => {
     //     optimizations.minimizer.push(new UglifyJsPlugin())
     // }
 
+    console.log('config', config)
+
     return {
         devServer: {
             contentBase: path.join(__dirname, 'build'),
@@ -44,13 +46,12 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 config.modules.js,
-                config.modules.stylus,
             ],
         },
         plugins: [
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
-                template: './src/Html/Browser.html', // Push html template
+                template: './static/index.html', // Push html template
             }),
             new WebpackNotifierPlugin({ alwaysNotify: false }),
         ],
