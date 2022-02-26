@@ -5,7 +5,7 @@ import App from './components/App/App'
 import {Provider} from 'react-redux'
 import store from './utils/redux/store'
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider store={store}>
     <App />
   </Provider>,
