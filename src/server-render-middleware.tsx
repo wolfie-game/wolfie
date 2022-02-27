@@ -1,10 +1,11 @@
 import React from 'react'
 import {renderToString} from 'react-dom/server'
 import {Request, Response} from 'express'
-import {App} from './components/App/App'
+// import App from './components/App/App'
+import Client from './Client'
 
 export default (req: Request, res: Response) => {
-    const jsx = (<App />)
+    const jsx = (<Client />)
     const reactHtml = renderToString(jsx)
 
     res.send(getHtml(reactHtml))

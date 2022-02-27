@@ -1,4 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-ReactDOM.hydrate(<h1>Woohoo!</h1>, document.getElementById('wolfie'))
+const Client = () => {
+  return (
+    <h1>hi</h1>
+  )
+}
+
+export default Client
