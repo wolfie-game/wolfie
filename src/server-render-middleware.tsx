@@ -1,7 +1,6 @@
 import React from 'react'
 import {renderToString} from 'react-dom/server'
 import {Request, Response} from 'express'
-// import App from './components/App/App'
 import Client from './Client'
 
 export default (req: Request, res: Response) => {
@@ -24,6 +23,7 @@ function getHtml(reactHtml: string) {
         <body>
             <div id="wolfie">${reactHtml}</div>
         </body>
+        <script src="/main.js"></script>
     </html>
     `;
 }
