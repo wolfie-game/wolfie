@@ -4,15 +4,11 @@ const { IS_DEV } = require('../env')
 
 export default {
     client: {
-        test: /\.css$/,
-        use: [
-            IS_DEV && 'css-hot-loader',
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-        ].filter(Boolean),
+        test: /\.(sa|sc|c)ss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'].filter(Boolean),
     },
     server: {
-        test: /\.css$/,
+        test: /\.(sa|sc|c)ss$/,
         loader: 'null-loader',
     },
 }
