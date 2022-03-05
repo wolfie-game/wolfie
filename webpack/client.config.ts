@@ -9,6 +9,8 @@ import fileLoader from './loaders/file'
 import cssLoader from './loaders/css'
 import jsLoader from './loaders/js'
 
+const CopyPlugin = require('copy-webpack-plugin')
+
 const config: Configuration = {
     entry: ([
         IS_DEV && 'react-hot-loader/patch',
@@ -31,6 +33,15 @@ const config: Configuration = {
         plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'static/img'),
+                    to: path.resolve(__dirname, 'build/img'),
+                    noErrorOnMissing: true
+                },
+            ],
+        }),
         new MiniCssExtractPlugin({ filename: 'main.css' }),
         !IS_DEV && new CompressionPlugin(),
     ].filter(Boolean) as Plugin[],
