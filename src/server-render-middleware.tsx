@@ -2,6 +2,8 @@ import React from 'react'
 import {renderToString} from 'react-dom/server'
 import {Request, Response} from 'express'
 import Client from './Client'
+// import App from './components/App/App'
+
 
 export default (req: Request, res: Response) => {
     const jsx = (<Client />)
@@ -19,6 +21,7 @@ function getHtml(reactHtml: string) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <meta http-equiv="X-UA-Compatible" content="ie=edge" />
             <title>Wolfie</title>
+            <link href="/main.css" rel="stylesheet" type="text/css">
         </head>
         <body>
             <div id="wolfie">${reactHtml}</div>
