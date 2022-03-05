@@ -1,6 +1,6 @@
 import path from 'path'
-import { Configuration, WebpackPluginInstance as Plugin, Entry } from 'webpack'
-import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
+import {Configuration, WebpackPluginInstance as Plugin, Entry} from 'webpack'
+import {TsconfigPathsPlugin} from 'tsconfig-paths-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 
@@ -14,7 +14,7 @@ const config: Configuration = {
         IS_DEV && 'react-hot-loader/patch',
         IS_DEV && 'webpack-hot-middleware/client',
         IS_DEV && 'css-hot-loader/hotModuleReplacement',
-        path.join(SRC_DIR, 'Client'),
+        path.join(SRC_DIR, 'client'),
     ].filter(Boolean) as unknown) as Entry,
     module: {
         rules: [fileLoader.client, cssLoader.client, jsLoader.client],
@@ -31,7 +31,7 @@ const config: Configuration = {
         plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },
     plugins: [
-        new MiniCssExtractPlugin({ filename: '[name].css' }),
+        new MiniCssExtractPlugin({ filename: 'main.css' }),
         !IS_DEV && new CompressionPlugin(),
     ].filter(Boolean) as Plugin[],
 
