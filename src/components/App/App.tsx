@@ -15,7 +15,6 @@ import PrivateRoute from '../../HOC/authentification'
 
 const App: FC = () => {
   return (
-      <BrowserRouter>
         <div className="wrapper">
           <div className="col-content">
             <div className="logo">
@@ -55,14 +54,6 @@ const App: FC = () => {
                       </PrivateRoute>
                     }
                   />
-                  {/*<Route
-                    path="/game"
-                    element={
-                      <PrivateRoute>
-                        <Main />
-                      </PrivateRoute>
-                    }
-                  />*/}
                   <Route
                     path="/finish"
                     element={
@@ -79,7 +70,7 @@ const App: FC = () => {
             <Navigation />
           </div>
         </div>
-      </BrowserRouter>
+
   )
 }
 

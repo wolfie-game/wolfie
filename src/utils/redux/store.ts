@@ -3,26 +3,26 @@ import {UserState} from './reducers/types'
 import reducers from './reducers'
 import createSagaMiddleware from 'redux-saga'
 import 'regenerator-runtime/runtime'
-import watchFetchLeaders from './reducers/leaderboard'
+// import watchFetchLeaders from './reducers/leaderboard'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
 // const preloadedState = (window as any).__PRELOADED_STATE__ || {}
 
-const sagaMiddleware = createSagaMiddleware()
+export const sagaMiddleware = createSagaMiddleware()
 
-function configureStore() {
+export function configureStore() {
   const store = createStore(
     reducers,
     composeWithDevTools(applyMiddleware(sagaMiddleware)),
   )
   return store
 }
-const store = configureStore()
+// const store = configureStore()
 
-sagaMiddleware.run(watchFetchLeaders)
+// sagaMiddleware.run(watchFetchLeaders)
 
 export const action = (type) => {
   store.dispatch({type})
 }
 
-export default store
+// export default store

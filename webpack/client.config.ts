@@ -36,9 +36,8 @@ const config: Configuration = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, 'static/img'),
-                    to: path.resolve(__dirname, 'build/img'),
-                    noErrorOnMissing: true
+                    from: path.resolve(__dirname, '../static/img'),
+                    to: path.resolve(__dirname, '../build/img'),
                 },
             ],
         }),
