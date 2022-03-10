@@ -60,40 +60,7 @@ function SignIn() {
     setState({...state, [event.target.name]: event.target.value})
   }
   return (
-    <ErrorBoundary>
-      <div className="content__canvas">
-        <form className="form form_auth" onSubmit={signinHandler}>
-          <Input
-            styleName="form__input input"
-            type="text"
-            name="login"
-            value={state.login}
-            handler={handleChange}
-            placeholder="Login"
-          />
-          <Input
-            styleName="form__input input"
-            type="password"
-            name="password"
-            value={state.password}
-            handler={handleChange}
-            placeholder="Password"
-          />
-          <Button
-            styleName="form__button button"
-            type="button"
-            handler={signinHandler}>
-            Sign In
-          </Button>
-          <Button
-            styleName="form__button button-transparent"
-            type="button"
-            handler={signupHandler}>
-            Sign Up
-          </Button>
-        </form>
-      </div>
-    </ErrorBoundary>
+    <button onClick={()=>alert('5')}>12</button>
   )
 }
 

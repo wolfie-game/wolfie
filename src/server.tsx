@@ -7,7 +7,7 @@ import serverRenderMiddleware from './server-render-middleware'
 const app = express()
 
 app.use(express.static(path.resolve(__dirname, '../build')))
-    // .use(express.static(path.resolve(__dirname, '../static')))
+    .use(express.static(path.resolve(__dirname, '../static')))
 
 app.get('/*', serverRenderMiddleware)
 

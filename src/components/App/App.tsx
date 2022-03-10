@@ -1,4 +1,4 @@
-import React, {Component, FC} from 'react'
+import React, {FC} from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Main from '../Pages/Main'
 import Forum from '../Pages/Forum'
@@ -12,6 +12,7 @@ import Navigation from '../Navigation'
 import './App.scss'
 import '../../utils/service-worker/registerServiceWorker'
 import PrivateRoute from '../../HOC/authentification'
+import {hot} from 'react-hot-loader/root'
 
 const App: FC = () => {
   return (
@@ -74,4 +75,6 @@ const App: FC = () => {
   )
 }
 
-export default App
+const Component = hot(App)
+
+export default Component as App
