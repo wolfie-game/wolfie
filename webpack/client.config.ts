@@ -1,8 +1,9 @@
 import path from 'path'
-import {Configuration, WebpackPluginInstance as Plugin, Entry} from 'webpack'
+import webpack, {Configuration, WebpackPluginInstance as Plugin, Entry} from 'webpack'
 import {TsconfigPathsPlugin} from 'tsconfig-paths-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
+import LoadablePlugin from '@loadable/webpack-plugin'
 
 import {IS_DEV, DIST_DIR, SRC_DIR} from './env'
 import fileLoader from './loaders/file'
@@ -41,6 +42,8 @@ const config: Configuration = {
                 },
             ],
         }),
+        new webpack.HotModuleReplacementPlugin(),
+        new LoadablePlugin(),
         new MiniCssExtractPlugin({ filename: 'main.css' }),
         !IS_DEV && new CompressionPlugin(),
     ].filter(Boolean) as Plugin[],

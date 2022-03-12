@@ -13,7 +13,7 @@ import * as React from 'react'
 import {hydrate} from 'react-dom'
 import {BrowserRouter} from 'react-router-dom'
 import {Provider as ReduxProvider} from 'react-redux'
-// import {loadableReady} from '@loadable/component'
+import {loadableReady} from '@loadable/component'
 // import 'babel-polyfill'
 
 import App from './components/App/App'
@@ -30,11 +30,13 @@ declare global {
     }
 }
 
-ReactDOM.hydrate(
+loadableReady(() => {
+  hydrate(
     <Provider store={store}>
         <BrowserRouter history={history}>
             <App />
         </BrowserRouter>
     </Provider>,
     document.getElementById('wolfie'),
-);
+  )
+})
