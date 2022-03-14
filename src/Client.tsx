@@ -25,4 +25,3 @@ hydrate(
   </Provider>,
   document.getElementById('wolfie'),
 )
-

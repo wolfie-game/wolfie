@@ -10,7 +10,7 @@ app.use(express.static(path.resolve(__dirname, '../build')))
     .use(express.static(path.resolve(__dirname, '../static')))
 
 app.get("/sw.js", (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../public', 'sw.js'));
+  res.sendFile(path.resolve(__dirname, '../public', 'sw.js'))
 });
 app.get('/*', serverRenderMiddleware)
 

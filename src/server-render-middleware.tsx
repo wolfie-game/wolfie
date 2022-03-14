@@ -5,12 +5,12 @@ import {Request, Response} from 'express'
 import Client from './Client'
 import App from './components/App/App'
 import {StaticRouter} from 'react-router-dom/server'
-// import { StaticRouterContext } from 'react-router'
 import {configureStore} from './utils/redux/store'
 import {Provider as ReduxProvider} from 'react-redux'
 import {sagaMiddleware} from './utils/redux/store'
 import watchFetchLeaders from './utils/redux/reducers/leaderboard'
 import {ChunkExtractor} from '@loadable/server'
+import Helmet, {HelmetData} from 'react-helmet'
 
 export default (req: Request, res: Response) => {
     const location = req.url

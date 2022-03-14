@@ -5,6 +5,8 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import {useNavigate} from 'react-router-dom'
 import UserAuthController from '../../../controllers/user-auth'
 import validation from '../../../utils/validation'
+import {PageMeta} from '../../PageMeta/PageMeta'
+
 const signUpInstance = new UserAuthController()
 
 interface IState {
@@ -63,6 +65,7 @@ function SignUp() {
 
   return (
     <ErrorBoundary>
+      <PageMeta title="Регистрация" description="Зарегистрируйтесь и играйте в Wolfie"/>
       <div className="content__canvas">
         <form className="form form_auth" onSubmit={signupHandler}>
           <Input

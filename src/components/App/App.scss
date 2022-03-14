@@ -17,6 +17,10 @@ img {
   margin: 20px auto;
 }
 
+button {
+  cursor: pointer;
+}
+
 .logo {
   max-height: 258px;
   img {
@@ -98,6 +102,8 @@ img {
   background: none;
   color: #E63C16;
   font-size: 20px;
+  border: none;
+  background-color: transparent;
 }
 
 .simpple-page {
