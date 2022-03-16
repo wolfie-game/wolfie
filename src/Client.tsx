@@ -2,9 +2,7 @@ import * as React from 'react'
 import {hydrate} from 'react-dom'
 import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
-// import {loadableReady} from '@loadable/component'
 import App from './components/App/App'
-// import {State} from 'types'
 import {configureStore} from './utils/redux/store'
 
 const store = configureStore(window.__INITIAL_STATE__);
