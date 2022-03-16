@@ -17,10 +17,6 @@ img {
   margin: 20px auto;
 }
 
-button {
-  cursor: pointer;
-}
-
 .logo {
   max-height: 258px;
   img {
@@ -104,6 +100,7 @@ button {
   font-size: 20px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .simpple-page {
@@ -137,6 +134,7 @@ button {
   background: url(../../../static/img/close.png) no-repeat center;
   background-size: cover;
   border: none;
+  cursor: pointer;
 }
 
 .form {
@@ -153,7 +151,7 @@ button {
     width: 100%;
     max-width: 253px;
     margin: 0 auto;
-
+    cursor: pointer;
   }
 }
 
@@ -199,6 +197,7 @@ button {
   justify-content: center;
   margin-bottom: 10px;
   border: none;
+  cursor: pointer;
   &::after {
     content: '';
     display: inline-block;
@@ -227,6 +226,7 @@ button {
   box-shadow: inset 0 0 10px 0px #ff4e25, 0 0 10px 0px #ff4e25;
   transition: box-shadow .35s ease;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .start, .finish {

@@ -2,7 +2,7 @@ import React from 'react'
 import path from 'path'
 import {renderToString} from 'react-dom/server'
 import {Request, Response} from 'express'
-import Client from './Client'
+import Client from './сlient'
 import App from './components/App/App'
 import {StaticRouter} from 'react-router-dom/server'
 import {configureStore} from './utils/redux/store'
@@ -28,11 +28,12 @@ export default (req: Request, res: Response) => {
     )
     const reactHtml = renderToString(jsx)
     const reduxState = store.getState()
+    const helmetData = Helmet.renderStatic()
 
-    res.send(getHtml(reactHtml, reduxState, chunkExtractor))
+    res.send(getHtml(reactHtml, reduxState, chunkExtractor, helmetData))
 }
 
-function getHtml(reactHtml: string, reduxState = {}, chunkExtractor: ChunkExtractor) {
+function getHtml(reactHtml: string, reduxState = {}, chunkExtractor: ChunkExtractor, helmetData: HelmetData) {
     const scriptTags = chunkExtractor.getScriptTags();
     const linkTags = chunkExtractor.getLinkTags();
     const styleTags = chunkExtractor.getStyleTags();
@@ -43,7 +44,8 @@ function getHtml(reactHtml: string, reduxState = {}, chunkExtractor: ChunkExtrac
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-            <title>Wolfie</title>
+            ${helmetData.title.toString()}
+            ${helmetData.meta.toString()}
             ${linkTags}
             ${styleTags}
         </head>

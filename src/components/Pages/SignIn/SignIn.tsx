@@ -90,7 +90,6 @@ function SignIn() {
           <Button
             styleName="form__button button-transparent"
             type="button"
-            onClick={() => alert('4')}
             handler={signupHandler}>
             Sign Up
           </Button>
