@@ -25,3 +25,5 @@ hydrate(
   </Provider>,
   document.getElementById('wolfie'),
 )
+
+export default store
