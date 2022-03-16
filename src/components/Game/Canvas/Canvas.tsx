@@ -6,6 +6,7 @@ import Decorations from '../Decorations/Decorations'
 import PlayerStats from '../PlayerStats/PlayerStats'
 import EndGame from '../EndGame/EndGame'
 import LeaderboardController from '../../../controllers/leaderboard'
+import soundfile from './Sound/audio.mp3'
 
 const leaderboardInstance = new LeaderboardController()
 
@@ -24,6 +25,11 @@ function CanvasComponent({width, height, user}: Props) {
     lives: 3,
     name: user ? user : 'Guest',
   })
+  const [playSound, setPlaySound] = useState(true)
+  const sound = new Audio(soundfile)
+  sound.addEventListener('ended', function () {
+    sound.play()
+  })
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const canvasCtxRef = useRef<CanvasRenderingContext2D | null>(null)
@@ -33,6 +39,7 @@ function CanvasComponent({width, height, user}: Props) {
   useEffect(() => {
     let ctx
     const canvas = canvasRef.current
+    sound.play()
 
     if (canvas) {
       canvasCtxRef.current = canvas.getContext('2d')
@@ -91,6 +98,7 @@ function CanvasComponent({width, height, user}: Props) {
 
         wolfie.redraw()
       } else {
+        sound.pause()
         EndGame(ctx, canvas)
         const userData = {
           data: {

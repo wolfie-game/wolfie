@@ -21,6 +21,6 @@
       "*": ["./src/*"]
     },
   },
-  "include": ["src", "typings/**/*.d.ts", "./node_modules/@types", "sw.js", "public/sw.js"],
+  "include": ["src", "types/**/*.d.ts", "./node_modules/@types", "sw.js", "public/*"],
   "exclude": ["**/*.js"]
 }
