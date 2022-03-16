@@ -5,6 +5,7 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import CanvasComponent from '../../Game/Canvas/Canvas'
 import Button from '../../Button/Button'
 import {connect} from 'react-redux'
+import {PageMeta} from '../../PageMeta/PageMeta'
 
 const signInInstance = new UserAuthController()
 
@@ -53,6 +54,7 @@ function Main(props) {
 
   return (
     <ErrorBoundary>
+      <PageMeta title="Wolfie" description="Catch the egg!"/>
       <div className="content__canvas" id="canvas">
         {!state.game ? (
           <div className="start">

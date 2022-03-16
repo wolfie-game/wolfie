@@ -6,4 +6,4 @@
 /.idea
 package-lock.json
 package.json
-webpack.config.js
+webpack.config.ts

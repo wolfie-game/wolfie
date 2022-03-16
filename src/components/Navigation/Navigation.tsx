@@ -24,7 +24,7 @@ class Navigation extends Component {
   render() {
     return (
       <nav className="navigation">
-        <ul>
+        <ul className="navigation__list">
           {links.map((item: DataMap) => (
             <li key={item.id}>
               <LinkItem styleName="navigation__link" goTo={item.link}>

@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom'
 import Modal from '../../Modal/Modal'
 import {useDispatch, RootStateOrAny, useSelector, connect} from 'react-redux'
 import {logout} from '../../../utils/redux/reducers/user' 
+import {PageMeta} from '../../PageMeta/PageMeta'
 
 const profileDataRequester = new UserAuthController()
 
@@ -65,6 +66,7 @@ function Profile() {
 
   return (
     <ErrorBoundary>
+      <PageMeta title="Профиль" description="Ваш профиль"/>
       <div className="content__canvas">
         <div className="profile">
           <div className="profile__wrap">

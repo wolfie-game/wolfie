@@ -7,6 +7,7 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 // import store from '../../../utils/redux/store'
 import {connect} from 'react-redux'
 import {fetchLeaders} from '../../../utils/redux/reducers/leaderboard'
+import {PageMeta} from '../../PageMeta/PageMeta'
 
 function LeaderBoard(props) {
   const navigate = useNavigate()
@@ -18,6 +19,7 @@ function LeaderBoard(props) {
 
   return (
     <ErrorBoundary>
+      <PageMeta title="Лидерборд" description="Рейтинг игроков"/>
       <div className="content__canvas">
         <div className="simpple-page">
           <div className="simpple-page__heading">

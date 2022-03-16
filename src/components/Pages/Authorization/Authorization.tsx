@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import UserAuthController from '../../../controllers/user-auth'
 import {useDispatch} from 'react-redux'
 import {checkAuth} from '../../../utils/redux/reducers/user'
+import {PageMeta} from '../../PageMeta/PageMeta'
 
 const signInInstance = new UserAuthController()
 
@@ -37,6 +38,7 @@ function Authorization() {
 
   return (
     <ErrorBoundary>
+      <PageMeta title="Авторизация" description="Wolfie авторизация"/>
       <div className="content__canvas">
         <div className="authorization">
           <h1 className="authorization__title">You are not autorized!</h1>

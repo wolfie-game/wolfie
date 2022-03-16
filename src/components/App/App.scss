@@ -98,6 +98,9 @@ img {
   background: none;
   color: #E63C16;
   font-size: 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .simpple-page {
@@ -130,6 +133,8 @@ img {
   height: 67px;
   background: url(../../../static/img/close.png) no-repeat center;
   background-size: cover;
+  border: none;
+  cursor: pointer;
 }
 
 .form {
@@ -146,7 +151,7 @@ img {
     width: 100%;
     max-width: 253px;
     margin: 0 auto;
-
+    cursor: pointer;
   }
 }
 
@@ -166,6 +171,9 @@ img {
   border-radius: 27px;
   background: transparent;
   box-shadow: inset 0 0 12px 0px #ff4e25, 0 0 12px 0px #ff4e25;
+  &:hover, &:focus, &:active {
+    box-shadow: inset 0 0 20px 0px #ff4e25, 0 0 12px 0px #ff4e25;
+  }
 }
 
 .input__error{
@@ -188,6 +196,8 @@ img {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
   &::after {
     content: '';
     display: inline-block;
@@ -216,6 +226,7 @@ img {
   box-shadow: inset 0 0 10px 0px #ff4e25, 0 0 10px 0px #ff4e25;
   transition: box-shadow .35s ease;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 .button-icon_ya {
   width: 40px;

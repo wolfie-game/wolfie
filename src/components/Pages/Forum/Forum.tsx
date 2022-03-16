@@ -4,6 +4,7 @@ import Button from '../../Button/Button'
 import ForumItem from '../../ForumItem/ForumItem'
 import {DataMap} from './types'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
+import {PageMeta} from '../../PageMeta/PageMeta'
 
 const data = [
   {
@@ -22,6 +23,7 @@ function Forum() {
 
   return (
     <ErrorBoundary>
+      <PageMeta title="Форум" description="Wolfie форум"/>
       <div className="content__canvas">
         <div className="simpple-page">
           <div className="simpple-page__heading">

@@ -7,6 +7,7 @@ import UserAuthController from '../../../controllers/user-auth'
 import OauthController from '../../../controllers/oauth'
 import {useDispatch, RootStateOrAny, connect} from 'react-redux'
 import {checkAuth} from '../../../utils/redux/reducers/user'
+import {PageMeta} from '../../PageMeta/PageMeta'
 
 const signInInstance = new UserAuthController()
 const signinUrl = 'https://ya-praktikum.tech/signin'
@@ -96,6 +97,7 @@ function SignIn() {
 
   return (
     <ErrorBoundary>
+      <PageMeta title="Вход" description="Войдите в аккаунт"/>
       <div className="content__canvas">
         <form className="form form_auth" onSubmit={signinHandler}>
           <Input
