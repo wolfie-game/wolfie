@@ -5,21 +5,25 @@ import Egg from '../Egg/Egg'
 import Decorations from '../Decorations/Decorations'
 import PlayerStats from '../PlayerStats/PlayerStats'
 import EndGame from '../EndGame/EndGame'
+import LeaderboardController from '../../../controllers/leaderboard'
 import soundfile from './Sound/audio.mp3'
+
+const leaderboardInstance = new LeaderboardController()
 
 interface Props {
   width: number
   height: number
+  user: string
 }
 
-function CanvasComponent({width, height}: Props) {
+function CanvasComponent({width, height, user}: Props) {
   const [state, setState] = useState({
     canvasWidth: width,
     canvasHeiht: height,
     lavel: 1,
     score: 0,
     lives: 3,
-    name: 'Guest',
+    name: user ? user : 'Guest',
   })
   const [playSound, setPlaySound] = useState(true)
   const sound = new Audio(soundfile)
@@ -73,7 +77,10 @@ function CanvasComponent({width, height}: Props) {
       window.requestAnimationFrame(step)
     }
     const step = () => {
-      window.requestAnimationFrame(step)
+      if (state.lives > 0) {
+        window.requestAnimationFrame(step)
+      }
+
       decorations.redraw()
       stats()
       if (state.lives > 0) {
@@ -93,6 +100,21 @@ function CanvasComponent({width, height}: Props) {
       } else {
         sound.pause()
         EndGame(ctx, canvas)
+        const userData = {
+          data: {
+            user: state.name,
+            score: state.score
+          },
+          ratingFieldName: 'score',
+          teamName: 'darry'
+        }
+
+        leaderboardInstance
+        .addData(userData)
+        .then(() => {
+          console.log('THE END')
+        })
+        .catch(() => console.log('Something went wrong'))
       }
     }
 

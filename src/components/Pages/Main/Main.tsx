@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import CanvasComponent from '../../Game/Canvas/Canvas'
 import Button from '../../Button/Button'
+import {connect} from 'react-redux'
 
 const signInInstance = new UserAuthController()
 
@@ -15,21 +16,22 @@ const initialState: IState = {
   game: false,
 }
 
-function Main() {
+function Main(props) {
   const [state, setState] = useState(initialState)
   const [isFullscreen, setIsFullscrenn] = useState(false)
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    signInInstance
-      .getUserInfo()
-      .then((info) => {
-        if (!info.id) {
-          navigate('/')
-        }
-      })
-      .catch(() => alert('You are not sign in'))
+    // console.log('checkin Main store', props.user.value.login)
+    // signInInstance
+    //   .getUserInfo()
+    //   .then((info) => {
+    //     if (!info.id) {
+    //       navigate('/')
+    //     }
+    //   })
+    //   .catch(() => alert('You are not sign in'))
   }, [])
 
   const handleStart = (event: any) => {
@@ -66,6 +68,7 @@ function Main() {
           <CanvasComponent
             width={isFullscreen ? 1200 : 1000}
             height={isFullscreen ? 720 : 657}
+            user={props.user?.value?.login}
           />
         )}
         <Button
@@ -79,4 +82,9 @@ function Main() {
   )
 }
 
-export default Main
+const ConnectedApp = connect((state) => {
+  console.log('ConnectedApp main', state)
+  return state
+})(Main)
+
+export default ConnectedApp

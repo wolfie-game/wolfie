@@ -67,7 +67,7 @@ function* fetchLeadersAsync() {
   try {
     yield put(getLeaders())
     const requestData = {
-      ratingFieldName: 'joker',
+      ratingFieldName: 'score',
       cursor: 0,
       limit: 10,
     }
