@@ -46,4 +46,3 @@ volumes:
 networks:
   awesome:
     driver: bridge
-    

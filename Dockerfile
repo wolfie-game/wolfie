@@ -5,4 +5,4 @@ RUN npm install --legacy-peer-deps
 COPY . /app
 ENV NODE_ENV production
 EXPOSE 3000
-CMD node app/index.js
+CMD node index.js
