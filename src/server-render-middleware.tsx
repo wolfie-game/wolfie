@@ -41,14 +41,14 @@ export default (req: Request, res: Response) => {
         res.send(getHtml(reactHtml, reduxState, chunkExtractor, helmetData))
     }
 
-    store
-        .runSaga(rootSaga)
-        .toPromise()
-        .then(() => renderApp())
-        .catch(err => {
-            throw err
-        });
-// renderApp()
+    // store
+    //     .runSaga(rootSaga)
+    //     .toPromise()
+    //     .then(() => renderApp())
+    //     .catch(err => {
+    //         throw err
+    //     });
+renderApp()
     // const dataRequirements: (Promise<void> | void)[] = []
 
     // return Promise.all(dataRequirements)
