@@ -31,8 +31,7 @@ services:
 
   wolfie-app:
     build:
-      context: ..
-      dockerfile: wolfie/Dockerfile
+      context: .
     ports:
       - "3000:3000"
     restart: always
@@ -47,3 +46,4 @@ volumes:
 networks:
   awesome:
     driver: bridge
+    
