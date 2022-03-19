@@ -16,7 +16,7 @@
     "declaration": false,
     "sourceMap": false,
     "baseUrl": ".",
-    "outDir": "./dist",
+    "outDir": "./build",
     "paths": {
       "*": ["./src/*"]
     },

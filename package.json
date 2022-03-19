@@ -5,7 +5,7 @@
   "main": "./src/index.tsx",
   "scripts": {
     "clean": "rimraf build",
-    "build": "NODE_ENV=production NODE_PATH=. npm run clean && webpack --mode production --config webpack/client.config.ts",
+    "build": "NODE_ENV=production NODE_PATH=. npm run clean && webpack --mode production",
     "start:webpack": "webpack --mode=development --watch",
     "start:server": "nodemon index.js --watch build/server.js",
     "start": "NODE_ENV=development npm-run-all --print-label --parallel start:*",
