@@ -2,7 +2,6 @@ import React from 'react'
 import path from 'path'
 import {renderToString} from 'react-dom/server'
 import {Request, Response} from 'express'
-import Client from './сlient'
 import App from './components/App/App'
 import {StaticRouter} from 'react-router-dom/server'
 import {configureStore} from './utils/redux/store'
@@ -44,6 +43,10 @@ function getHtml(reactHtml: string, reduxState = {}, chunkExtractor: ChunkExtrac
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+            <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
             ${helmetData.title.toString()}
             ${helmetData.meta.toString()}
             ${linkTags}
