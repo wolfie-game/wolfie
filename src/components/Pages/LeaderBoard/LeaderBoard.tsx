@@ -14,7 +14,6 @@ function LeaderBoard(props) {
 
   useEffect(() => {
     props.dispatch(fetchLeaders())
-    // console.log('checkin store', props)
   }, [])
 
   if(!props.user.auth) {
@@ -71,6 +70,7 @@ function LeaderBoard(props) {
 }
 
 const ConnectedApp = connect((state) => {
+  console.log('LeaderBoard checkin state', state)
   return state
 })(LeaderBoard)
 

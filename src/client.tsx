@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import App from './components/App/App'
 import {configureStore} from './utils/redux/store'
 
-const store = configureStore(window.__INITIAL_STATE__);
+const {store} = configureStore(window.__INITIAL_STATE__);
 
 // global redeclared types
 declare global {

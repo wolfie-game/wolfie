@@ -13,7 +13,7 @@ const initialState = {
   leaderboard: [],
 }
 
-export const leaderboard = (state = initialState, action) => {
+const leaderboard = (state = initialState, action) => {
   switch (action.type) {
     case actions.GET_LEADERS:
       return {
@@ -59,7 +59,7 @@ export function fetchLeaders() {
 }
 
 // Sagas
-function* watchFetchLeaders() {
+export function* watchFetchLeaders() {
   yield takeEvery('FETCHED_LEADERS', fetchLeadersAsync)
 }
 
@@ -83,4 +83,4 @@ function* fetchLeadersAsync() {
   }
 }
 
-export default watchFetchLeaders
+export default leaderboard
