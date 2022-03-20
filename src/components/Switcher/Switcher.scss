@@ -9,6 +9,9 @@
 
 	&__name {
 		color: #c84324;
+		&_light {
+			color: #282828;
+		}
 	}
 
 	&__label {
@@ -23,6 +26,9 @@
 		border-radius: 10px;
 		overflow: hidden;
 		margin: 0 10px;
+		&_light {
+			color: #282828;
+		}
 	}
 
 	&__input {
@@ -41,6 +47,14 @@
 		  	-webkit-transform: translateX(18px);
 		  	-ms-transform: translateX(18px);
 		  	transform: translateX(18px);
+		}
+
+		&:checked + .switcher__slider_light {
+  			background-color: #282828;
+		}
+
+		&:focus + .switcher__slider_light {
+		  	box-shadow: 0 0 1px #282828;
 		}
 	}
 

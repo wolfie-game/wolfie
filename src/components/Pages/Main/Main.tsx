@@ -85,7 +85,7 @@ function Main(props) {
 }
 
 const ConnectedApp = connect((state) => {
-  console.log('ConnectedApp main', state)
+  // console.log('ConnectedApp main', state)
   return state
 })(Main)
 
