@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
+import Switcher from '../../Switcher/Switcher'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import UserAuthController from '../../../controllers/user-auth'
 import {useNavigate} from 'react-router-dom'
@@ -90,6 +91,7 @@ function Profile() {
                 value={state.email}
                 readOnly={true}
               />
+              <Switcher styleName="switcher switcher_theme" id="theme" />
               <Button
                 styleName="form__button button"
                 type="button"

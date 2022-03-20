@@ -8,6 +8,7 @@ import fileLoader from './loaders/file'
 import cssLoader from './loaders/css'
 import jsLoader from './loaders/js'
 
+const Dotenv = require('dotenv-webpack')
 const config: Configuration = {
     name: 'server',
     target: 'node',
@@ -27,6 +28,11 @@ const config: Configuration = {
         extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
         plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },
+    plugins: [
+        new Dotenv({
+            expand: true,
+        }),
+    ],
 
     devtool: 'source-map',
 

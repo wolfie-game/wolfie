@@ -3,6 +3,6 @@ import {watchFetchLeaders} from './redux/reducers/leaderboard'
 
 export function* rootSaga() {
   yield all([
-    watchFetchLeaders
+    watchFetchLeaders()
   ])
 }
