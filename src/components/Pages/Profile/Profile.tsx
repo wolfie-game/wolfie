@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
@@ -8,10 +8,12 @@ import Modal from '../../Modal/Modal'
 import {useDispatch, RootStateOrAny, useSelector, connect} from 'react-redux'
 import {logout} from '../../../utils/redux/reducers/user' 
 import {PageMeta} from '../../PageMeta/PageMeta'
+import {ThemeContext} from '../../../utils/context/ThemeContext'
 
 const profileDataRequester = new UserAuthController()
 
 function Profile() {
+  const theme = useContext(ThemeContext)
   const initialState = {
     login: 'admin',
     email: 'admin@wolfie.com',
@@ -67,7 +69,7 @@ function Profile() {
   return (
     <ErrorBoundary>
       <PageMeta title="Профиль" description="Ваш профиль"/>
-      <div className="content__canvas">
+      <div className={theme == 'light' ? 'content__canvas content__canvas_light' : 'content__canvas'}>
         <div className="profile">
           <div className="profile__wrap">
             <Modal

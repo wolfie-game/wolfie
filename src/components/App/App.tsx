@@ -40,7 +40,7 @@ const App: FC = () => {
       <div className={theme == 'light' ? 'wrapper wrapper_light' : 'wrapper'}>
         <div className="col-content">
           <div className="logo">
-            <img src="./img/wolfie-logo.png"></img>
+            <img src={theme == 'light' ? './img/wolfie-logo-light.png' : './img/wolfie-logo.png'}></img>
           </div>
           <div className="content">
             <div className="content__inner">
