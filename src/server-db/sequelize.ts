@@ -1,7 +1,7 @@
 import {Sequelize, SequelizeOptions} from 'sequelize-typescript'
-import { User } from './models/user';
-import { Topic } from './models/topic';
-import { Comment } from './models/comment';
+import {User} from './models/user'
+import {Topic} from './models/topic'
+import {Comment} from './models/comment'
 
 const sequelizeOptions: SequelizeOptions = {
   host: 'localhost',
@@ -11,10 +11,17 @@ const sequelizeOptions: SequelizeOptions = {
   database: 'my-db-name',
   dialect: 'postgres',
 }
-const sequelize = new Sequelize(sequelizeOptions)
-sequelize.addModels([User, Topic, Comment]);
+export const sequelize = new Sequelize({
+  host: 'localhost',
+  port: 5432,
+  username: 'postgres',
+  password: 'newPassword',
+  database: 'my-db-name',
+  dialect: 'postgres',
+})
+sequelize.addModels([User, Topic, Comment])
 
-export default async function dbConnect() {
+export async function dbConnect() {
   try {
     await sequelize.authenticate()
     await sequelize.sync({alter: true})

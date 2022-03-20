@@ -3,7 +3,7 @@ import express from 'express'
 import compression from 'compression'
 import 'babel-polyfill'
 import serverRenderMiddleware from './server-render-middleware'
-import dbConnect from './server-db/sequelize'
+import {dbConnect} from './server-db/sequelize'
 
 const app = express()
 
