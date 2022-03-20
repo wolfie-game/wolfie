@@ -1,10 +1,24 @@
 version: '3.3'
 services:
 
+  wolfie-app:
+    build:
+      context: .
+    environment: 
+      DATABASE_URL: '${POSTGRES_URL}'
+    ports:
+      - "3000:3000"
+    restart: always
+    depends_on:
+      - postgres
+    env_file: ./.env
+    networks:
+      - awesome
+
   postgres:
     image: postgres:12
     ports:
-      - '5555:5432'
+      - '5432:5432'
     volumes:
       - ./postgres-db:/var/lib/postgresql/data
     restart: always
@@ -27,21 +41,7 @@ services:
       - pgadmin-data:/var/lib/pgadmin
     depends_on:
       - postgres
-    env_file: ./.env
     restart: always
-    networks:
-      - awesome
-
-  wolfie-app:
-    build:
-      context: .
-    environment: 
-      DATABASE_URL: '${POSTGRES_URL}'
-    ports:
-      - "3000:3000"
-    restart: always
-    depends_on:
-      - postgres
     networks:
       - awesome
 
