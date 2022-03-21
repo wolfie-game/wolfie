@@ -7,6 +7,7 @@ import UserAuthController from '../../../controllers/user-auth'
 import {useDispatch} from 'react-redux'
 import {checkAuth} from '../../../utils/redux/reducers/user'
 import {PageMeta} from '../../PageMeta/PageMeta'
+import {ThemeContext} from '../../../utils/context/ThemeContext'
 
 const signInInstance = new UserAuthController()
 
@@ -22,6 +23,7 @@ const links = [
 ]
 
 function Authorization() {
+  const theme = useContext(ThemeContext)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {
