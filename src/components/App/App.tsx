@@ -38,63 +38,65 @@ const App: FC = () => {
   return (
     <ThemeContext.Provider value={theme}>
       <div className={theme == 'light' ? 'wrapper wrapper_light' : 'wrapper'}>
-        <div className="col-content">
-          <div className="logo">
-            <img src={theme == 'light' ? './img/wolfie-logo-light.png' : './img/wolfie-logo.png'}></img>
-          </div>
-          <div className="content">
-            <div className="content__inner">
-              <Routes>
-                <Route path="/" element={<SignIn />} />
-                <Route path="/authorization" element={<Authorization />} />
-                <Route path="/sign-up" element={<SignUp />} />
-                <Route
-                  path="/game"
-                  element={<Main />}
-                />
-                <Route
-                  path="/leaderboard"
-                  element={
-                    <PrivateRoute>
-                    <LeaderBoard />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/forum"
-                  element={
-                    <PrivateRoute>
-                    <Forum />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <PrivateRoute>
-                    <Profile />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/finish"
-                  element={
-                    <PrivateRoute>
-                    <Finish />
-                    </PrivateRoute>
-                  }
-                />
-              </Routes>
+        <div className="wrapper__container">
+          <div className="col-content">
+            <div className="logo">
+              <img src={theme == 'light' ? './img/wolfie-logo-light.png' : './img/wolfie-logo.png'}></img>
+            </div>
+            <div className="content">
+              <div className="content__inner">
+                <Routes>
+                  <Route path="/" element={<SignIn />} />
+                  <Route path="/authorization" element={<Authorization />} />
+                  <Route path="/sign-up" element={<SignUp />} />
+                  <Route
+                    path="/game"
+                    element={<Main />}
+                  />
+                  <Route
+                    path="/leaderboard"
+                    element={
+                      <PrivateRoute>
+                      <LeaderBoard />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/forum"
+                    element={
+                      <PrivateRoute>
+                      <Forum />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <PrivateRoute>
+                      <Profile />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/finish"
+                    element={
+                      <PrivateRoute>
+                      <Finish />
+                      </PrivateRoute>
+                    }
+                  />
+                </Routes>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="col-navigation">
-          <Switcher 
-            styleName="switcher switcher_theme" 
-            id="theme" 
-            handler={switchTheme} 
-          />
-          <Navigation />
+          <div className="col-navigation">
+            <Switcher 
+              styleName="switcher switcher_theme" 
+              id="theme" 
+              handler={switchTheme} 
+            />
+            <Navigation />
+          </div>
         </div>
       </div>
     </ThemeContext.Provider>

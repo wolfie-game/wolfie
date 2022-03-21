@@ -1,11 +1,7 @@
 import {BaseRESTService} from './BaseRESTServise'
 import {UserTheme} from '../models/UserTheme'
-import {AppTheme} from '../models/AppTheme'
 
-interface FindRequestInt {
-  id?: number;
-  ownerId?: number;
-}
+const DEFAULT_THEME_NAME = 'dark'
 
 interface UpdateRequestInt {
   ownerId: number;
@@ -18,7 +14,7 @@ interface CreateRequestInt {
 }
 
 class ThemeService implements BaseRESTService {
-  public find = ({ownerId}: FindRequestInt) => {
+  public find = (ownerId: number) => {
     return UserTheme.findOne({
       where: {
         ownerId: ownerId
@@ -26,45 +22,28 @@ class ThemeService implements BaseRESTService {
     })
   }
 
-  public findAll = () => {
-    return AppTheme.findAll({
-      attributes: ['theme']
-    })
+  public update = async (data: UpdateRequestInt) => {
+    const foundTheme = await this.find(data.ownerId)
+
+    if(foundTheme !== null) {
+      return foundTheme.update({theme: data.theme})
+    } else {
+      return this.create(data)
+    }
   }
 
-  public update = async (data: UpdateRequestInt) => {
-    const foundThemeId = await AppTheme.findOne({
-      attributes: ['id'],
-      where: {
-        theme: data.theme
-      }
-    })
+  public request = async (ownerId: number) => {
+    const foundRecord = await this.find(ownerId)
 
-    if(foundThemeId !== null) {
-      const foundCurrentTheme = await this.find({ownerId: data.ownerId})
-
-      return foundCurrentTheme?.update({themeId: foundThemeId.id})
+    if (foundRecord === null) {
+      return UserTheme.build({ownerId: ownerId, theme: DEFAULT_THEME_NAME})
+    } else {
+      return foundRecord
     }
   }
 
   public create = async (data: CreateRequestInt) => {
-    try {
-      const foundId = await AppTheme.findOne({
-        attributes: ['id'],
-        where: {
-          theme: data.theme
-        }
-      })
-
-      if (foundId !== null) {
-        const themeData = {ownerId: data.ownerId, themeId: foundId.id}
-        return UserTheme.create(themeData)
-      } else {
-        throw new Error(`There is no theme with name: ${data.theme}`)
-      }
-    } catch(error) {
-      console.error(error)
-    }
+    return UserTheme.create(data)
   }
 }
 

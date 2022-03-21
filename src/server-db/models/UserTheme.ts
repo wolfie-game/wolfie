@@ -7,15 +7,17 @@ import {
   DataType,
   AllowNull,
   ForeignKey,
-  Unique,
+  Default
 } from 'sequelize-typescript'
-import {AppTheme} from './appTheme'
+import {User} from './user'
 
-type UserTheme = {
-  id: number
-  login: string
-  avatar?: string
+type UserThemeAttributes = {
+  id: number;
+  theme: string;
+  ownerId: number;
 }
+
+type UserThemeCreationAttributes = Omit<UserThemeAttributes, 'id'>
 
 @Table({
   timestamps: false,
@@ -23,18 +25,16 @@ type UserTheme = {
   tableName: 'user_theme',
 })
 
-export class UserTheme extends Model<UserTheme> {
+export class UserTheme extends Model<UserThemeAttributes, UserThemeCreationAttributes> {
   @AutoIncrement
   @PrimaryKey
   @Column(DataType.INTEGER)
   id: number;
 
+  @Default('dark')
   @AllowNull(false)
   @Column(DataType.STRING)
   theme: string;
-
-  @Column(DataType.STRING)
-  device: string;
 
   @ForeignKey(() => User)
   @AllowNull(false)
@@ -42,5 +42,5 @@ export class UserTheme extends Model<UserTheme> {
     type: DataType.INTEGER,
     field: 'owner_id'
   })
-  ownerId: string;
+  ownerId: number;
 }

@@ -19,6 +19,7 @@ import {
 export class AppTheme extends Model<AppTheme> {
   @AutoIncrement
   @PrimaryKey
+  @Unique
   @Column(DataType.INTEGER)
   id: number;
 
@@ -28,7 +29,7 @@ export class AppTheme extends Model<AppTheme> {
   @Column(DataType.STRING)
   theme: string;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.STRING)
   description: string;
 }
