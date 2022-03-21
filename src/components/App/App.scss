@@ -249,6 +249,7 @@ img {
   border-radius: 50%;
   background: #FFFFFF url(../../../static/img/yandex-logo.png) no-repeat center;
   background-size: 40%;
+  border: none;
 }
 
 .oauth {
@@ -293,50 +294,52 @@ img {
 
 }
 
-.wrapper_light .simpple-page__title,
-.wrapper_light .leaderboard__col {
-  color: #282828;
-}
-
-.wrapper_light .content__canvas {
+.wrapper_light {
+  .content__canvas {
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     box-shadow: 0 0 20px 0px #282828;
-}
-
-.wrapper_light .start__img, .wrapper_light .finish__img {
-  border: 1px solid #25FF7C;
-  box-shadow: inset 0 0 10px 0px #25ff7c, 0 0 10px 0px #25ff7c;
-}
-
-.wrapper_light .button-transparent {
-  color: #282828;
-  border: 1px solid #ff4e25;
-  background: transparent;
-  box-shadow: 0 0 10px 0px #282828;
-  border-color: transparent;
-  &:hover, &:focus, &:active {
-    box-shadow: inset 0 0 2px 0px #282828;
   }
-}
-
-.wrapper_light .button {
-  background: #282828;
-  color: #FFFFFF;
-  box-shadow: 0 0 10px 0px #282828;
-  &:hover, &:focus, &:active {
-    box-shadow: none;
+  .simpple-page__title,
+  .leaderboard__col,
+  .authorization__title {
+    color: #282828;
   }
-  &::after {
-    display: none;
+
+  .start__img, .finish__img {
+    border: 1px solid #25FF7C;
+    box-shadow: inset 0 0 10px 0px #25ff7c, 0 0 10px 0px #25ff7c;
   }
-}
 
-.wrapper_light .input {
-  color: #282828;
-  border: none;
-  box-shadow: 0 0 12px 0px #282828;
-}
+  .button-transparent {
+    color: #282828;
+    border: 1px solid #ff4e25;
+    background: transparent;
+    box-shadow: 0 0 10px 0px #282828;
+    border-color: transparent;
+    &:hover, &:focus, &:active {
+      box-shadow: inset 0 0 2px 0px #282828;
+    }
+  }
 
-.wrapper_light .modal .modal-main {
-  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  .button {
+    background: #282828;
+    color: #FFFFFF;
+    box-shadow: 0 0 10px 0px #282828;
+    &:hover, &:focus, &:active {
+      box-shadow: none;
+    }
+    &::after {
+      display: none;
+    }
+  }
+
+  .input {
+    color: #282828;
+    border: none;
+    box-shadow: 0 0 12px 0px #282828;
+  }
+
+  .modal .modal-main {
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
 }

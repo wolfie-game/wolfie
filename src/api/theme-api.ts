@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import {ThemeService} from "../server-db/services/ThemeService"
+import {themeService as ThemeService} from "../server-db/services/ThemeService"
 
 export class ThemeAPI {
   public static update = async (req: Request, res: Response) => {

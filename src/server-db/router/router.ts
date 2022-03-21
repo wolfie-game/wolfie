@@ -1,11 +1,11 @@
 import express from 'express'
-import serverApp from '@/server/serverRenderApp'
+import serverRenderMiddleware from '../../server-render-middleware'
 import {themesRoutes} from './themesRoutes'
 
 const router = express.Router()
 
 themesRoutes(router)
 
-router.get('/*', serverApp)
+router.get('/*', serverRenderMiddleware)
 
 export default router

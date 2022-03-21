@@ -49,7 +49,7 @@ function Authorization() {
               {links.map((item: DataMap, index: number) => (
                 <li key={index} className="authorization__nav">
                   <LinkItem
-                    styleName="authorization__link navigation__link"
+                    styleName={theme == 'light' ? 'authorization__link navigation__link navigation__link_light' : 'authorization__link navigation__link'}
                     goTo={item.link}>
                     {item.text}
                   </LinkItem>
