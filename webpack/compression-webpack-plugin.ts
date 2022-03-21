@@ -25,6 +25,9 @@ const config: Configuration = {
         modules: ['src', 'node_modules'],
         extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
         plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
+        fallback: {
+            "fs": false
+        },
     },
 
     devtool: 'source-map',

@@ -18,7 +18,7 @@ export interface TopicListItem {
   commentsCount: number
 }
 
-const topicsInstance = new TopicController()
+//const topicsInstance = new TopicController()
 const data = [
   {
     id: 1,
@@ -39,8 +39,8 @@ function Forum() {
     const fetchData = async () => {
       try {
         console.log('Forum page')
-        const data = await topicsInstance.getAllTopics()
-        const topics = data.map((item: Record<string, unknown>) => {
+        //const data = await topicsInstance.getAllTopics()
+        /*const topics = data.map((item: Record<string, unknown>) => {
           return {
             id: item.id,
             title: item.title,
@@ -52,7 +52,7 @@ function Forum() {
             },
           }
         })
-        setTopicList(topics)
+        setTopicList(topics)*/
       } catch (e) {
         console.log(e)
       }

@@ -29,6 +29,9 @@
   "engines": {
     "node": ">=14.17"
   },
+  "browser": {
+    "crypto": false
+  },
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/plugin-proposal-decorators": "^7.17.8",
@@ -46,12 +49,14 @@
     "@types/loadable__component": "^5.13.4",
     "@types/loadable__server": "^5.12.6",
     "@types/loadable__webpack-plugin": "^5.7.3",
+    "@types/node": "^17.0.22",
     "@types/pg": "^8.6.5",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@types/react-helmet": "^6.1.5",
     "@types/react-redux": "^7.1.22",
     "@types/react-router-dom": "^5.3.2",
+    "@types/validator": "^13.7.1",
     "@types/webpack-hot-middleware": "^2.25.6",
     "@types/webpack-node-externals": "^2.5.3",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
@@ -111,6 +116,8 @@
     "css-hot-loader": "^1.4.4",
     "dotenv": "^16.0.0",
     "dotenv-webpack": "^7.1.0",
+    "mysql2": "^2.3.3",
+    "pg-hstore": "^2.3.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
