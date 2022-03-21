@@ -23,5 +23,10 @@
     },
   },
   "include": ["src", "types/**/*.d.ts", "./node_modules/@types", "sw.js", "public/*"],
-  "exclude": ["**/*.js"]
+  "exclude": ["**/*.js"],
+  "paths": {
+    "crypto": [
+      "node_modules/crypto-js"
+    ]
+  }
 }
