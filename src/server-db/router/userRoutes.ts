@@ -1,13 +1,13 @@
 import {Router} from 'express'
 import {UserAPI} from '../../api/user-api-db'
 
-export const themesRoutes = (router: Router) => {
-  const themesRouter: Router = Router()
+export const userRoutes = (router: Router) => {
+  const userRouter: Router = Router()
 
-  themesRouter
+  userRouter
   .get('/', UserAPI.get)
   .post('/create', UserAPI.create)
   .post('/update', UserAPI.update)
 
-  router.use('/user', themesRouter)
+  router.use('/user', userRouter)
 }
