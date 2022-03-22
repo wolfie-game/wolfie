@@ -6,7 +6,7 @@ export const themesRoutes = (router: Router) => {
 
   themesRouter
   .get('/', UserAPI.get)
-  .post('/create', UserAPI.update)
+  .post('/create', UserAPI.create)
   .post('/update', UserAPI.update)
 
   router.use('/user', themesRouter)
