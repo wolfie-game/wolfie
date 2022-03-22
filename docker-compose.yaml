@@ -15,7 +15,7 @@ services:
     networks:
       - awesome
   postgres:
-    container_name: custom_name 
+    container_name: wolfie 
     image: postgres:12
     ports:
       - "5432:5432"
