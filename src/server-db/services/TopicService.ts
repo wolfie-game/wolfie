@@ -5,37 +5,27 @@ import {
   TopicUpdateAttributes,
 } from '../models/topic'
 
+export type NewTopic = {
+  authorId: number;
+  content: string;
+  title: string;
+}
+
 class TopicService implements BaseRESTService {
-  public find = (id: number) => {
-    return Topic.findOne({
-      where: {
-        id: id,
-      },
+  getAllTopics() {
+    return fetch('/topics').then((response) => response.data)
+  }
+
+  getTopic(id: number) {
+    return fetch(`/topics?id=${id}`).then((response) => response.data)
+  }
+
+  postTopic(data: NewTopic) {
+    return fetch('/topics/create', {
+      method: 'POST',
+      body: JSON.stringify({data}),
     })
-  }
-
-  public request = async (id: number) => {
-    return ''
-  }
-
-  public create = (data: TopicCreateAttributes) => {
-    return Topic.create(data)
-  }
-
-  public update = async (data: TopicUpdateAttributes) => {
-    const record = await this.find(data.id)
-
-    if (record === null) {
-      throw new Error('Topic not found')
-    }
-    record.set(data)
-
-    return record.save()
-  }
-
-  public findAll = () => {
-    return ''
   }
 }
 
-export default new TopicService()
+export const topicService = new TopicService()

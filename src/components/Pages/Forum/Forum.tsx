@@ -5,7 +5,7 @@ import ForumItem from '../../ForumItem/ForumItem'
 import {DataMap} from './types'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import {PageMeta} from '../../PageMeta/PageMeta'
-import topicService from '../../../server-db/services/TopicService'
+import {topicService} from '../../../server-db/services/TopicService'
 
 export interface TopicListItem {
   id: number
