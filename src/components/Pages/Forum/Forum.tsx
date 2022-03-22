@@ -5,7 +5,7 @@ import ForumItem from '../../ForumItem/ForumItem'
 import {DataMap} from './types'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 import {PageMeta} from '../../PageMeta/PageMeta'
-import TopicController from '../../../controllers/topics'
+import {topicService} from '../../../server-db/services/TopicService'
 
 export interface TopicListItem {
   id: number
@@ -39,7 +39,7 @@ function Forum() {
     const fetchData = async () => {
       try {
         console.log('Forum page')
-        //const data = await topicsInstance.getAllTopics()
+        const data = await topicService.getAllTopics()
         /*const topics = data.map((item: Record<string, unknown>) => {
           return {
             id: item.id,
@@ -60,7 +60,6 @@ function Forum() {
     fetchData()
   }, [])
 
-  console.log(topicList)
   return (
     <ErrorBoundary>
       <PageMeta title="Форум" description="Wolfie форум" />
