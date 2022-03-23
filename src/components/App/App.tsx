@@ -14,24 +14,39 @@ import './App.scss'
 import '../../utils/service-worker/registerServiceWorker'
 import PrivateRoute from '../../HOC/authentification'
 import {hot} from 'react-hot-loader/root'
-
+import {connect} from 'react-redux'
+import {fetchTheme} from '../../utils/redux/reducers/user'
+import {postTheme} from '../../utils/redux/reducers/user'
 import {ThemeContext} from '../../utils/context/ThemeContext'
 
-const App: FC = () => {
+const App: FC = (props) => {
   const didMount = useRef(false)
   const [theme, setTheme] = useState('dark')
 
   const switchTheme = (e) => {
     let switcher = e.target.checked ? 'light' : 'dark'
+    let ownerId = props.user?.value?.id
+    if(ownerId) {
+      props.dispatch(postTheme(switcher, ownerId))
+    } else {
+      localStorage.setItem('theme', switcher) 
+    }
     setTheme(switcher)
-    localStorage.setItem('theme', switcher)
   }
 
   useEffect(() => {
+    // console.log('App checkin state', props.user?.value?.id)
+    let selectedTheme
     if (!didMount.current) {
-      let selectedTheme = localStorage.getItem('theme')
+      if(props.user?.value?.id) {
+        props.dispatch(fetchTheme(props.user?.value?.id))
+        selectedTheme = props.theme?.theme
+      } else {
+        let localStorageTheme = localStorage.getItem('theme')
+        selectedTheme = localStorageTheme ? localStorageTheme : 'dark'
+      }
       didMount.current = true
-      setTheme(selectedTheme ? selectedTheme : 'dark')
+      setTheme(selectedTheme)
     }
   })
 
@@ -105,4 +120,8 @@ const App: FC = () => {
 
 const Component = hot(App)
 
-export default Component as App
+const ConnectedApp = connect((state) => {
+  return state
+})(Component)
+
+export default ConnectedApp as App

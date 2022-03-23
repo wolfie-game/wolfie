@@ -72,7 +72,6 @@ function LeaderBoard(props) {
 }
 
 const ConnectedApp = connect((state) => {
-  console.log('LeaderBoard checkin state', state)
   return state
 })(LeaderBoard)
 

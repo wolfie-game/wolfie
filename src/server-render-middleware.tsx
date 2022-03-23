@@ -15,9 +15,11 @@ import Helmet, {HelmetData} from 'react-helmet'
 const initialState = {
     user: { 
         auth: false, 
-        value: null 
+        value: null,
+        theme: 'dark' 
     }, 
-    leaderboard: []
+    leaderboard: [],
+    theme: 'dark'
 }
 
 export default (req: Request, res: Response) => {
@@ -48,12 +50,7 @@ export default (req: Request, res: Response) => {
     //     .catch(err => {
     //         throw err
     //     });
-renderApp()
-    // const dataRequirements: (Promise<void> | void)[] = []
-
-    // return Promise.all(dataRequirements)
-    //     .then(() => store.close())
-    //     .catch(err => { throw err; })
+    renderApp()
     
 }
 

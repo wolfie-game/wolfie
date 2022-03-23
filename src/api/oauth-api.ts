@@ -2,7 +2,7 @@ import FetchRequest from '../utils/FetchRequest'
 
 const host = 'https://ya-praktikum.tech/api/v2'
 const oauthAPIInstance = new FetchRequest(`${host}`)
-const redirectURI = 'http://localhost:3000'
+const redirectURI = 'http://localhost:5000'
 
 export default class OauthAPI {
   getAppId() {

@@ -3,7 +3,6 @@ import {User} from './models/user'
 import {Topic} from './models/topic'
 import {Comment} from './models/comment'
 import {UserTheme} from './models/UserTheme'
-// import {AppTheme} from './models/AppTheme'
 
 export const db = new Sequelize({
   host: 'localhost',
