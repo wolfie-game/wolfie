@@ -1,0 +1,41 @@
+.forum__link {
+	cursor: pointer;
+	display: block;
+}
+.forum__message {
+	display: inline-block;
+	padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #cccccc;
+    color: #cccccc;
+    margin-bottom: 15px;
+}
+.forum__message-text {
+	margin-bottom: 10px;
+}
+.forum__username {
+	color: #ff4e25;
+	text-align: right;
+}
+.forum__textarea {
+	border: 1px solid #25FF7C;
+    background: transparent;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    font-family: inherit;
+    color: #cccccc;
+    padding: 15px;
+    &:focus {
+    	outline: none;
+    }
+}
+.forum__new-topic {
+	background-color: transparent;
+	border: none;
+	color: #ff4e25;
+	&::before {
+		content: '+';
+		display: inline-block;
+		
+	}
+}

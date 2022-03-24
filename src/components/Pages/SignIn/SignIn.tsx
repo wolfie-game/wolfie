@@ -130,7 +130,9 @@ function SignIn() {
           </Button>
           <div className="oauth">
             <div className="oauth__label">Войти с помощью</div>
-            <Button styleName="form__button oauth__button button-icon_ya" type="button" handler={oauthHandler}></Button>
+            <Button styleName="form__button oauth__button button-icon_ya" type="button" handler={oauthHandler}>
+              <img className="" src="./img/yandex-logo.png"></img>
+            </Button>
           </div>
         </form>
       </div>

@@ -48,9 +48,10 @@ function LeaderBoard(props) {
           <div className="simpple-page__heading">
             <h1 className="simpple-page__title">Leaderboard</h1>
             <Button
-              styleName="button-back"
+              styleName="button-close"
               type="button"
-              handler={() => navigate(-1)}></Button>
+              handler={() => navigate(-1)}>
+            </Button>
           </div>
           <div className="leaderboard">
             {props.leaderboard.leaderboard && props.leaderboard.leaderboard.length > 0 ? (
