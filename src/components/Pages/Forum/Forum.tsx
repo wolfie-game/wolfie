@@ -207,7 +207,7 @@ function Forum(props) {
               <ForumItem key={item.id} text={item.topic} openTopicView={() => openTopicView(item.id)} />
           ))}
           <div>
-            <Button styleName="forum__new-topic" type="button" openNewTopic={openNewTopic}>Начать новое обсуждение</Button>
+            <Button styleName="forum__new-topic" type="button" handler={openNewTopic}>Начать новое обсуждение</Button>
           </div>
         </div>
       </div>

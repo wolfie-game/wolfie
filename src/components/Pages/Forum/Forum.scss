@@ -25,6 +25,15 @@
     font-family: inherit;
     color: #cccccc;
     padding: 15px;
+    &_new-topic {
+    	box-shadow: inset 0 0 10px 0px #ff4e25, 0 0 10px 0px #ff4e25;
+    	border: 1px solid #ff3f15;
+    	font-weight: bold;
+	    font-size: 18px;
+	    line-height: 22px;
+	    padding-left: 30px;
+	    padding-right: 30px;
+    }
     &:focus {
     	outline: none;
     }
@@ -33,9 +42,13 @@
 	background-color: transparent;
 	border: none;
 	color: #ff4e25;
+	font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    cursor: pointer;
 	&::before {
 		content: '+';
 		display: inline-block;
-		
+		margin-right: 5px;
 	}
 }
