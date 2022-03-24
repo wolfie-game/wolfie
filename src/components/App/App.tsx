@@ -16,7 +16,6 @@ import PrivateRoute from '../../HOC/authentification'
 import {hot} from 'react-hot-loader/root'
 import {connect} from 'react-redux'
 import {fetchTheme} from '../../utils/redux/reducers/user'
-import {postTheme} from '../../utils/redux/reducers/user'
 import {ThemeContext} from '../../utils/context/ThemeContext'
 
 const App: FC = (props) => {
@@ -27,7 +26,8 @@ const App: FC = (props) => {
     let switcher = e.target.checked ? 'light' : 'dark'
     let ownerId = props.user?.value?.id
     if(ownerId) {
-      props.dispatch(postTheme(switcher, ownerId))
+      console.log('ownerId', ownerId)
+      props.dispatch(fetchTheme(switcher, ownerId))
     } else {
       localStorage.setItem('theme', switcher) 
     }
