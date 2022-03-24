@@ -11,6 +11,7 @@ import cssLoader from './loaders/css'
 import jsLoader from './loaders/js'
 
 const CopyPlugin = require('copy-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const config: Configuration = {
     entry: ([
@@ -34,6 +35,9 @@ const config: Configuration = {
         plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     },
     plugins: [
+        new Dotenv({
+            expand: true,
+        }),
         new CopyPlugin({
             patterns: [
                 {

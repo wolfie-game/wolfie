@@ -4,7 +4,7 @@ import {ForumItemProps} from './types'
 type Props = ForumItemProps
 
 const ForumItem = (props: Props) => {
-  return <p className="simpple-page__text">{props.text}</p>
+  return <a onClick={props.openTopicView} className="simpple-page__text forum__link">{props.text}</a>
 }
 
 export default ForumItem

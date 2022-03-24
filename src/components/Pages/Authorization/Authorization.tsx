@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext} from 'react'
 import LinkItem from '../../LinkItem/LinkItem'
 import {DataMap} from './types'
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
@@ -7,6 +7,7 @@ import UserAuthController from '../../../controllers/user-auth'
 import {useDispatch} from 'react-redux'
 import {checkAuth} from '../../../utils/redux/reducers/user'
 import {PageMeta} from '../../PageMeta/PageMeta'
+import {ThemeContext} from '../../../utils/context/ThemeContext'
 
 const signInInstance = new UserAuthController()
 
@@ -22,6 +23,7 @@ const links = [
 ]
 
 function Authorization() {
+  const theme = useContext(ThemeContext)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {
@@ -47,7 +49,7 @@ function Authorization() {
               {links.map((item: DataMap, index: number) => (
                 <li key={index} className="authorization__nav">
                   <LinkItem
-                    styleName="authorization__link navigation__link"
+                    styleName={theme == 'light' ? 'authorization__link navigation__link navigation__link_light' : 'authorization__link navigation__link'}
                     goTo={item.link}>
                     {item.text}
                   </LinkItem>

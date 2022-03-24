@@ -34,5 +34,25 @@
       box-shadow: none;
       color: #564f4e;
     }
+
+    &_light {
+      color: #282828;
+      border: none;
+      box-shadow: 0 0 10px 0px #282828;
+      &:hover, &:focus, &:active, &:visited {
+        color: #282828;
+        text-decoration: none;
+        box-shadow: inset 0 0 2px 0px #282828;
+        border: none;
+      }
+
+      &_disabled, &_disabled:hover, &_disabled:focus, &_disabled:active, &_disabled:visited {
+        border-color: #282828;
+        box-shadow: none;
+        color: #282828;
+        border: none;
+        opacity: 0.5;
+      }
+    }
   }
 }

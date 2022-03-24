@@ -7,29 +7,51 @@ import {StaticRouter} from 'react-router-dom/server'
 import {configureStore} from './utils/redux/store'
 import {Provider as ReduxProvider} from 'react-redux'
 import {sagaMiddleware} from './utils/redux/store'
-import watchFetchLeaders from './utils/redux/reducers/leaderboard'
+import {watchFetchLeaders} from './utils/redux/reducers/leaderboard'
+import {rootSaga} from './utils/sagas'
 import {ChunkExtractor} from '@loadable/server'
 import Helmet, {HelmetData} from 'react-helmet'
 
+const initialState = {
+    user: { 
+        auth: false, 
+        value: null,
+        theme: 'dark' 
+    }, 
+    leaderboard: [],
+    theme: 'dark'
+}
+
 export default (req: Request, res: Response) => {
     const location = req.url
-    const store = configureStore()
+    const {store} = configureStore(initialState)
 
-    sagaMiddleware.run(watchFetchLeaders)
-    const statsFile = path.resolve('./build/loadable-stats.json')
-    const chunkExtractor = new ChunkExtractor({ statsFile })
-    const jsx = chunkExtractor.collectChunks(
-        <ReduxProvider store={store}>
-            <StaticRouter location={location}>
-                <App />
-            </StaticRouter>
-        </ReduxProvider>
-    )
-    const reactHtml = renderToString(jsx)
-    const reduxState = store.getState()
-    const helmetData = Helmet.renderStatic()
+    function renderApp() {
+        const statsFile = path.resolve('./build/loadable-stats.json');
+        const chunkExtractor = new ChunkExtractor({ statsFile });
+        const jsx = chunkExtractor.collectChunks(
+            <ReduxProvider store={store}>
+                <StaticRouter location={location}>
+                    <App />
+                </StaticRouter>
+            </ReduxProvider>
+        );
+        const reactHtml = renderToString(jsx)
+        const reduxState = store.getState()
+        const helmetData = Helmet.renderStatic()
 
-    res.send(getHtml(reactHtml, reduxState, chunkExtractor, helmetData))
+        res.send(getHtml(reactHtml, reduxState, chunkExtractor, helmetData))
+    }
+
+    // store
+    //     .runSaga(rootSaga)
+    //     .toPromise()
+    //     .then(() => renderApp())
+    //     .catch(err => {
+    //         throw err
+    //     });
+    renderApp()
+    
 }
 
 function getHtml(reactHtml: string, reduxState = {}, chunkExtractor: ChunkExtractor, helmetData: HelmetData) {

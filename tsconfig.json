@@ -3,7 +3,7 @@
     "lib": ["dom", "es2017"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es6",
     "jsx": "react",
     "importHelpers": true,
     "noUnusedLocals": false,
@@ -12,15 +12,21 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true, 
     "skipLibCheck": true,
     "declaration": false,
     "sourceMap": false,
     "baseUrl": ".",
-    "outDir": "./dist",
+    "outDir": "./build",
     "paths": {
       "*": ["./src/*"]
     },
   },
   "include": ["src", "types/**/*.d.ts", "./node_modules/@types", "sw.js", "public/*"],
-  "exclude": ["**/*.js"]
+  "exclude": ["**/*.js"],
+  "paths": {
+    "crypto": [
+      "node_modules/crypto-js"
+    ]
+  }
 }
