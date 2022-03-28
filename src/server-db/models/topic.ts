@@ -9,7 +9,7 @@ import {
   Unique,
   ForeignKey,
 } from 'sequelize-typescript'
-import {User} from './User'
+import {User} from './user'
 
 export type TopicAttributes = {
   id: number

@@ -9,8 +9,8 @@ import {
   Unique,
   ForeignKey,
 } from 'sequelize-typescript'
-import {User} from './User'
-import {Topic} from './Topic'
+import {User} from './user'
+import {Topic} from './topic'
 
 export type CommentAttributes = {
   id: number

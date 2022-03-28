@@ -1,5 +1,5 @@
 import {BaseRESTService} from './BaseRESTService'
-import {User} from '../models/User'
+import {User} from '../models/user'
 
 interface CreateRequest {
   login: string;
