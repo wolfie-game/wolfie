@@ -6,6 +6,8 @@
 
 https://wolfie-games.herokuapp.com
 
+Запуск: docker-compose up
+
 - [x] Автоматически подгружается ветка https://github.com/wolfie-game/wolfie/tree/main
 	При обновлении данной ветки, происходит пересборка проекта с подтягиванием зависимостей из packaje.json
 - [x] Препроцессор Sass
