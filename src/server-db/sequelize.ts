@@ -1,24 +1,28 @@
-import {Sequelize} from 'sequelize-typescript'
+import {Sequelize, SequelizeOptions} from 'sequelize-typescript'
 import {User} from './models/user'
 import {Topic} from './models/topic'
 import {Comment} from './models/comment'
 import {UserTheme} from './models/UserTheme'
 
-export const db = new Sequelize({
+const sequelizeOptions: SequelizeOptions = {
   host: 'localhost',
   port: 5432,
   username: 'postgres',
   password: 'newPassword',
   database: 'my-db-name',
   dialect: 'postgres',
-})
-db.addModels([User, Topic, Comment, UserTheme])
+}
+
+export const sequelize = new Sequelize(sequelizeOptions)
+
+// sequelize.addModels([User, Topic, Comment, UserTheme])
+sequelize.addModels([User, UserTheme])
 
 export async function dbConnect() {
   try {
-    await db.authenticate()
-    await db.sync({alter: true})
-    console.log('Connection successfully to DB.')
+    await sequelize.authenticate()
+    await sequelize.sync({ alter: true })
+    console.log('Connected successfully to DB.')
   } catch (error) {
     console.error('Unable to connect to the database:', error)
   }

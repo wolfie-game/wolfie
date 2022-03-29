@@ -8,7 +8,7 @@ import router from './server-db/router/router'
 
 const app = express()
 
-dbConnect()
+// dbConnect()
 
 app
   .use(express.static(path.resolve(__dirname, '../build')))
@@ -20,4 +20,14 @@ app.get('/sw.js', (req, res) => {
 
 app.use(router)
 
-export {app}
+// export {app}
+
+export function runApp() {
+  dbConnect().then(() => {
+    const PORT = process.env.PORT || 3000
+
+    app.listen(PORT, () => {
+      console.log('Application is started on localhost:', PORT)
+    })
+  })
+}
