@@ -18,19 +18,19 @@ type UserCreationAttributes = Omit<UserAttributes, 'id'>
 @Table({
   timestamps: false,
   paranoid: true,
-  tableName: 'rps_user',
+  tableName: 'user',
 })
 export class User extends Model<UserAttributes, UserCreationAttributes> {
   @Unique
   @PrimaryKey
   @Column(DataType.INTEGER)
-  id: number
+  id: number;
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  login: string
+  login: string;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  avatar: number
+  avatar: number;
 }

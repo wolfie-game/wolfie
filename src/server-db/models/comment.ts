@@ -30,7 +30,7 @@ type CommentCreationAttributes = Omit<
 @Table({
   timestamps: true,
   underscored: true,
-  tableName: 'rps_comment',
+  tableName: 'comment',
 })
 export class Comment extends Model<
   CommentAttributes,
@@ -48,25 +48,25 @@ export class Comment extends Model<
     type: DataType.INTEGER,
     field: 'author_id',
   })
-  authorId: number
+  authorId: number;
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  content: string
+  content: string;
 
   @ForeignKey(() => Comment)
   @AllowNull(true)
   @Column({
     type: DataType.INTEGER,
-    field: 'reply_to',
+    field: 'reply_to'
   })
-  replyTo: number
+  replyTo: number;
 
   @ForeignKey(() => Topic)
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
-    field: 'topic_id',
+    field: 'topic_id'
   })
-  topicId: number
+  topicId: number;
 }

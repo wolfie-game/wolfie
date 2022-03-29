@@ -35,18 +35,18 @@ export type TopicUpdateAttributes = {
 @Table({
   timestamps: true,
   underscored: true,
-  tableName: 'rps_topic',
+  tableName: 'topic',
 })
 export class Topic extends Model<TopicAttributes, TopicCreateAttributes> {
   @AutoIncrement
   @Unique
   @PrimaryKey
   @Column(DataType.INTEGER)
-  id: number
+  id: number;
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  title: string
+  title: string;
 
   @ForeignKey(() => User)
   @AllowNull(false)
@@ -54,9 +54,9 @@ export class Topic extends Model<TopicAttributes, TopicCreateAttributes> {
     type: DataType.INTEGER,
     field: 'author_id',
   })
-  authorId: number
+  authorId: number;
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  content: string
+  content: string;
 }
