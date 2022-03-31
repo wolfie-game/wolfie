@@ -5,7 +5,7 @@ import {Comment} from './models/comment'
 import {UserTheme} from './models/UserTheme'
 
 const sequelizeOptions: SequelizeOptions = {
-  host: 'localhost',
+  host: 'postgres',
   port: 5432,
   username: 'postgres',
   password: 'newPassword',
@@ -15,8 +15,7 @@ const sequelizeOptions: SequelizeOptions = {
 
 const sequelize = new Sequelize(sequelizeOptions)
 
-// sequelize.addModels([User, Topic, Comment, UserTheme])
-sequelize.addModels([User, UserTheme])
+sequelize.addModels([User, Topic, Comment, UserTheme])
 
 export async function dbConnect() {
   try {

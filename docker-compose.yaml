@@ -1,6 +1,7 @@
 version: "3"
 services:
   wolfie-app:
+    container_name: wolfie-app
     build:
       context: .
     depends_on:
@@ -10,13 +11,15 @@ services:
     restart: always
     networks:
       - awesome
+
   postgres:
-    container_name: wolfie 
+    container_name: postgres 
     image: postgres:12
     ports:
       - "5432:5432"
     volumes: 
       - ./postgresdata:/var/lib/postgresql/data
+      - ./src/migrations/dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -24,6 +27,7 @@ services:
       POSTGRES_DB: my-db-name
     networks:
       - awesome
+        
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:4.18
