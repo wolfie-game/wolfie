@@ -5,8 +5,10 @@ const actions = {
   CHECK_AUTH: 'CHECK_AUTH',
   CREATE_USER: 'CREATE_USER',
   LOGOUT: 'LOGOUT',
-  GET_LEADERS: 'GET_LEADERS',
+  GET_THEME: 'GET_LEADERS',
   SET_THEME: 'SET_THEME',
+  GET_THEME_SUCCEEDED: 'GET_THEME_SUCCEEDED',
+  GET_THEME_FAILED: 'GET_THEME_FAILED',
 }
 
 const initialState = {
@@ -81,11 +83,12 @@ export function fetchTheme() {
 }
 
 // Sagas
-export function* watchFetchTheme() {
+export function* watchFetchTheme() {console.log('2')
   yield takeEvery('FETCHED_THEME', fetchThemeAsync)
 }
 
 function* fetchThemeAsync(ownerId) {
+  console.log('3')
   try {
     yield put(getTheme())
 
