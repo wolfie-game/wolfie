@@ -15,8 +15,11 @@ import '../../utils/service-worker/registerServiceWorker'
 import PrivateRoute from '../../HOC/authentification'
 import {hot} from 'react-hot-loader/root'
 import {connect} from 'react-redux'
-import {fetchTheme} from '../../utils/redux/reducers/user'
+import {checkAuth, fetchTheme, fetchSetTheme} from '../../utils/redux/reducers/user'
 import {ThemeContext} from '../../utils/context/ThemeContext'
+import UserAuthController from '../../controllers/user-auth'
+
+const profileDataRequester = new UserAuthController()
 
 const App: FC = (props) => {
   const didMount = useRef(false)
@@ -26,8 +29,9 @@ const App: FC = (props) => {
     let switcher = e.target.checked ? 'light' : 'dark'
     let ownerId = props.user?.value?.id
     if(ownerId) {
-      console.log('ownerId', ownerId)
-      props.dispatch(fetchTheme(switcher, ownerId))
+      console.log('switcher', switcher)
+      console.log('ownerId 3452435423', ownerId)
+      props.dispatch(fetchSetTheme(ownerId, switcher))
     } else {
       localStorage.setItem('theme', switcher) 
     }
@@ -35,20 +39,24 @@ const App: FC = (props) => {
   }
 
   useEffect(() => {
-    // console.log('App checkin state', props.user?.value?.id)
     let selectedTheme
-    if (!didMount.current) {
-      if(props.user?.value?.id) {
-        props.dispatch(fetchTheme(props.user?.value?.id))
-        selectedTheme = props.theme?.theme
-      } else {
-        let localStorageTheme = localStorage.getItem('theme')
-        selectedTheme = localStorageTheme ? localStorageTheme : 'dark'
+    profileDataRequester.getUserInfo().then((info) => {
+      if (!didMount.current) {
+        if (!info.id) {
+          let localStorageTheme = localStorage.getItem('theme')
+          selectedTheme = localStorageTheme ? localStorageTheme : 'dark'
+          navigate('/')
+        } else {
+          props.dispatch(checkAuth(info))
+          console.log('useEffect info', info)
+          props.dispatch(fetchTheme(info.id))
+          selectedTheme = props.theme?.theme
+        }
+        didMount.current = true
+        setTheme(selectedTheme)
       }
-      didMount.current = true
-      setTheme(selectedTheme)
-    }
-  })
+    })
+  }, [])
 
   return (
     <ThemeContext.Provider value={theme}>

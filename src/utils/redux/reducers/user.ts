@@ -1,14 +1,17 @@
 import {Dispatch} from 'redux'
 import {call, put, takeEvery} from 'redux-saga/effects'
+import {ThemeAPI} from '../../../api/theme-api'
 
 const actions = {
   CHECK_AUTH: 'CHECK_AUTH',
   CREATE_USER: 'CREATE_USER',
   LOGOUT: 'LOGOUT',
-  GET_THEME: 'GET_LEADERS',
-  SET_THEME: 'SET_THEME',
+  GET_THEME: 'GET_THEME',
   GET_THEME_SUCCEEDED: 'GET_THEME_SUCCEEDED',
   GET_THEME_FAILED: 'GET_THEME_FAILED',
+  SET_THEME: 'SET_THEME',
+  SET_THEME_SUCCEEDED: 'SET_THEME_SUCCEEDED',
+  SET_THEME_FAILED: 'GET_THEME_FAILED',
 }
 
 const initialState = {
@@ -38,6 +41,22 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         theme: action.payload,
+        loading: true,
+        error: false,
+      }
+    case actions.SET_THEME_SUCCEEDED:
+      return {
+        ...state,
+        theme: action.payload,
+        loading: false,
+        error: false,
+      }
+    case actions.SET_THEME_FAILED:
+      return {
+        ...state,
+        theme: 'dark',
+        loading: false,
+        error: true,
       }
     case actions.GET_THEME:
       return {
@@ -56,7 +75,7 @@ function userReducer(state = initialState, action) {
     case actions.GET_THEME_FAILED:
       return {
         ...state,
-        leaderboard: 'dark',
+        theme: 'dark',
         loading: false,
         error: true,
       }
@@ -78,26 +97,28 @@ const getTheme = () => {
   return {type: actions.GET_THEME}
 }
 
-export function fetchTheme() {
-  return {type: 'FETCHED_THEME'}
+export function fetchTheme(ownerId) {
+  return {type: 'FETCHED_THEME', ownerId: ownerId}
 }
 
 // Sagas
-export function* watchFetchTheme() {console.log('2')
+export function* watchFetchTheme() {
   yield takeEvery('FETCHED_THEME', fetchThemeAsync)
 }
 
-function* fetchThemeAsync(ownerId) {
-  console.log('3')
+function* fetchThemeAsync(action) {
+  const {type, ownerId} = action
+
   try {
     yield put(getTheme())
 
     const data = yield call(() => {
-      return ThemeService.getTheme({ownerId}).then((res) => res)
+      return ThemeAPI.get({ownerId}).then((res) => res)
     })
 
     yield put(getThemeSuccess(data))
   } catch (error) {
+    console.log('fetchThemeAsync error', error)
     yield put(getThemeError())
   }
 }
@@ -108,6 +129,44 @@ const getThemeSuccess = (themeData) => {
 
 const getThemeError = () => {
   return {type: actions.GET_THEME_FAILED}
+}
+
+// Set theme
+const setTheme = () => {
+  return {type: actions.SET_THEME}
+}
+
+export function fetchSetTheme(theme, ownerId) {
+  return {type: 'FETCHED_SET_THEME', theme: theme, ownerId: ownerId}
+}
+
+export function* watchFetchSetTheme() {
+  yield takeEvery('FETCHED_SET_THEME', fetchSetThemeAsync)
+}
+
+function* fetchSetThemeAsync(action) {
+  const {type, ownerId, theme} = action
+  console.log('fetchSetThemeAsync ownerId', ownerId)
+  console.log('fetchSetThemeAsync theme', theme)
+  try {
+    yield put(setTheme())
+
+    const data = yield call(() => {
+      return ThemeAPI.update({ownerId: ownerId, theme: theme}).then((res) => res)
+    })
+
+    yield put(setThemeSuccess(data))
+  } catch (error) {
+    yield put(setThemeError())
+  }
+}
+
+const setThemeSuccess = (themeData) => {
+  return {type: 'SET_THEME_SUCCEEDED', payload: themeData}
+}
+
+const setThemeError = () => {
+  return {type: actions.SET_THEME_FAILED}
 }
 
 export default userReducer

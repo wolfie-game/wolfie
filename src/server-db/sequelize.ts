@@ -13,7 +13,7 @@ const sequelizeOptions: SequelizeOptions = {
   dialect: 'postgres',
 }
 
-const sequelize = new Sequelize(sequelizeOptions)
+export const sequelize = new Sequelize(sequelizeOptions)
 
 sequelize.addModels([User, Topic, Comment, UserTheme])
 

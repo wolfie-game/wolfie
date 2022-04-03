@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import {UserService} from "../server-db/services/UserService"
+import {userService} from "../server-db/services/UserService"
 
 export class UserAPI {
   public static get = async (req: Request, res: Response) => {
