@@ -14,14 +14,8 @@ interface CreateRequestInt {
   theme: string;
 }
 
-// const UserThemeDB = sequelize.getRepository(UserTheme);
-
 class ThemeService implements BaseRESTService {
   public find = (ownerId: number) => {
-    // console.log('ThemeService find sequelize', sequelize)
-    if (!UserTheme.findOne)
-      return null
-
     return UserTheme.findOne({
       where: {
         ownerId: ownerId
@@ -40,13 +34,11 @@ class ThemeService implements BaseRESTService {
   }
 
   public request = async (ownerId: number) => {
-    console.log('ThemeService request', ownerId)
+    // console.log('ThemeService request', ownerId)
     const foundRecord = await this.find(ownerId)
     if (foundRecord === null) {
-      console.log('foundRecord null', UserTheme.build)
       return UserTheme.build({ownerId: ownerId, theme: DEFAULT_THEME_NAME})
     } else {
-      console.log('foundRecord 2', foundRecord)
       return foundRecord
     }
   }
