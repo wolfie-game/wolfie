@@ -115,7 +115,8 @@ function* fetchThemeAsync(action) {
     const data = yield call(() => {
       return ThemeAPI.getTheme(ownerId).then((res) => res)
     })
-
+    console.log('fetchThemeAsync data', data)
+    data = !data.error ? {payload: {theme: 'dark'}} : data
     yield put(getThemeSuccess(data))
   } catch (error) {
     console.log('fetchThemeAsync error', error)
