@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux'
 import {call, put, takeEvery} from 'redux-saga/effects'
-import {ThemeAPI} from '../../../api/theme-api'
+import ThemeAPI from '../../../api/theme-api'
 
 const actions = {
   CHECK_AUTH: 'CHECK_AUTH',
@@ -113,7 +113,7 @@ function* fetchThemeAsync(action) {
     yield put(getTheme())
 
     const data = yield call(() => {
-      return ThemeAPI.get({ownerId}).then((res) => res)
+      return ThemeAPI.getTheme(ownerId).then((res) => res)
     })
 
     yield put(getThemeSuccess(data))
@@ -152,7 +152,7 @@ function* fetchSetThemeAsync(action) {
     yield put(setTheme())
 
     const data = yield call(() => {
-      return ThemeAPI.update({ownerId: ownerId, theme: theme}).then((res) => res)
+      return ThemeAPI.postTheme({ownerId: ownerId, theme: theme}).then((res) => res)
     })
 
     yield put(setThemeSuccess(data))

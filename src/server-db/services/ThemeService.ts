@@ -1,6 +1,5 @@
-import {BaseRESTService} from './BaseRESTServise'
+import BaseRESTService from './BaseRESTServise'
 import {UserTheme} from '../models/UserTheme'
-import {sequelize} from '../sequelize'
 
 const DEFAULT_THEME_NAME = 'dark'
 

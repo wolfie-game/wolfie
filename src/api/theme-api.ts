@@ -1,26 +1,41 @@
-import {Request, Response} from 'express'
-import {themeService as ThemeService} from "../server-db/services/ThemeService"
+import FetchRequest from '../utils/FetchRequest'
 
-export class ThemeAPI {
-  public static update = async (req: Request, res: Response) => {
-    try {
-      await ThemeService.update(req)
-      res.json({
-        message: 'Theme successfully saved'
-      })
-    } catch(e) {
-      res.status(400)
-      res.json({error: e.message})
-    }
-  }
-
-  public static get = async (req: Request, res: Response) => {
-    try {
-      const {theme} = await ThemeService.request(Number(req.ownerId))
-      res.json({theme: theme})
-    } catch(e) {
-      res.status(400)
-      res.json({error: e.message})
-    }
-  }
+enum THEMES {
+  light = 'light',
+  dark = 'dark',
 }
+
+export type ThemeParams = {
+  theme: THEMES,
+};
+
+export type PostTheme = GetTheme & ThemeParams
+const host = '/theme'
+const themeAPIInstance = new FetchRequest(`${host}`)
+
+class ThemeAPI {
+  getTheme(ownerId: number): Promise<ThemeParams> {
+    return themeAPIInstance
+      .get(`?ownerId=${ownerId}`)
+      .then((response) => {
+        return response.json()
+      })
+      .catch(function (error) {
+        alert(error)
+      })
+  }
+
+  postTheme(data: PostTheme): Promise<void> {
+    return themeAPIInstance
+      .post('', {data: data})
+      .then((response) => {
+        return response.json()
+      })
+      .catch((reject) => {
+        throw new Error(reject)
+      })
+  }
+
+}
+
+export default new ThemeAPI();
