@@ -16,7 +16,6 @@ interface CreateRequestInt {
 
 class ThemeService implements BaseRESTService {
   public find = (ownerId: number) => {
-    console.log(UserTheme)
     return UserTheme.findOne({
       where: {
         ownerId: ownerId
@@ -35,7 +34,6 @@ class ThemeService implements BaseRESTService {
   }
 
   public request = async (ownerId: number) => {
-    // console.log('ThemeService request', ownerId)
     const foundRecord = await this.find(ownerId)
     if (foundRecord === null) {
       return UserTheme.build({ownerId: ownerId, theme: DEFAULT_THEME_NAME})
@@ -45,7 +43,6 @@ class ThemeService implements BaseRESTService {
   }
 
   public create = async (data: CreateRequestInt) => {
-    console.log(UserTheme)
     return UserTheme.create(data)
   }
 }
