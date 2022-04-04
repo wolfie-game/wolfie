@@ -93,6 +93,7 @@ export function logout() {
   return {type: actions.LOGOUT}
 }
 
+// Get theme
 const getTheme = () => {
   return {type: actions.GET_THEME}
 }
@@ -101,7 +102,6 @@ export function fetchTheme(ownerId) {
   return {type: 'FETCHED_THEME', ownerId: ownerId}
 }
 
-// Sagas
 export function* watchFetchTheme() {
   yield takeEvery('FETCHED_THEME', fetchThemeAsync)
 }
@@ -115,11 +115,10 @@ function* fetchThemeAsync(action) {
     const data = yield call(() => {
       return ThemeAPI.getTheme(ownerId).then((res) => res)
     })
-    console.log('fetchThemeAsync data', data)
-    data = !data.error ? {payload: {theme: 'dark'}} : data
-    yield put(getThemeSuccess(data))
+
+    const themeData = !data.error ? {payload: {theme: 'dark'}} : data
+    yield put(getThemeSuccess(themeData))
   } catch (error) {
-    console.log('fetchThemeAsync error', error)
     yield put(getThemeError())
   }
 }
@@ -137,8 +136,8 @@ const setTheme = () => {
   return {type: actions.SET_THEME}
 }
 
-export function fetchSetTheme(theme, ownerId) {
-  return {type: 'FETCHED_SET_THEME', theme: theme, ownerId: ownerId}
+export function fetchSetTheme(ownerId, theme) {
+  return {type: 'FETCHED_SET_THEME', ownerId: ownerId, theme: theme}
 }
 
 export function* watchFetchSetTheme() {

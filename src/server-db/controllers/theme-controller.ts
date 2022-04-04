@@ -1,10 +1,12 @@
 import {Request, Response} from 'express'
-import {themeService as ThemeService} from "../services/ThemeService"
+import {themeService as ThemeService} from '../services/ThemeService'
 
 export class ThemeAPI {
   public static update = async (req: Request, res: Response) => {
+    const {body} = req
+
     try {
-      await ThemeService.update(req)
+      await ThemeService.update(body)
       res.json({
         message: 'Theme successfully saved'
       })
@@ -15,8 +17,11 @@ export class ThemeAPI {
   }
 
   public static get = async (req: Request, res: Response) => {
+    const {query} = req
+
     try {
-      const {theme} = await ThemeService.request(Number(req.ownerId))
+      const {ownerId} = query;
+      const {theme} = await ThemeService.request(Number(ownerId))
       res.json({theme: theme})
     } catch(e) {
       res.status(400)
