@@ -5,9 +5,10 @@ import 'babel-polyfill'
 // import serverRenderMiddleware from './server-render-middleware'
 import {dbConnect} from './server-db/sequelize'
 import router from './server-db/router/router'
+import bodyParser from 'body-parser'
 
 const app = express()
-
+const jsonParser = bodyParser.json();
 // dbConnect()
 
 app
@@ -17,7 +18,7 @@ app
 app.get('/sw.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../public', 'sw.js'))
 })
-
+app.use(jsonParser)
 app.use(router)
 
 // export {app}
