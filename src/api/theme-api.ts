@@ -7,7 +7,7 @@ enum THEMES {
 
 export type ThemeParams = {
   theme: THEMES,
-};
+}
 
 export type PostTheme = GetTheme & ThemeParams
 const host = '/theme'
@@ -38,4 +38,4 @@ class ThemeAPI {
 
 }
 
-export default new ThemeAPI();
+export default new ThemeAPI()
