@@ -1,6 +1,6 @@
 import BaseRESTService from './BaseRESTServise'
 import {Comment} from '../models/comment'
-import {sequelize} from '../sequilize'
+import {sequelize} from '../sequelize'
 
 interface CreateRequest {
   authorId: number;

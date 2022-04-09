@@ -15,9 +15,10 @@ const actions = {
 }
 
 const initialState = {
-  auth: false,
-  value: null,
-  theme: 'dark'
+  // auth: false,
+  // value: null,
+  // theme: 'dark',
+  topics: null
 }
 
 function topicReducer(state = initialState, action) {
@@ -105,7 +106,8 @@ function* fetchTopicsAsync() {
       return TopicAPI.getTopics().then((res) => res)
     })
 
-    yield put(getTopicsSuccess(data))
+    const topicsData = !data.error ? {payload: {topics: data}} : data
+    yield put(getTopicsSuccess(topicsData))
   } catch (error) {
     yield put(getTopicsError())
   }
@@ -134,9 +136,9 @@ export function* watchFetchAddTopic() {
 
 function* fetchAddTopicAsync(action) {
   const {title, content, authorId} = action
-  console.log('fetchAddTopicAsync title', title)
-  console.log('fetchAddTopicAsync content', content)
-  console.log('fetchAddTopicAsync authorId', authorId)
+  // console.log('fetchAddTopicAsync title', title)
+  // console.log('fetchAddTopicAsync content', content)
+  // console.log('fetchAddTopicAsync authorId', authorId)
   try {
     yield put(addTopic())
 
@@ -167,13 +169,13 @@ export function fetchGetTopic(id) {
   return {type: 'FETCHED_GET_TOPIC', id: id}
 }
 
-export function* watchFetchAddTopic() {
+export function* watchFetchGetTopic() {
   yield takeEvery('FETCHED_GET_TOPIC', fetchGetTopicAsync)
 }
 
 function* fetchGetTopicAsync(action) {
   const {id} = action
-  console.log('fetchGetTopicAsync id', id)
+
   try {
     yield put(getTopic())
 

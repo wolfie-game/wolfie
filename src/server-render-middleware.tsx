@@ -19,7 +19,8 @@ const initialState = {
         theme: 'dark' 
     }, 
     leaderboard: [],
-    theme: 'dark'
+    theme: 'dark',
+    topics: null
 }
 
 export default (req: Request, res: Response) => {

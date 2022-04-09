@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import {TopicAPI} from '../../api/topics-api'
+import {TopicAPI} from '../controllers/topic-controller'
 
 export const topicRoutes = (router: Router) => {
   const topicRouter: Router = Router()

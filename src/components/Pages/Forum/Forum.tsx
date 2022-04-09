@@ -9,6 +9,7 @@ import {topicService} from '../../../server-db/services/TopicService'
 import ForumModal from '../../ForumModal/ForumModal'
 import NewModal from '../../NewModal/NewModal'
 import {connect} from 'react-redux'
+import {fetchTopics} from '../../../utils/redux/reducers/topic'
 
 import './Forum.scss'
 
@@ -155,28 +156,7 @@ function Forum(props) {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log('Forum page')
-        // const data = await topicService.getAllTopics()
-        /*const topics = data.map((item: Record<string, unknown>) => {
-          return {
-            id: item.id,
-            title: item.title,
-            content: item.content,
-            commentsCount: item.comments_count,
-            authorInfo: {
-              avatar: item.avatar ? item.avatar : '',
-              login: item.login,
-            },
-          }
-        })
-        setTopicList(topics)*/
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    fetchData()
+    props.dispatch(fetchTopics())
   }, [])
 
   return (
@@ -202,10 +182,11 @@ function Forum(props) {
               handler={() => navigate(-1)}>
             </Button>
           </div>
-          {state.data &&
-            state.data.map((item: DataMap) => (
-              <ForumItem key={item.id} text={item.topic} openTopicView={() => openTopicView(item.id)} />
-          ))}
+          {!props.topic.topics?.error && (
+            props.topic.topics?.map((item: DataMap) => (
+              <ForumItem key={item.id} text={item.title} openTopicView={() => openTopicView(item.id)} />
+            ))
+          )}
           <div>
             <Button styleName="forum__new-topic" type="button" handler={openNewTopic}>Начать новое обсуждение</Button>
           </div>
@@ -216,6 +197,7 @@ function Forum(props) {
 }
 
 const ConnectedApp = connect((state) => {
+  console.log('forum state', state)
   return state
 })(Forum)
 

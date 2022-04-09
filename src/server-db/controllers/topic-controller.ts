@@ -1,11 +1,12 @@
-import {topicService} from 'server-db/services/TopicService'
+import {Request, Response} from 'express'
+import {topicService as TopicService} from '../services/TopicService'
 
 export class TopicAPI {
-  public static create = async (req, res) => {
+  public static create = async (req: Request, res: Response) => {
     const {body} = req
 
     try {
-      const topic = await topicService.create(body)
+      const topic = await TopicService.create((body))
       res.json({message: 'Topic created', topic})
     } catch (e) {
       res.status(400)
@@ -13,11 +14,11 @@ export class TopicAPI {
     }
   }
 
-  public static update = async (req, res) => {
+  public static update = async (req: Request, res: Response) => {
     const {body} = req
 
     try {
-      await topicService.update(body)
+      await TopicService.update(body)
       res.json({message: 'Topic updated'})
     } catch (e) {
       res.status(400)
@@ -25,21 +26,21 @@ export class TopicAPI {
     }
   }
 
-  public static get = async (req, res) => {
+  public static get = async (req: Request, res: Response) => {
     const {query} = req
     const {id} = query
     let response
     try {
       if (id) {
-        const [results] = await topicService.request(Number(id))
+        const [results] = await TopicService.request(Number(id))
         response = results[0]
       } else {
-        const [results] = await topicService.findAll()
+        const [results] = await TopicService.findAll()
         response = results
       }
 
       res.json(response)
-    } catch (e) {
+    } catch(e) {
       res.status(404)
       res.json({error: e.message})
     }

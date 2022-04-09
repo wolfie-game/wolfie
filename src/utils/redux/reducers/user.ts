@@ -17,7 +17,7 @@ const actions = {
 const initialState = {
   auth: false,
   value: null,
-  theme: 'dark'
+  theme: 'dark',
 }
 
 function userReducer(state = initialState, action) {

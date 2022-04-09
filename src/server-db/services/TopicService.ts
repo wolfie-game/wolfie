@@ -4,7 +4,7 @@ import {
   TopicCreateAttributes,
   TopicUpdateAttributes,
 } from '../models/topic'
-import {sequelize} from '../sequilize'
+import {sequelize} from '../sequelize'
 
 export type NewTopic = {
   authorId: number;
@@ -13,7 +13,7 @@ export type NewTopic = {
 }
 
 class TopicService implements BaseRESTService {
-    public find = (id: number) => {
+  public find = (id: number) => {
     return Topic.findOne({
       where: {
         id: id
@@ -24,9 +24,9 @@ class TopicService implements BaseRESTService {
   public request = async (id: number) => {
     return sequelize.query(`
       SELECT t.ID, t.TITLE, t.CONTENT, u.LOGIN, u.AVATAR, COUNT(m.ID) AS COMMENTS_COUNT
-      FROM RPS_TOPIC t
-            LEFT JOIN RPS_USER u ON u.ID = t.AUTHOR_ID
-            LEFT JOIN RPS_COMMENT m ON m.TOPIC_ID = t.ID
+      FROM TOPIC t
+            LEFT JOIN USER u ON u.ID = t.AUTHOR_ID
+            LEFT JOIN COMMENT m ON m.TOPIC_ID = t.ID
       WHERE t.ID = ?
       GROUP BY t.ID, t.TITLE, t.CONTENT, u.LOGIN, u.AVATAR
       ORDER BY t.created_at
@@ -50,11 +50,11 @@ class TopicService implements BaseRESTService {
 
   public findAll = () => {
     return sequelize.query(`
-      SELECT t.ID, t.TITLE, t.CONTENT, u.LOGIN, u.AVATAR, COUNT(m.ID) AS COMMENTS_COUNT
-      FROM RPS_TOPIC t
-            LEFT JOIN RPS_USER u ON u.ID = t.AUTHOR_ID
-            LEFT JOIN RPS_COMMENT m ON m.TOPIC_ID = t.ID
-      GROUP BY t.ID, t.TITLE, t.CONTENT, u.LOGIN, u.AVATAR
+      SELECT t.ID, t.TITLE, t.CONTENT, u.LOGIN, COUNT(m.ID) AS COMMENTS_COUNT
+      FROM TOPIC t
+            LEFT JOIN USER u ON u.ID = t.AUTHOR_ID
+            LEFT JOIN COMMENT m ON m.TOPIC_ID = t.ID
+      GROUP BY t.ID, t.TITLE, t.CONTENT, u.LOGIN
       ORDER BY t.created_at
     `)
   }
