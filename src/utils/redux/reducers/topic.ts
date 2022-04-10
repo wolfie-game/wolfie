@@ -51,7 +51,7 @@ function topicReducer(state = initialState, action) {
     case actions.ADD_TOPIC_SUCCEEDED:
       return {
         ...state,
-        topic: action.payload,
+        topics: action.payload,
         loading: false,
         error: false,
       }
@@ -70,7 +70,7 @@ function topicReducer(state = initialState, action) {
     case actions.GET_TOPIC_SUCCEEDED:
       return {
         ...state,
-        topic: action.payload,
+        topics: action.payload,
         loading: false,
         error: false,
       }

@@ -6,6 +6,7 @@ export default function validationForm(
     login: /^[a-zA-Z]([a-zA-Z0-9_-]{1,29})$/,
     email: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,})?$/,
     password: /(?=.*[A-Z]+)(?=.*[!@#\$%]+)/,
+    topic: /^([^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9А-Яа-я()])/
   }
   switch (type) {
     case 'login':
