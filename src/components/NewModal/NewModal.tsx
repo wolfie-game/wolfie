@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 import validation from '../../utils/validation'
 import '../Modal/Modal.scss'
 
-const NewModal = ({handleClose, show}) => {
+const NewModal = ({handleClose, show, addTopic}) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none'
   const initialState = {
     topic: '',
@@ -30,7 +30,7 @@ const NewModal = ({handleClose, show}) => {
             styleName="form__input input"
             type="text"
             name="topic"
-            value={state.login}
+            value={state.topic}
             readOnly={true}
             placeholder="Тема"
           />
@@ -44,7 +44,7 @@ const NewModal = ({handleClose, show}) => {
           <Button
             styleName="form__button button-transparent"
             type="button"
-            handler={() => submitUpdate(state.message)}
+            handler={() => addTopic(state)}
           >
             Создать
           </Button>

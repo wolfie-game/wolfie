@@ -10,6 +10,7 @@ import ForumModal from '../../ForumModal/ForumModal'
 import NewModal from '../../NewModal/NewModal'
 import {connect} from 'react-redux'
 import {fetchTopics} from '../../../utils/redux/reducers/topic'
+import {fetchAddTopic} from '../../../utils/redux/reducers/topic'
 
 import './Forum.scss'
 
@@ -155,6 +156,11 @@ function Forum(props) {
     })
   }
 
+  const addTopic = (data) => {
+    console.log('addTopic', data)
+    props.dispatch(fetchAddTopic(data))
+  }
+
   useEffect(() => {
     props.dispatch(fetchTopics())
   }, [])
@@ -170,6 +176,7 @@ function Forum(props) {
       <NewModal
         handleClose={hideModal}
         show={state.modalNew}
+        addTopic={addTopic}
       />
       <PageMeta title="Форум" description="Wolfie форум" />
       <div className="content__canvas">

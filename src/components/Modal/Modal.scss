@@ -6,15 +6,17 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     z-index: 100;
-  .modal-input-section{
+  &-input-section{
     display: flex;
     max-width: 414px;
     flex-direction: column;
     margin: auto;
     padding: 50px 0;
   }
-  
-  .modal-main {
+  &-title {
+    color: #ff4e25;
+  }
+  &-main {
     position:fixed;
     background: #1d1d1f;
     width: 70%;
@@ -25,7 +27,6 @@
     box-sizing: border-box;
     border-radius: 27px;
     padding: 15px;
-   
   }
   
 }
@@ -35,4 +36,10 @@
 
 .display-none {
   display: none;
+}
+
+.wrapper_light {
+  .modal-title {
+    color: #282828;
+  }
 }
