@@ -136,9 +136,9 @@ export function* watchFetchAddTopic() {
 
 function* fetchAddTopicAsync(action) {
   const {title, content, authorId} = action
-  // console.log('fetchAddTopicAsync title', title)
-  // console.log('fetchAddTopicAsync content', content)
-  // console.log('fetchAddTopicAsync authorId', authorId)
+  console.log('fetchAddTopicAsync title', title)
+  console.log('fetchAddTopicAsync content', content)
+  console.log('fetchAddTopicAsync authorId', authorId)
   try {
     yield put(addTopic())
 

@@ -20,7 +20,7 @@ const NewModal = ({handleClose, show, addTopic}) => {
     <div className={showHideClassName}>
       <div className="modal-main">
         <div className="modal-input-section">
-          <h3>Добавить новую тему для обсуждения</h3>
+          <h3 className="modal-title">Добавить новую тему для обсуждения</h3>
           <Button
             styleName="button-close"
             type="button"
@@ -31,7 +31,7 @@ const NewModal = ({handleClose, show, addTopic}) => {
             type="text"
             name="topic"
             value={state.topic}
-            readOnly={true}
+            handler={handleChange}
             placeholder="Тема"
           />
           <textarea 

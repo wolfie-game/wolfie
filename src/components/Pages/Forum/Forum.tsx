@@ -157,8 +157,7 @@ function Forum(props) {
   }
 
   const addTopic = (data) => {
-    console.log('addTopic', data)
-    props.dispatch(fetchAddTopic(data))
+    props.dispatch(fetchAddTopic(data.topic, data.message, props.user.value.id))
   }
 
   useEffect(() => {
