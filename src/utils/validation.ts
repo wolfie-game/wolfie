@@ -17,6 +17,8 @@ export default function validationForm(
       return expression.password.test(inputContent)
     case 'password2':
       return expression.password.test(inputContent)
+    case 'topic':
+      return expression.topic.test(inputContent)
     default:
       return false
   }

@@ -29,8 +29,4 @@ export class User extends Model<UserAttributes, UserCreationAttributes> {
   @AllowNull(false)
   @Column(DataType.STRING)
   login: string;
-
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  avatar: number;
 }

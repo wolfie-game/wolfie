@@ -1,5 +1,6 @@
 import AuthAPI from '../api/auth-api'
 import UserAPI from '../api/user-api'
+import UserAPIDB from '../api/user-api-db'
 
 interface LoginFormModel {
   login: string
@@ -8,6 +9,7 @@ interface LoginFormModel {
 
 const authInstance = new AuthAPI()
 const userInstance = new UserAPI()
+const userInstanceDB = new UserAPIDB()
 
 export default class UserAuthController {
   public async signin(data: LoginFormModel) {
@@ -21,7 +23,12 @@ export default class UserAuthController {
   public async signup(data) {
     try {
       let response = await authInstance.signup(data)
-      return response
+      if (response) {
+        await userInstanceDB.create(response)
+        console.log('signup response', response)
+      }
+      
+      // return response
     } catch (error) {
       alert('This email already in use!')
     }

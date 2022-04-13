@@ -9,9 +9,7 @@ import {topicService} from '../../../server-db/services/TopicService'
 import ForumModal from '../../ForumModal/ForumModal'
 import NewModal from '../../NewModal/NewModal'
 import {connect} from 'react-redux'
-import {fetchTopics} from '../../../utils/redux/reducers/topic'
-import {fetchAddTopic} from '../../../utils/redux/reducers/topic'
-
+import {fetchTopics, fetchAddTopic, fetchGetTopic} from '../../../utils/redux/reducers/topic'
 import './Forum.scss'
 
 export interface TopicListItem {
@@ -108,6 +106,7 @@ function Forum(props) {
     modal: false,
     modalNew: false,
     topicView: {},
+    activeTopicId: null,
     activeTopicIndex: 1
   }
   const [state, setState] = useState(initialState)
@@ -115,20 +114,22 @@ function Forum(props) {
   const navigate = useNavigate()
 
   const openTopicView = (topicId) => {
-    const topicViewDataIndex = state.data.findIndex(element => element.id == topicId)
-    const topicViewData = state.data[topicViewDataIndex]
+    props.dispatch(fetchGetTopic(topicId))
+    // const topicViewDataIndex = state.data.findIndex(element => element.id == topicId)
+    // const topicViewData = state.data[topicViewDataIndex]
     setState({
       ...state, 
       modal: true, 
-      topicView: topicViewData, 
-      activeTopicIndex: topicViewDataIndex
+      // topicView: topicViewData, 
+      // activeTopicId: topicId,
+      // activeTopicIndex: topicViewDataIndex
     })
   }
 
   const openNewTopic = () => {
     setState({
       ...state, 
-      modalNew: true,
+      modalNew: true
     })
   }
 
@@ -138,22 +139,27 @@ function Forum(props) {
       modal: false, 
       modalNew: false,
       topicView: {}, 
+      activeTopicId: null,
       activeTopicIndex: 1
     })
   }
 
-  const submitUpdate = (message) => {
+  const addComment = (message) => {
     let newMessage = {
       user: props.user?.value?.id,
       userName: 'Вы',
       message: message
     }
+
     let data = [...state.data]
     data[state.activeTopicIndex]['messages'].push(newMessage)
     setState({
       ...state,
       data: data,
     })
+
+    // props.dispatch(fetchAddTopic(data.topic, data.message, props.user.value.id))
+    // hideModal()
   }
 
   const addTopic = (data) => {
@@ -169,9 +175,11 @@ function Forum(props) {
     <ErrorBoundary>
       <ForumModal
         handleClose={hideModal}
-        show={state.modal}
+        show={true}
+        // show={state.modal}
         data={state.topicView}
-        submitUpdate={submitUpdate}
+        addComment={addComment}
+        data={props.topicView}
       />
       <NewModal
         handleClose={hideModal}

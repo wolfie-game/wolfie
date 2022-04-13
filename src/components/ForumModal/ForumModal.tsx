@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 import validation from '../../utils/validation'
 import '../Modal/Modal.scss'
 
-const ForumModal = ({handleClose, submitUpdate, show, data}) => {
+const ForumModal = ({handleClose, addComment, show, data}) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none'
   const initialState = {
     message: '',
@@ -33,7 +33,7 @@ const ForumModal = ({handleClose, submitUpdate, show, data}) => {
               name="message"
               value={state.message}
               onChange={handleChange}
-              placeholder="New Password" 
+              placeholder="Сообщение" 
             />
           <Button
             styleName="button-close"
@@ -43,7 +43,7 @@ const ForumModal = ({handleClose, submitUpdate, show, data}) => {
           <Button
             styleName="form__button button-transparent"
             type="button"
-            handler={() => submitUpdate(state.message)}
+            handler={() => addComment(state.message)}
           >
             Отправить
           </Button>

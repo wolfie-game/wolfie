@@ -140,8 +140,8 @@ function SignIn() {
   )
 }
 
-const ConnectedApp = connect((state) => {
-  return state
-})(SignIn)
+// const ConnectedApp = connect((state) => {
+//   return state
+// })(SignIn)
 
-export default ConnectedApp
+export default SignIn
