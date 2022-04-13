@@ -9,7 +9,7 @@ export default class UserAPIDB {
   create(data) {
     console.log('UserAPIDB create data', data)
     return userAPIInstance
-      .post('/create', {id: data.id, login: data.login})
+      .post('/create', {login: data.login})
       .then((response) => {
         return response.json()
       })

@@ -24,7 +24,7 @@ export default class UserAuthController {
     try {
       let response = await authInstance.signup(data)
       if (response) {
-        await userInstanceDB.create(response)
+        await userInstanceDB.create(data)
         console.log('signup response', response)
       }
       
