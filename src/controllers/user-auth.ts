@@ -24,7 +24,8 @@ export default class UserAuthController {
     try {
       let response = await authInstance.signup(data)
       if (response) {
-        await userInstanceDB.create(data)
+        // TopicAPI.postTopic({title: title, content: content, authorId: authorId}).then((res) => res)
+        userInstanceDB.postUser({id: response.id, login: response.login})
         console.log('signup response', response)
       }
       

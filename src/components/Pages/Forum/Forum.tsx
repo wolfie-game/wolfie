@@ -175,8 +175,7 @@ function Forum(props) {
     <ErrorBoundary>
       <ForumModal
         handleClose={hideModal}
-        show={true}
-        // show={state.modal}
+        show={state.modal}
         data={state.topicView}
         addComment={addComment}
         data={props.topicView}

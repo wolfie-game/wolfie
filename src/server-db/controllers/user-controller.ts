@@ -3,10 +3,10 @@ import {userService as UserService} from '../services/UserService'
 
 export class UserAPI {
 	public static get = async (req: Request, res: Response) => {
-		const { query } = req
+		const {query} = req
 
 		try {
-			const { id } = query
+			const {id} = query
 			const user = await UserService.request(Number(id))
 
 			if (user === null) {
@@ -19,31 +19,31 @@ export class UserAPI {
 
 		} catch (e) {
 			res.status(404)
-			res.json({ error: e.message })
+			res.json({error: e.message})
 		}
 	}
 
 	public static create = async (req: Request, res: Response) => {
-		const { body } = req
+		const {body} = req
 
 		try {
 			UserService.create((body))
-			res.json({ message: 'User successfully created' })
+			res.json({message: 'User successfully created'})
 		} catch (e) {
 			res.status(400)
-			res.json({ error: e.message })
+			res.json({error: e.message})
 		}
 	}
 
 	public static update = async (req: Request, res: Response) => {
-		const { body } = req
+		const {body} = req
 
 		try {
 			await UserService.update(body)
-			res.json({ message: 'User successfully updated' })
+			res.json({message: 'User successfully updated'})
 		} catch (e) {
 			res.status(400)
-			res.json({ error: e.message })
+			res.json({error: e.message})
 		}
 	}
 }

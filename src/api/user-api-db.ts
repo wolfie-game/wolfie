@@ -1,15 +1,13 @@
 import FetchRequest from '../utils/FetchRequest'
-// import {Request, Response} from 'express'
-// import {userService} from "../server-db/services/UserService"
 
 const host = '/user'
 const userAPIInstance = new FetchRequest(`${host}`)
 
 export default class UserAPIDB {
-  create(data) {
+  postUser(data) {
     console.log('UserAPIDB create data', data)
     return userAPIInstance
-      .post('/create', {login: data.login})
+      .post('/create', {data: data})
       .then((response) => {
         return response.json()
       })
